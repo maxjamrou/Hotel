@@ -29,4 +29,7 @@ public class Sejour {
         this.consommationMinibar = new Consommation();
     }
 
+    public Consommation getConsommationMinibar(){
+        return this.consommationMinibar;
+    }
 }
