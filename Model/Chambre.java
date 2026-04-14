@@ -6,18 +6,6 @@ import java.util.*;
 public class Chambre {
 
     /**
-     * Default constructor
-     */
-    public Chambre(int etage, double prixChambre, boolean hasMinibar, TypeChambre type, Hotel hotel) {
-        this.etage = etage;
-        this.prixChambre = prixChambre;
-        this.hasMinibar = hasMinibar;
-        this.type = type;
-        this.hotel = hotel;
-        this.listeReservation = new Vector<Reservation>();
-    }
-
-    /**
      * 
      */
     private int etage;
@@ -46,5 +34,20 @@ public class Chambre {
      * 
      */
     private Vector<Reservation> listeReservation;
+
+    /**
+     * Default constructor
+     */
+    public Chambre(int etage, double prixChambre, boolean hasMinibar, TypeChambre type, Hotel hotel) {
+        this.etage = etage;
+        this.prixChambre = prixChambre;
+        this.hasMinibar = hasMinibar;
+        this.type = type;
+        this.hotel = hotel;
+        hotel.addChambre(this);
+        this.listeReservation = new Vector<Reservation>();
+    }
+
+    public void addReservation(Reservation r){listeReservation.add(r);}
 
 }

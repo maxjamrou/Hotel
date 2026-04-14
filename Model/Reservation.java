@@ -7,17 +7,6 @@ import java.util.*;
 public class Reservation {
 
     /**
-     * Default constructor
-     */
-    public Reservation(Date debut, Date fin, Hotel hotel, Chambre chambre, Client client) {
-        this.debut = debut;
-        this.fin = fin;
-        this.hotel = hotel;
-        this.chambre = chambre;
-        this.client = client;
-    }
-
-    /**
      * 
      */
     private Date debut;
@@ -47,4 +36,21 @@ public class Reservation {
      */
     private Chambre chambre;
 
+    /**
+     * Default constructor
+     */
+    public Reservation(Date debut, Date fin, Hotel hotel, Chambre chambre, Client client) {
+        this.debut = debut;
+        this.fin = fin;
+        this.hotel = hotel;
+        hotel.addReservation(this);
+        this.chambre = chambre;
+        chambre.addReservation(this);
+        this.client = client;
+        client.addReservation(this);
+    }
+
+    public void setSejour(Sejour s){
+        this.sejour = s;
+    }
 }

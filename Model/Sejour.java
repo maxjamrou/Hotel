@@ -1,18 +1,7 @@
-
-
 /**
  * 
  */
 public class Sejour {
-
-    /**
-     * Default constructor
-     */
-    public Sejour(Reservation reservation, Hotel hotel, Consommation consommationMinibar) {
-        this.reservation = reservation;
-        this.hotel = hotel;
-        this.consommationMinibar = consommationMinibar;
-    }
 
     /**
      * 
@@ -28,5 +17,16 @@ public class Sejour {
      * 
      */
     private Consommation consommationMinibar;
+
+    /**
+     * Default constructor
+     */
+    
+    public Sejour(Reservation reservation, Hotel hotel) {
+        this.reservation = reservation;
+        this.hotel = hotel;
+        hotel.addSejour(this);
+        this.consommationMinibar = new Consommation();
+    }
 
 }

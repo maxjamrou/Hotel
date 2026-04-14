@@ -6,16 +6,6 @@ import java.util.*;
 public class Client {
 
     /**
-     * Default constructor
-     */
-    public Client(String nom, String prenom, Hotel hotel) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.listeReservation = new Vector<Reservation>();
-        this.hotel = hotel;
-    }
-
-    /**
      * 
      */
     private String nom;
@@ -35,4 +25,16 @@ public class Client {
      */
     private Vector<Reservation> listeReservation;
 
+    /**
+     * Default constructor
+     */
+    public Client(String nom, String prenom, Hotel hotel) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.listeReservation = new Vector<Reservation>();
+        this.hotel = hotel;
+        this.hotel.addClient(this);
+    }
+
+    public void addReservation(Reservation r){this.listeReservation.add(r);}
 }

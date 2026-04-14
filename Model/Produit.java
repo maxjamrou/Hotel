@@ -6,15 +6,6 @@
 public class Produit {
 
     /**
-     * Default constructor
-     */
-    public Produit(String name, int quantite, double prix) {
-        this.name = name;
-        this.quantite = quantite;
-        this.prix = prix;
-    }
-
-    /**
      * 
      */
     private String name;
@@ -29,5 +20,12 @@ public class Produit {
      */
     private double prix;
 
-
+    /**
+     * Default constructor
+     */
+    public Produit(String name, int quantite, double prix) {
+        this.name = name;
+        this.quantite = quantite;
+        this.prix = prix;
+    }
 }
