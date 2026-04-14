@@ -13,8 +13,8 @@ public class Chambre {
         this.prixChambre = prixChambre;
         this.hasMinibar = hasMinibar;
         this.type = type;
-        this.listeReservation = new Vector<Reservation>();
         this.hotel = hotel;
+        this.listeReservation = new Vector<Reservation>();
     }
 
     /**

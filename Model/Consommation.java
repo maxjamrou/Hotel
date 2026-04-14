@@ -13,10 +13,6 @@ public class Consommation {
         this.listeProduit = new Vector<Produit>();
     }
 
-    public void addProduit(Produit produit){
-        listeProduit.add(produit);
-    }
-
     /**
      * 
      */

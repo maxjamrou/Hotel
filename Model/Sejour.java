@@ -1,6 +1,4 @@
 
-import java.io.*;
-import java.util.*;
 
 /**
  * 
@@ -10,7 +8,10 @@ public class Sejour {
     /**
      * Default constructor
      */
-    public Sejour() {
+    public Sejour(Reservation reservation, Hotel hotel, Consommation consommationMinibar) {
+        this.reservation = reservation;
+        this.hotel = hotel;
+        this.consommationMinibar = consommationMinibar;
     }
 
     /**

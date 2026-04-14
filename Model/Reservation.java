@@ -9,9 +9,12 @@ public class Reservation {
     /**
      * Default constructor
      */
-    public Reservation(Date debut, Date fin) {
+    public Reservation(Date debut, Date fin, Hotel hotel, Chambre chambre, Client client) {
         this.debut = debut;
         this.fin = fin;
+        this.hotel = hotel;
+        this.chambre = chambre;
+        this.client = client;
     }
 
     /**

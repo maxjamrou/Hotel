@@ -8,10 +8,11 @@ public class Client {
     /**
      * Default constructor
      */
-    public Client(String nom, String prenom) {
+    public Client(String nom, String prenom, Hotel hotel) {
         this.nom = nom;
         this.prenom = prenom;
         this.listeReservation = new Vector<Reservation>();
+        this.hotel = hotel;
     }
 
     /**
