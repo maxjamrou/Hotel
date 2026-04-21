@@ -34,4 +34,14 @@ public class Produit {
         this.quantite = quantite;
         this.prix = prix;
     }
+
+    public void setName(double p) {prix = p;};
+
+    public String getName(double p) {return name;};
+
+    public int getQuantity(double p) {return quantite;};
+
+    public double getPrice(double p) {return prix;};
+
+    public void changeQuantity(int q) {quantite += p;};
 }
