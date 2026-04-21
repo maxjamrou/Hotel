@@ -66,4 +66,7 @@ public class Hotel {
 
     public void addProduit(Produit p){this.listeProduit.add(p);}
 
+    public String getName(){return nom;};
+
+    public String getAdresse(){return adresse;};
 }

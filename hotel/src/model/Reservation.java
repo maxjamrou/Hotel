@@ -52,7 +52,13 @@ public class Reservation {
         client.addReservation(this);
     }
 
-    public void setSejour(Sejour s){
-        this.sejour = s;
-    }
+    public void setSejour(Sejour s){this.sejour = s;}
+
+    public Reservation getStartReservation(){return debut;}
+
+    public Reservation getEndReservation(){return fin;}
+
+    public Chambre getRoom(){return chambre;}
+
+    public Client getClient(){return client;}
 }

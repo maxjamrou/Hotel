@@ -50,28 +50,13 @@ public class Chambre {
         this.listeReservation = new Vector<Reservation>();
     }
 
-    public void setPrice(double p) {prixChambre = p;}
-
-    public void setFloor(int f) {etage = f;}
-
-    public int getFloor(){return this.etage;}
-
-    public int getPrice(){return this.prixChambre;}
-
-    public int getMinibar(){return this.hasMinibar;}
-
-    public int getType(){return this.type;}
-
     public void addReservation(Reservation r){listeReservation.add(r);}
 
-    public void removeReservation(Reservation r){listeReservation.remove(r);}
+    public int getEtage(){return this.etage;}
 
-    public boolean estDisponible(LocalDate start, LocalDate end){
+    public boolean estDisponible(){
         for (int i = 0; i < listeReservation.capacity() ; i++){
-            if (start.isAfter(listeReservation.get(i).getStartReservation() && start.isBefore(listeReservation.get(i).getEndReservation()))){
-                return false;
-            }
-            if (end.isAfter(listeReservation.get(i).getStartReservation() && end.isBefore(listeReservation.get(i).getEndReservation()))){
+            if (LocalDate.now().isAfter(listeReservation.get(i).getStartReservation && LocalDate.now().isBefore(listeReservation.get(i).getEndReservation))){
                 return false;
             }
         }
