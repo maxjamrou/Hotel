@@ -1,6 +1,9 @@
+package src;
+
+import src.model.*;
 import java.util.Date;
 
-public class Main {
+public class Main {0
     public static void main(String[] args) {
         Hotel hotel = new Hotel("Best hotel ever", "Evry");
         Client[] clients = new Client[4];
@@ -11,12 +14,12 @@ public class Main {
         Consommation[] consommations = new Consommation[2];
         for(int i = 0; i<clients.length; i++){
             clients[i] = new Client("Personne", (i + ""), hotel);
-            if(i == 2 || i==3){
+            if(i == 2 || i == 3){
                 chambres[i] = new Chambre(i, i, true, TypeChambre.Double, hotel);
 
             }
             chambres[i] = new Chambre(i, i, false, TypeChambre.Simple, hotel);
-            reservations[i] = new Reservation(new Date(), new Date(), hotel, chambres[i], clients[i]);
+            reservations[i] = new Reservation("2026-04-21", "2026-05-21", hotel, chambres[i], clients[i]);
             produits[i] = new Produit(("Produit " + i), (2 + i), (5.2 + i), hotel);
         }
         sejours[0] = new Sejour(reservations[1], hotel);
@@ -26,5 +29,6 @@ public class Main {
         sejours[2] = new Sejour(reservations[3], hotel);
         sejours[2].getConsommationMinibar().addProduit(produits[2]);
         sejours[2].getConsommationMinibar().addProduit(produits[3]);
+        System.out.println(chambres[2].getEtage());
     }
 }
