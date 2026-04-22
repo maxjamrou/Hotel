@@ -1,10 +1,12 @@
 
 
 import model.*;
+import vue.VueHotel;
 
 public class Main {
     public static void main(String[] args) {
         Hotel hotel = new Hotel("Best hotel ever", "Evry");
+        VueHotel window = new VueHotel(hotel);
         Client[] clients = new Client[4];
         Chambre[] chambres = new Chambre[4];
         Reservation[] reservations = new Reservation[4];
