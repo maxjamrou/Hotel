@@ -1,7 +1,7 @@
+package hotel;
 
-
-import model.*;
-import vue.VueHotel;
+import hotel.model.*;
+import hotel.vue.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -29,6 +29,6 @@ public class Main {
         sejours[2] = new Sejour(reservations[3], hotel);
         sejours[2].getConsommationMinibar().addProduit(produits[2]);
         sejours[2].getConsommationMinibar().addProduit(produits[3]);
-        System.out.println(chambres[2].getEtage());
+        System.out.println(chambres[2].getFloor());
     }
 }

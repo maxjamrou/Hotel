@@ -1,4 +1,4 @@
-package model;
+package hotel.model;
 
 /**
  * 
@@ -6,6 +6,6 @@ package model;
 public enum TypeChambre {
     Simple,
     Double,
-    SuitePrésidentiel,
-    SuiteNormale
+    Suite,
+    Presidentielle
 }

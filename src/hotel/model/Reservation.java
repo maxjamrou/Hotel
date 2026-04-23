@@ -1,4 +1,4 @@
-package model;
+package hotel.model;
 
 import java.time.LocalDate;
 
@@ -65,4 +65,12 @@ public class Reservation {
     public void confirmationSejour(){
         this.sejour = new Sejour(this, this.hotel);
     }
+
+    public LocalDate getStartReservation(){return debut;}
+
+    public LocalDate getEndReservation(){return fin;}
+
+    public Chambre getRoom(){return chambre;}
+
+    public Client getClient(){return client;}
 }

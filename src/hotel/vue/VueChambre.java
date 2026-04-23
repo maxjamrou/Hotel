@@ -1,4 +1,4 @@
-package vue;
+package hotel.vue;
 
 import javax.swing.JPanel;
 

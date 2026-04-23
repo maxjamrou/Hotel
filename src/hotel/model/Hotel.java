@@ -1,7 +1,10 @@
-package model;
+package hotel.model;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.*;
+
+import hotel.model.Chambre;
 
 /**
  * 
@@ -67,4 +70,24 @@ public class Hotel {
     public void addProduit(Produit p){this.listeProduit.add(p);}
 
     public String getNom(){return this.nom;}
+
+    public String getAdresse(){return adresse;};
+
+    public Vector<Chambre> getRooms(){return listeChambre;};
+
+    public Vector<Client> getClients(){return listeClient;};
+
+    public Vector<Reservation> getReservations(){return listeReservation;};
+
+    public Vector<Sejour> getSejour(){return listeSejour;};
+
+    public Vector<Chambre> getAllAvailableRooms(LocalDate start, LocalDate end){
+        Vector<Chambre> lChambres = new Vector<Chambre>();
+        for (int i = 0; i < listeChambre.capacity(); i++) {
+            if (listeChambre.get(i).estDisponible(start, end)) {
+                lChambres.add(listeChambre.get(i));
+            }
+        }
+        return lChambres;
+    }
 }

@@ -1,5 +1,6 @@
-package model;
+package hotel.model;
 
+import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -52,9 +53,29 @@ public class Chambre {
 
     public void addReservation(Reservation r){listeReservation.add(r);}
 
-    public int getEtage(){return this.etage;}
+     public void setPrice(double p) {prixChambre = p;}
 
-    // public boolean estDisponible(){
+    public void setFloor(int f) {etage = f;}
 
-    // }
+    public int getFloor(){return this.etage;}
+
+    public double getPrice(){return this.prixChambre;}
+
+    public boolean getMinibar(){return this.hasMinibar;}
+
+    public TypeChambre getType(){return this.type;}
+
+    public void removeReservation(Reservation r){listeReservation.remove(r);}
+
+    public boolean estDisponible(LocalDate start, LocalDate end){
+        for (int i = 0; i < listeReservation.capacity() ; i++){
+            if (start.isAfter(listeReservation.get(i).getStartReservation()) && start.isBefore(listeReservation.get(i).getEndReservation())){
+                return false;
+            }
+            if (end.isAfter(listeReservation.get(i).getStartReservation()) && end.isBefore(listeReservation.get(i).getEndReservation())){
+                return false;
+            }
+        }
+        return true;
+    }
 }

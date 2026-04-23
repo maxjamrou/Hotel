@@ -1,4 +1,4 @@
-package model;
+package hotel.model;
 
 /**
  * 
@@ -33,5 +33,9 @@ public class Sejour {
 
     public Consommation getConsommationMinibar(){
         return this.consommationMinibar;
+    }
+    
+    public Reservation getReservation(){
+        return this.reservation;
     }
 }

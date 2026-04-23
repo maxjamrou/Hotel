@@ -1,4 +1,4 @@
-package model;
+package hotel.model;
 
 import java.util.*;
 
