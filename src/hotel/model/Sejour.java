@@ -34,4 +34,8 @@ public class Sejour {
     public Consommation getConsommationMinibar(){
         return this.consommationMinibar;
     }
+    
+    public Reservation getReservation(){
+        return this.reservation;
+    }
 }

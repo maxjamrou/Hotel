@@ -22,6 +22,11 @@ public class VueHotel extends JFrame {
     //public JMenuItem annulerReservation;
     public JMenuItem consulterSejour;
     //public JMenuItem ajouterConsommation;
+
+    //public JMenuItem nouveauSejour;
+    //public JMenuItem facturation;
+
+
     public Hotel hotel;
 
     public VueHotel(Hotel hotel){
@@ -39,15 +44,15 @@ public class VueHotel extends JFrame {
         menu.add(sejour);
         produit = new JMenu("Produit");
         menu.add(produit);
-        consulterClient = new JMenuItem("Consulter la liste des clients");
+        consulterClient = new JMenuItem("Gérer la liste des clients");
         ajouterClient = new JMenuItem("Nouveau client");
         ajouterProduit = new JMenuItem("Nouveau produit");
-        consulterProduit = new JMenuItem("Consulter la liste des produits");
+        consulterProduit = new JMenuItem("Gérer la liste des produits");
         ajouterChambre = new JMenuItem("Nouvelle chambre");
-        consulterChambre = new JMenuItem("Consulter la liste des chambres");
+        consulterChambre = new JMenuItem("Gérer la liste des chambres");
         ajouterReservation = new JMenuItem("Nouvelle réservation");
-        consulterReservation = new JMenuItem("Consulter la liste des réservations");
-        consulterSejour = new JMenuItem("Consulter la liste des séjours");
+        consulterReservation = new JMenuItem("Gérer la liste des réservations");
+        consulterSejour = new JMenuItem("Gérer la liste des séjours");
         //annulerReservation = new JMenuItem("Annuler réservation");
         client.add(ajouterClient);
         client.add(consulterClient);
