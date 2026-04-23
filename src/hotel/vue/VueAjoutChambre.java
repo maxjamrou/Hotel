@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-public class VueChambre extends JPanel{
+public class VueAjoutChambre extends JPanel{
     JLabel etageL;
     JTextField etage;
     JLabel prixEuroL;
@@ -28,7 +28,7 @@ public class VueChambre extends JPanel{
     JRadioButton hasNoMinibar;
     JButton confirmer;
 
-    public VueChambre(){
+    public VueAjoutChambre(){
         super(new BorderLayout());
         JLabel titre = new JLabel("Ajouter Chambre");
         titre.setAlignmentX(CENTER_ALIGNMENT);
@@ -74,6 +74,5 @@ public class VueChambre extends JPanel{
         confirmer.setAlignmentX(Component.CENTER_ALIGNMENT);
         confirmer.setBackground(Color.green);
         this.add(confirmer, BorderLayout.SOUTH);
-        this.setVisible(false);
     }
 }

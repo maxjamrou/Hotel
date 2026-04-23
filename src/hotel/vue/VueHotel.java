@@ -1,7 +1,9 @@
 package vue;
 
-import controller.Controller1;
+import controller.ControllerMenu;
 import java.awt.Dimension;
+import java.util.Vector;
+
 import javax.swing.*;
 import model.*;
 
@@ -25,9 +27,10 @@ public class VueHotel extends JFrame {
     //public JMenuItem ajouterConsommation;
     //public JMenuItem nouveauSejour;
     //public JMenuItem facturation;
+    public VueAjoutChambre vueAjoutChambre;
+    public VueAjoutClient vueAjoutClient;
 
-    public VueChambre vueChambre;
-
+    public Vector<JPanel> listeActions = new Vector<JPanel>();
     public Hotel hotel;
 
     public VueHotel(Hotel hotel){
@@ -65,10 +68,11 @@ public class VueHotel extends JFrame {
         sejour.add(consulterSejour);
         produit.add(ajouterProduit);
         produit.add(consulterProduit);
-        vueChambre = new VueChambre();
-        this.getContentPane().add(vueChambre);
-        Controller1 afficheChambre = new Controller1(vueChambre);
-        ajouterChambre.addActionListener(afficheChambre);
+        listeActions.add(new VueAjoutChambre());
+        listeActions.add(new VueAjoutClient());
+        ControllerMenu actionsJMenu = new ControllerMenu(this, listeActions);
+        ajouterChambre.addActionListener(actionsJMenu);
+        ajouterClient.addActionListener(actionsJMenu);
         setPreferredSize(new Dimension(800, 500));
         pack();
         show();

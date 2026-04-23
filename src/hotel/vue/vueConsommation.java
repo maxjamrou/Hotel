@@ -1,7 +1,7 @@
 package vue;
 
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-public class vueConsommation extends JFrame{
+public class vueConsommation extends JPanel{
     
 }
