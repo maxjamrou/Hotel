@@ -54,9 +54,9 @@ public class Reservation {
 
     public void setSejour(Sejour s){this.sejour = s;}
 
-    public Reservation getStartReservation(){return debut;}
+    public LocalDate getStartReservation(){return debut;}
 
-    public Reservation getEndReservation(){return fin;}
+    public LocalDate getEndReservation(){return fin;}
 
     public Chambre getRoom(){return chambre;}
 
