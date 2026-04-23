@@ -6,6 +6,6 @@ package model;
 public enum TypeChambre {
     Simple,
     Double,
-    SuitePrésidentiel,
+    SuitePrésidentielle,
     SuiteNormale
 }

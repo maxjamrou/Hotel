@@ -1,5 +1,6 @@
 package vue;
 
+import controller.Controller1;
 import java.awt.Dimension;
 import javax.swing.*;
 import model.*;
@@ -22,10 +23,10 @@ public class VueHotel extends JFrame {
     //public JMenuItem annulerReservation;
     public JMenuItem consulterSejour;
     //public JMenuItem ajouterConsommation;
-
     //public JMenuItem nouveauSejour;
     //public JMenuItem facturation;
 
+    public VueChambre vueChambre;
 
     public Hotel hotel;
 
@@ -60,10 +61,14 @@ public class VueHotel extends JFrame {
         chambre.add(consulterChambre);
         reservation.add(ajouterReservation);
         reservation.add(consulterReservation);
-        // //reservation.add(annulerReservation);
+        //reservation.add(annulerReservation);
         sejour.add(consulterSejour);
         produit.add(ajouterProduit);
         produit.add(consulterProduit);
+        vueChambre = new VueChambre();
+        this.getContentPane().add(vueChambre);
+        Controller1 afficheChambre = new Controller1(vueChambre);
+        ajouterChambre.addActionListener(afficheChambre);
         setPreferredSize(new Dimension(800, 500));
         pack();
         show();

@@ -31,7 +31,7 @@ public class Chambre {
     /**
      * 
      */
-    private TypeChambre type;
+    private String type;
 
     /**
      * 
@@ -41,7 +41,7 @@ public class Chambre {
     /**
      * Default constructor
      */
-    public Chambre(int etage, double prixChambre, boolean hasMinibar, TypeChambre type, Hotel hotel) {
+    public Chambre(int etage, double prixChambre, boolean hasMinibar, String type, Hotel hotel) {
         this.etage = etage;
         this.prixChambre = prixChambre;
         this.hasMinibar = hasMinibar;
@@ -63,7 +63,7 @@ public class Chambre {
 
     public boolean getMinibar(){return this.hasMinibar;}
 
-    public TypeChambre getType(){return this.type;}
+    public String getType(){return this.type;}
 
     public void removeReservation(Reservation r){listeReservation.remove(r);}
 

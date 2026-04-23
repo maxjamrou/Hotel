@@ -1,5 +1,3 @@
-
-
 import model.*;
 import vue.*;
 
@@ -15,10 +13,10 @@ public class Main {
         for(int i = 0; i<clients.length; i++){
             clients[i] = new Client("Personne", (i + ""), hotel);
             if(i == 2 || i == 3){
-                chambres[i] = new Chambre(i, i, true, TypeChambre.Double, hotel);
+                chambres[i] = new Chambre(i, i, true, "Double", hotel);
 
             }
-            chambres[i] = new Chambre(i, i, false, TypeChambre.Simple, hotel);
+            chambres[i] = new Chambre(i, i, false, "Simple", hotel);
             reservations[i] = new Reservation("2026-04-21", "2026-05-21", hotel, chambres[i], clients[i]);
             produits[i] = new Produit(("Produit " + i), (2 + i), (5.2 + i), hotel);
         }
