@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 public class VueAjoutChambre extends JPanel{
     JLabel etageL;
@@ -29,11 +30,11 @@ public class VueAjoutChambre extends JPanel{
     JButton confirmer;
 
     public VueAjoutChambre(){
-        super(new BorderLayout());
+        super(new BorderLayout(3,3));
         JLabel titre = new JLabel("Ajouter Chambre");
-        titre.setAlignmentX(CENTER_ALIGNMENT);
+        titre.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(titre, BorderLayout.NORTH);
-        JPanel formulaire = new JPanel(new GridLayout(4,2));
+        JPanel formulaire = new JPanel(new GridLayout(4,2, 3, 3));
         etageL = new JLabel("Saisir étage : ");
         etage = new JTextField();
         formulaire.add(etageL);

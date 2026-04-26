@@ -1,21 +1,14 @@
 package vue;
 
 import java.awt.BorderLayout;
-import java.util.Vector;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTable;
 import javax.swing.SwingConstants;
-import model.Chambre;
 
-public class VueGererChambre extends JPanel{
-    JTable listeChambreT;
-
-    Vector<Chambre> listeChambre;
-
-    public VueGererChambre(){
+public class VueGererProduit extends JPanel{
+    public VueGererProduit(){
         super(new BorderLayout());
-        JLabel titre = new JLabel("Gérer chambre");
+        JLabel titre = new JLabel("Gérer produit");
         titre.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(titre, BorderLayout.NORTH);
     }
