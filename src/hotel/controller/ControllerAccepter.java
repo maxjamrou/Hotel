@@ -41,6 +41,26 @@ public class ControllerAccepter implements ActionListener{
                 this.listJLabels.get(i).setText("");
             }
         }
+        int etage = 0;
+        double prix = 0.0;
+        if(jRadioButton != null && jComboBox != null){
+            try{
+                etage = Integer.parseInt(listeStrFields.get(0));
+            } catch(NumberFormatException ex){
+                if(listeStrFields.get(0).length()!=0){
+                    listJLabels.get(0).setText("*Element doit être un nombre");
+                    canBePerformed = false;
+                }
+            }
+            try{
+                prix = Double.parseDouble(listeStrFields.get(1));
+            } catch(NumberFormatException ex) {
+                if(listeStrFields.get(1).length()!=0){
+                    listJLabels.get(1).setText("*Element doit être un nombre");
+                    canBePerformed = false;
+                }
+            }
+        }
         if(canBePerformed){
             System.out.println(titre);
             if(titre.equals("Ajouter Client")){
@@ -49,22 +69,7 @@ public class ControllerAccepter implements ActionListener{
             } else if (titre.equals("Ajouter Chambre")){
                 boolean hasMinibar = true; 
                 if(this.jRadioButton.isSelected()){hasMinibar = false;}
-                boolean isNumber = true;
-                int etage = 0;
-                double prix = 0.0;
-                try{
-                    etage = Integer.parseInt(listeStrFields.get(0));
-                } catch(NumberFormatException ex){
-                    listJLabels.get(0).setText("*Element doit être un nombre");
-                    isNumber = false;
-                }
-                try{
-                    prix = Double.parseDouble(listeStrFields.get(1));
-                } catch(NumberFormatException ex) {
-                    listJLabels.get(1).setText("*Element doit être un nombre");
-                    isNumber = false;
-                }
-                if(isNumber){this.main.getHotel().addChambre(new Chambre(etage, prix, hasMinibar, (String)this.jComboBox.getSelectedItem(), this.main.getHotel()));}
+                this.main.getHotel().addChambre(new Chambre(etage, prix, hasMinibar, (String)this.jComboBox.getSelectedItem(), this.main.getHotel()));
                 System.out.println(Integer.parseInt(listeStrFields.get(0)) + Double.parseDouble(listeStrFields.get(1)));
                 this.jRadioButton.setSelected(true);
                 this.jComboBox.setSelectedItem("Simple");
