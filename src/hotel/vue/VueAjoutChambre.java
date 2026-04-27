@@ -1,9 +1,8 @@
 package vue;
 
+import controller.ControllerAccepter;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.Vector;
 import javax.swing.ButtonGroup;
@@ -16,39 +15,43 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class VueAjoutChambre extends JPanel{
-    JLabel etageL;
+    VueHotel main;
     JTextField etage;
-    JLabel prixEuroL;
     JTextField prixEuro;
-    JLabel euroL;
-    JLabel typeChambreL;
     JComboBox<String> listeTypeChambre;
-    JLabel minibarL;
     ButtonGroup minibar;
     JRadioButton hasMinibar;
     JRadioButton hasNoMinibar;
     JButton confirmer;
 
-    public VueAjoutChambre(){
+    public VueAjoutChambre(VueHotel main){
         super(new BorderLayout(3,3));
+        this.main = main;
         JLabel titre = new JLabel("Ajouter Chambre");
         titre.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(titre, BorderLayout.NORTH);
         JPanel formulaire = new JPanel(new GridLayout(4,2, 3, 3));
-        etageL = new JLabel("Saisir étage : ");
-        etage = new JTextField();
+        JLabel etageL = new JLabel("Saisir étage : ");
         formulaire.add(etageL);
-        formulaire.add(etage);
-        JPanel argent = new JPanel();
-        argent.setLayout(new GridLayout(1,2));
-        prixEuroL = new JLabel("Saisir prix chambre : ");
+        JPanel etagePanel = new JPanel(new BorderLayout());
+        etage = new JTextField();
+        etagePanel.add(etage, BorderLayout.CENTER);
+        JLabel etageEltManquant = new JLabel();
+        etageEltManquant.setForeground(Color.RED);
+        etagePanel.add(etageEltManquant, BorderLayout.SOUTH);
+        formulaire.add(etagePanel);
+        JPanel argent = new JPanel(new BorderLayout());
+        JLabel prixEuroL = new JLabel("Saisir prix chambre : ");
         formulaire.add(prixEuroL);
         prixEuro = new JTextField();
-        argent.add(prixEuro);
-        euroL = new JLabel("€/nuit");
-        argent.add(euroL);
+        argent.add(prixEuro, BorderLayout.CENTER);
+        JLabel euroL = new JLabel("€/nuit");
+        argent.add(euroL, BorderLayout.EAST);
+        JLabel prixEltManquant = new JLabel();
+        prixEltManquant.setForeground(Color.red);
+        argent.add(prixEltManquant, BorderLayout.SOUTH);
         formulaire.add(argent);
-        typeChambreL = new JLabel("Saisir type chambre :");
+        JLabel typeChambreL = new JLabel("Saisir type chambre :");
         Vector<String> listeType = new Vector<>();
         listeType.add("Simple");
         listeType.add("Double");
@@ -57,7 +60,7 @@ public class VueAjoutChambre extends JPanel{
         listeTypeChambre = new JComboBox<>(listeType);
         formulaire.add(typeChambreL);
         formulaire.add(listeTypeChambre); 
-        minibarL = new JLabel("La chambre possède un minibar : ");
+        JLabel minibarL = new JLabel("La chambre possède un minibar : ");
         minibar = new ButtonGroup();
         hasMinibar = new JRadioButton("Oui");
         hasNoMinibar = new JRadioButton("Non");
@@ -65,15 +68,21 @@ public class VueAjoutChambre extends JPanel{
         minibar.add(hasMinibar);
         minibar.add(hasNoMinibar);
         formulaire.add(minibarL);
-        JPanel radioButtons = new JPanel();
-        radioButtons.setLayout(new FlowLayout());
-        radioButtons.add(hasMinibar);
-        radioButtons.add(hasNoMinibar);
+        JPanel radioButtons = new JPanel(new BorderLayout());
+        radioButtons.add(hasMinibar, BorderLayout.WEST);
+        radioButtons.add(hasNoMinibar, BorderLayout.EAST);
         formulaire.add(radioButtons);
         this.add(formulaire, BorderLayout.CENTER);
         confirmer = new JButton("Confirmer");
-        confirmer.setAlignmentX(Component.CENTER_ALIGNMENT);
         confirmer.setBackground(Color.green);
+        Vector<JTextField> listFields = new Vector<JTextField>(0);
+        listFields.add(etage);
+        listFields.add(prixEuro);
+        Vector<JLabel> listLabels = new Vector<JLabel>(0);
+        listLabels.add(etageEltManquant);
+        listLabels.add(prixEltManquant);
+        ControllerAccepter accepter = new ControllerAccepter(main, titre.getText(), listFields, listLabels, hasMinibar, listeTypeChambre);
+        confirmer.addActionListener(accepter);
         this.add(confirmer, BorderLayout.SOUTH);
     }
 }

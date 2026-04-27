@@ -40,7 +40,7 @@ public class VueHotel extends JFrame {
 
 
     public Vector<JPanel> listeActions = new Vector<JPanel>();
-    public Hotel hotel;
+    private Hotel hotel;
 
     public VueHotel(Hotel hotel){
         this.hotel = hotel;
@@ -96,9 +96,9 @@ public class VueHotel extends JFrame {
         produit.add(ajouterProduit);
         produit.add(consulterProduit);
         aide.add(UML);
-        listeActions.add(new VueAjoutClient());
+        listeActions.add(new VueAjoutClient(this));
         listeActions.add(new VueGererClient());
-        listeActions.add(new VueAjoutChambre());
+        listeActions.add(new VueAjoutChambre(this));
         listeActions.add(new VueGererChambre());
         listeActions.add(new VueAjoutReservation());
         listeActions.add(new VueGererReservation());
@@ -119,5 +119,9 @@ public class VueHotel extends JFrame {
         setPreferredSize(new Dimension(800, 500));
         pack();
         show();
+    }
+
+    public Hotel getHotel(){
+        return this.hotel;
     }
 }

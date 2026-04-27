@@ -33,6 +33,7 @@ public class Produit {
         this.name = name;
         this.quantite = quantite;
         this.prix = prix;
+        hotel.addProduit(this);
     }
 
     

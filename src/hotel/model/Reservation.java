@@ -44,11 +44,11 @@ public class Reservation {
         this.debut = LocalDate.parse(debut);
         this.fin = LocalDate.parse(fin);
         this.hotel = hotel;
-        hotel.addReservation(this);
-        this.chambre = chambre;
-        chambre.addReservation(this);
         this.client = client;
+        this.chambre = chambre;
+        hotel.addReservation(this);
         client.addReservation(this);
+        chambre.addReservation(this);
     }
 
     /**
