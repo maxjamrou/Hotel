@@ -47,13 +47,13 @@ public class Chambre {
         this.hasMinibar = hasMinibar;
         this.type = type;
         this.hotel = hotel;
-        this.listeReservation = new Vector<Reservation>();
+        this.listeReservation = new Vector<Reservation>(0);
         hotel.addChambre(this);
     }
 
     public void addReservation(Reservation r){listeReservation.add(r);}
 
-     public void setPrice(double p) {prixChambre = p;}
+    public void setPrice(double p) {prixChambre = p;}
 
     public void setFloor(int f) {etage = f;}
 
@@ -71,8 +71,7 @@ public class Chambre {
         for (int i = 0; i < listeReservation.capacity() ; i++){
             if (start.isAfter(listeReservation.get(i).getStartReservation()) && start.isBefore(listeReservation.get(i).getEndReservation())){
                 return false;
-            }
-            if (end.isAfter(listeReservation.get(i).getStartReservation()) && end.isBefore(listeReservation.get(i).getEndReservation())){
+            } else if (end.isAfter(listeReservation.get(i).getStartReservation()) && end.isBefore(listeReservation.get(i).getEndReservation())){
                 return false;
             }
         }

@@ -64,7 +64,7 @@ public class VueAjoutChambre extends JPanel{
         minibar = new ButtonGroup();
         hasMinibar = new JRadioButton("Oui");
         hasNoMinibar = new JRadioButton("Non");
-        hasMinibar.setSelected(true);
+        hasNoMinibar.setSelected(true);
         minibar.add(hasMinibar);
         minibar.add(hasNoMinibar);
         formulaire.add(minibarL);
@@ -81,7 +81,7 @@ public class VueAjoutChambre extends JPanel{
         Vector<JLabel> listLabels = new Vector<JLabel>(0);
         listLabels.add(etageEltManquant);
         listLabels.add(prixEltManquant);
-        ControllerAccepter accepter = new ControllerAccepter(main, titre.getText(), listFields, listLabels, hasMinibar, listeTypeChambre);
+        ControllerAccepter accepter = new ControllerAccepter(main, titre.getText(), listFields, listLabels, hasNoMinibar, listeTypeChambre);
         confirmer.addActionListener(accepter);
         this.add(confirmer, BorderLayout.SOUTH);
     }

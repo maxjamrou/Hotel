@@ -42,12 +42,30 @@ public class ControllerAccepter implements ActionListener{
             }
         }
         if(canBePerformed){
-            if(titre.equals("Ajouter client")){
+            System.out.println(titre);
+            if(titre.equals("Ajouter Client")){
                 this.main.getHotel().addClient(new Client(listeStrFields.get(0), listeStrFields.get(1), this.main.getHotel()));
-            } else if (titre.equals("Ajouter chambre")){
-                boolean isSelected = false;
-                if(this.jRadioButton.isSelected()){isSelected = true;}
-                this.main.getHotel().addChambre(new Chambre(Integer.parseInt(listeStrFields.get(0)), Double.parseDouble(listeStrFields.get(1)), isSelected, (String)this.jComboBox.getSelectedItem(), this.main.getHotel()));
+                System.out.println("testtest");
+            } else if (titre.equals("Ajouter Chambre")){
+                boolean hasMinibar = true; 
+                if(this.jRadioButton.isSelected()){hasMinibar = false;}
+                boolean isNumber = true;
+                int etage = 0;
+                double prix = 0.0;
+                try{
+                    etage = Integer.parseInt(listeStrFields.get(0));
+                } catch(NumberFormatException ex){
+                    listJLabels.get(0).setText("*Element doit être un nombre");
+                    isNumber = false;
+                }
+                try{
+                    prix = Double.parseDouble(listeStrFields.get(1));
+                } catch(NumberFormatException ex) {
+                    listJLabels.get(1).setText("*Element doit être un nombre");
+                    isNumber = false;
+                }
+                if(isNumber){this.main.getHotel().addChambre(new Chambre(etage, prix, hasMinibar, (String)this.jComboBox.getSelectedItem(), this.main.getHotel()));}
+                System.out.println(Integer.parseInt(listeStrFields.get(0)) + Double.parseDouble(listeStrFields.get(1)));
                 this.jRadioButton.setSelected(true);
                 this.jComboBox.setSelectedItem("Simple");
             }

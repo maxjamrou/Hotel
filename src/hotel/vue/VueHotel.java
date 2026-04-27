@@ -100,7 +100,7 @@ public class VueHotel extends JFrame {
         listeActions.add(new VueGererClient());
         listeActions.add(new VueAjoutChambre(this));
         listeActions.add(new VueGererChambre());
-        listeActions.add(new VueAjoutReservation());
+        listeActions.add(new VueAjoutReservation(this));
         listeActions.add(new VueGererReservation());
         listeActions.add(new VueGererSejour());
         listeActions.add(new VueAjoutProduit());
