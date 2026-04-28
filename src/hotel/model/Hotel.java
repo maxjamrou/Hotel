@@ -49,11 +49,11 @@ public class Hotel {
     public Hotel(String nom, String adresse) {
         this.nom = nom;
         this.adresse = adresse;
-        this.listeChambre = new Vector<Chambre>();
-        this.listeClient = new Vector<Client>();
-        this.listeReservation = new Vector<Reservation>();
-        this.listeSejour = new Vector<Sejour>();
-        this.listeProduit = new Vector<Produit>();
+        this.listeChambre = new Vector<>();
+        this.listeClient = new Vector<>();
+        this.listeReservation = new Vector<>();
+        this.listeSejour = new Vector<>();
+        this.listeProduit = new Vector<>();
     }
 
     public void addChambre(Chambre c){this.listeChambre.add(c);}
@@ -69,4 +69,26 @@ public class Hotel {
     public String getNom(){return this.nom;}
 
     public String getAdresse(){return adresse;};
+
+    public Vector<Client> getClientByNom(String nom){
+        Vector<Client> rClients = new Vector<Client>();
+        for (int idx = 0; idx < this.listeClient.size(); idx++) {
+            if(this.listeClient.get(idx).getNom().equals(nom)){rClients.add(this.listeClient.get(idx));}
+        }
+        return rClients;
+    }
+
+    public Vector<Client> getClientByPrenom(String prenom, Vector<Client> rClients){
+        if(rClients == null){rClients = new Vector<Client>();}
+        for (int idx = 0; idx < this.listeClient.size(); idx++) {
+            if(this.listeClient.get(idx).getNom().toLowerCase().equals(prenom.toLowerCase())){rClients.add(this.listeClient.get(idx));}
+        }
+        return rClients;
+    }
+
+    public Vector<Client> getClientByNomAndPrenom(String nom, String prenom){
+        if(nom.equals("")){return this.getClientByPrenom(prenom, null);}
+        else if(prenom.equals("")){return this.getClientByNom(nom);}
+        return this.getClientByPrenom(prenom, this.getClientByNom(nom));
+    }
 }

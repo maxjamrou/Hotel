@@ -32,7 +32,7 @@ public class ControllerAccepter implements ActionListener{
     public void actionPerformed(ActionEvent e){
         boolean canBePerformed = true;
         Vector<String> listeStrFields = new Vector<String>();
-        for (int i = 0; i < this.listeJTextFields.capacity(); i++) {
+        for (int i = 0; i < this.listeJTextFields.size(); i++) {
             listeStrFields.add(listeJTextFields.get(i).getText());
             if(listeStrFields.get(i).length() == 0){
                 this.listJLabels.get(i).setText("*Elément manquant");
@@ -48,6 +48,7 @@ public class ControllerAccepter implements ActionListener{
                 etage = Integer.parseInt(listeStrFields.get(0));
             } catch(NumberFormatException ex){
                 if(listeStrFields.get(0).length()!=0){
+                    listeJTextFields.get(0).setText("");
                     listJLabels.get(0).setText("*Element doit être un nombre");
                     canBePerformed = false;
                 }
@@ -56,6 +57,7 @@ public class ControllerAccepter implements ActionListener{
                 prix = Double.parseDouble(listeStrFields.get(1));
             } catch(NumberFormatException ex) {
                 if(listeStrFields.get(1).length()!=0){
+                    listeJTextFields.get(1).setText("");
                     listJLabels.get(1).setText("*Element doit être un nombre");
                     canBePerformed = false;
                 }
@@ -64,7 +66,7 @@ public class ControllerAccepter implements ActionListener{
         if(canBePerformed){
             System.out.println(titre);
             if(titre.equals("Ajouter Client")){
-                this.main.getHotel().addClient(new Client(listeStrFields.get(0), listeStrFields.get(1), this.main.getHotel()));
+                this.main.getHotel().addClient(new Client(listeStrFields.get(0).toUpperCase(), listeStrFields.get(1), this.main.getHotel()));
                 System.out.println("testtest");
             } else if (titre.equals("Ajouter Chambre")){
                 boolean hasMinibar = true; 

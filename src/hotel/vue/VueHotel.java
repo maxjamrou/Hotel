@@ -43,8 +43,8 @@ public class VueHotel extends JFrame {
     private Hotel hotel;
 
     public VueHotel(Hotel hotel){
-        this.hotel = hotel;
         super("Hotel " + hotel.getNom());
+        this.hotel = hotel;
         menu = new JMenuBar();
         setJMenuBar(menu);
         // ajouter = new JMenu("Ajouter");
