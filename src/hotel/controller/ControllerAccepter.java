@@ -42,6 +42,7 @@ public class ControllerAccepter implements ActionListener{
             }
         }
         int etage = 0;
+        int number = 0;
         double prix = 0.0;
         if(jRadioButton != null && jComboBox != null){
             try{
@@ -71,7 +72,7 @@ public class ControllerAccepter implements ActionListener{
             } else if (titre.equals("Ajouter Chambre")){
                 boolean hasMinibar = true; 
                 if(this.jRadioButton.isSelected()){hasMinibar = false;}
-                this.main.getHotel().addChambre(new Chambre(etage, prix, hasMinibar, (String)this.jComboBox.getSelectedItem(), this.main.getHotel()));
+                this.main.getHotel().addChambre(new Chambre(etage, number, prix, hasMinibar, (String)this.jComboBox.getSelectedItem(), this.main.getHotel()));
                 System.out.println(Integer.parseInt(listeStrFields.get(0)) + Double.parseDouble(listeStrFields.get(1)));
                 this.jRadioButton.setSelected(true);
                 this.jComboBox.setSelectedItem("Simple");

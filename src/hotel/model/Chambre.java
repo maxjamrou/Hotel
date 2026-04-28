@@ -14,6 +14,11 @@ public class Chambre {
     private int etage;
 
     /**
+     *
+     */
+    private int number;
+
+    /**
      * 
      */
     private double prixChambre;
@@ -41,8 +46,9 @@ public class Chambre {
     /**
      * Default constructor
      */
-    public Chambre(int etage, double prixChambre, boolean hasMinibar, String type, Hotel hotel) {
+    public Chambre(int etage, int number, double prixChambre, boolean hasMinibar, String type, Hotel hotel) {
         this.etage = etage;
+        this.number = number;
         this.prixChambre = prixChambre;
         this.hasMinibar = hasMinibar;
         this.type = type;
@@ -77,4 +83,7 @@ public class Chambre {
         }
         return true;
     }
+
+    @Override
+    public String toString() {return "Chambre " + number + " (" + type + ")";}
 }

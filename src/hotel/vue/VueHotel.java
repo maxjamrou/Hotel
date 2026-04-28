@@ -1,6 +1,7 @@
 package vue;
 
 import controller.ControllerMenu;
+import controller.ControllerProduct;
 import model.Hotel;
 
 import java.awt.Dimension;
@@ -103,8 +104,11 @@ public class VueHotel extends JFrame {
         listeActions.add(new VueAjoutReservation(this));
         listeActions.add(new VueGererReservation());
         listeActions.add(new VueGererSejour());
-        listeActions.add(new VueAjoutProduit());
-        listeActions.add(new VueGererProduit());
+        ViewAddProduct viewAddProduct = new ViewAddProduct();
+        new ControllerProduct(hotel, viewAddProduct);
+        listeActions.add(viewAddProduct);
+        ViewListProduct viewListeProduit = new ViewListProduct(hotel);
+        listeActions.add(viewListeProduit);
         ControllerMenu actionsJMenu = new ControllerMenu(this, listeActions);
         ajouterClient.addActionListener(actionsJMenu);
         consulterClient.addActionListener(actionsJMenu);

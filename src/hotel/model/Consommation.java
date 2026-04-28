@@ -1,6 +1,5 @@
 package model;
 
-import java.io.*;
 import java.util.*;
 
 /**
@@ -11,15 +10,15 @@ public class Consommation {
     /**
      * 
      */
-    private Vector<Produit> listeProduit;
+    private Vector<Product> listeProduct;
 
     /**
      * Default constructor
      */
     public Consommation() {
-        this.listeProduit = new Vector<Produit>();
+        this.listeProduct = new Vector<Product>();
     }
 
-    public void addProduit(Produit p){this.listeProduit.add(p);}
+    public void addProduit(Product p){this.listeProduct.add(p);}
 
 }
