@@ -1,5 +1,7 @@
 package controller;
 
+import vue.ViewListProduct;
+
 import java.awt.Desktop;
 import java.awt.event.*;
 import java.io.File;
@@ -40,7 +42,9 @@ public class ControllerMenu implements ActionListener{
         } else if(((JMenuItem)e.getSource()).getText().equals("Nouveau produit")){
             this.vueHotel.getContentPane().add(this.listeActions.get(7));
         } else if(((JMenuItem)e.getSource()).getText().equals("Gérer la liste des produits")){
-            this.vueHotel.getContentPane().add(this.listeActions.get(8));
+            ViewListProduct panel = (ViewListProduct) this.listeActions.get(8);
+            panel.refresh(); // 🔥 IMPORTANT
+            this.vueHotel.getContentPane().add(panel);
         } else if(((JMenuItem)e.getSource()).getText().equals("Ouvrir l'UML")){
             System.out.println("test");
             if (Desktop.isDesktopSupported()) {

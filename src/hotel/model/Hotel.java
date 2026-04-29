@@ -1,6 +1,5 @@
 package model;
 
-import java.io.*;
 import java.util.*;
 
 /**
@@ -41,7 +40,7 @@ public class Hotel {
      /**
      * 
      */
-    private Vector<Produit> listeProduit;
+    private Vector<Product> listProduct;
 
     /**
      * Default constructor
@@ -53,7 +52,7 @@ public class Hotel {
         this.listeClient = new Vector<>();
         this.listeReservation = new Vector<>();
         this.listeSejour = new Vector<>();
-        this.listeProduit = new Vector<>();
+        this.listProduct = new Vector<>();
     }
 
     public void addChambre(Chambre c){this.listeChambre.add(c);}
@@ -64,11 +63,15 @@ public class Hotel {
 
     public void addSejour(Sejour s){this.listeSejour.add(s);}
 
-    public void addProduit(Produit p){this.listeProduit.add(p);}
+    public void addProduct(Product product){listProduct.add(product);}
 
     public String getNom(){return this.nom;}
 
     public String getAdresse(){return adresse;};
+
+    public Vector<Product> getProducts() {
+        return listProduct;
+    }
 
     public Vector<Client> getClientByNom(String nom){
         Vector<Client> rClients = new Vector<Client>();

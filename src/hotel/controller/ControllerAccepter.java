@@ -9,6 +9,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import model.Chambre;
 import model.Client;
+import model.Product;
 import vue.VueHotel;
 
 public class ControllerAccepter implements ActionListener{
@@ -42,6 +43,7 @@ public class ControllerAccepter implements ActionListener{
             }
         }
         int etage = 0;
+        int number = 0;
         double prix = 0.0;
         if(jRadioButton != null && jComboBox != null){
             try{
@@ -71,12 +73,27 @@ public class ControllerAccepter implements ActionListener{
             } else if (titre.equals("Ajouter Chambre")){
                 boolean hasMinibar = true; 
                 if(this.jRadioButton.isSelected()){hasMinibar = false;}
-                this.main.getHotel().addChambre(new Chambre(etage, prix, hasMinibar, (String)this.jComboBox.getSelectedItem(), this.main.getHotel()));
+                this.main.getHotel().addChambre(new Chambre(etage, number, prix, hasMinibar, (String)this.jComboBox.getSelectedItem(), this.main.getHotel()));
                 System.out.println(Integer.parseInt(listeStrFields.get(0)) + Double.parseDouble(listeStrFields.get(1)));
                 this.jRadioButton.setSelected(true);
                 this.jComboBox.setSelectedItem("Simple");
+            } else if (titre.equals("Ajouter Product")) {
+                try {
+                    String name = listeStrFields.get(0);
+                    double price = Double.parseDouble(listeStrFields.get(1));
+                    int quantity = Integer.parseInt(listeStrFields.get(2));
+
+                    this.main.getHotel().addProduct(
+                            new Product(name, price, quantity)
+                    );
+
+                } catch (NumberFormatException ex) {
+                    listJLabels.get(1).setText("*Price must be a number");
+                    listJLabels.get(2).setText("*Quantity must be a number");
+                    canBePerformed = false;
+                }
             }
-            for (int i = 0; i < this.listeJTextFields.capacity(); i++) {
+            for (int i = 0; i < this.listeJTextFields.size(); i++) {
                 this.listeJTextFields.get(i).setText("");
             }
             this.main.getContentPane().removeAll();
