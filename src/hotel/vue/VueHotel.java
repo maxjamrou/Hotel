@@ -103,8 +103,8 @@ public class VueHotel extends JFrame {
         listeActions.add(new VueAjoutReservation(this));
         listeActions.add(new VueGererReservation());
         listeActions.add(new VueGererSejour());
-        listeActions.add(new VueAjoutProduit());
-        listeActions.add(new VueGererProduit());
+        listeActions.add(new VueAjoutProduit(this));
+        listeActions.add(new VueGererProduit(this));
         ControllerMenu actionsJMenu = new ControllerMenu(this, listeActions);
         ajouterClient.addActionListener(actionsJMenu);
         consulterClient.addActionListener(actionsJMenu);

@@ -29,21 +29,20 @@ public class Produit {
      * Default constructor
      */
     public Produit(String name, int quantite, double prix, Hotel hotel) {
-        this.hotel = hotel;
         this.name = name;
         this.quantite = quantite;
         this.prix = prix;
-        hotel.addProduit(this);
+        this.hotel = hotel;
     }
 
     
-    public String getName(double p) {return name;}
+    public String getName() {return name;}
     
     public void setPrice(double p) {prix = p;}
     
-    public double getPrice(double p) {return prix;}
+    public double getPrice() {return prix;}
 
-    public int getQuantity(double p) {return quantite;}
+    public int getQuantity() {return quantite;}
 
     public void changeQuantity(int q) {quantite += q;}
 }

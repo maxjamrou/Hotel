@@ -28,7 +28,7 @@ public class VueAjoutReservation extends JPanel{
 
 
     public VueAjoutReservation(VueHotel main){
-        super(new BorderLayout());
+        super(new BorderLayout(3,3));
         this.main = main;
         JLabel titre = new JLabel("Ajouter réservation");
         titre.setHorizontalAlignment(SwingConstants.CENTER);
@@ -36,35 +36,43 @@ public class VueAjoutReservation extends JPanel{
         JPanel formulaire = new JPanel(new GridLayout(4, 2));
         formulaire.add(new JLabel("Début du séjour :"));
         JPanel dateDebJPanel = new JPanel(new FlowLayout());
-        this.jourDebField = new JTextField("jj");
+        this.jourDebField = new JTextField(5);
+        this.jourDebField.setText("jj");
         dateDebJPanel.add(this.jourDebField);
         dateDebJPanel.add(new JLabel("/"));
-        this.moisDebField = new JTextField("mm");
+        this.moisDebField = new JTextField(5);
+        this.moisDebField.setText("mm");
         dateDebJPanel.add(moisDebField);
         dateDebJPanel.add(new JLabel("/"));
-        this.anneeDebField = new JTextField("aaaa");
+        this.anneeDebField = new JTextField(5);
+        this.anneeDebField.setText("aaaa");
         dateDebJPanel.add(anneeDebField);
         formulaire.add(dateDebJPanel);
+
         formulaire.add(new JLabel("Fin du séjour"));
         JPanel dateFinJPanel = new JPanel(new GridLayout(1,5));
         this.jourFinField = new JTextField("jj");
+        // this.jourFinField.setText("jj");
         dateFinJPanel.add(this.jourFinField);
         dateFinJPanel.add(new JLabel("/"));
-        this.moisFinField = new JTextField("mm");
+        this.moisFinField = new JTextField(5);
+        this.moisFinField.setText("mm");
         dateFinJPanel.add(moisFinField);
         dateFinJPanel.add(new JLabel("/"));
-        this.anneeFinField = new JTextField("aaaa");
+        this.anneeFinField = new JTextField(5);
+        this.anneeFinField.setText("annee");
         dateFinJPanel.add(anneeFinField);
         formulaire.add(dateFinJPanel);
+        
         formulaire.add(new JLabel("A quel nom : "));
         JPanel clientPanel = new JPanel(new BorderLayout());
         JPanel clientJPanel = new JPanel();
         clientPanel.add(clientJPanel, BorderLayout.CENTER);
         clientJPanel.add(new JLabel("Nom :"));
-        this.nomClient = new JTextField("Insérer Nom");
+        this.nomClient = new JTextField(10);
         clientJPanel.add(this.nomClient);
         clientJPanel.add(new JLabel("Prénom :"));
-        this.prenomClient = new JTextField("Insérer Prénom");
+        this.prenomClient = new JTextField(10);
         clientJPanel.add(this.prenomClient);
         formulaire.add(clientJPanel);
 

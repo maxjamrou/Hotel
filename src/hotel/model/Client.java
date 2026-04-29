@@ -35,7 +35,6 @@ public class Client {
         this.prenom = prenom;
         this.listeReservation = new Vector<Reservation>(0);
         this.hotel = hotel;
-        this.hotel.addClient(this);
     }
 
     public void setNom(String nom){this.nom = nom;}
@@ -49,7 +48,7 @@ public class Client {
     public void addReservation(Reservation r){this.listeReservation.add(r);}
 
     public boolean aDejaReserve(Reservation r){
-        for(int i = 0; i < this.listeReservation.capacity(); i++){
+        for(int i = 0; i < this.listeReservation.size(); i++){
             if (r.getStartReservation().isAfter(listeReservation.get(i).getStartReservation()) && r.getStartReservation().isBefore(listeReservation.get(i).getEndReservation())){
                 return true;
             } else if (r.getEndReservation().isAfter(listeReservation.get(i).getStartReservation()) && r.getEndReservation().isBefore(listeReservation.get(i).getEndReservation())){

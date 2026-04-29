@@ -48,7 +48,6 @@ public class Chambre {
         this.type = type;
         this.hotel = hotel;
         this.listeReservation = new Vector<Reservation>();
-        hotel.addChambre(this);
     }
 
     public void addReservation(Reservation r){listeReservation.add(r);}

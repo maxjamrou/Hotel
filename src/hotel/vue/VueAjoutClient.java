@@ -19,12 +19,12 @@ public class VueAjoutClient extends JPanel{
     JButton confirmer;
     
     public VueAjoutClient(VueHotel main){
-        super(new BorderLayout());
+        super(new BorderLayout(3,3));
         this.main = main;
         JLabel titre = new JLabel("Ajouter Client");
         titre.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(titre, BorderLayout.NORTH);
-        JPanel formulaire = new JPanel(new GridLayout(2,2));
+        JPanel formulaire = new JPanel(new GridLayout(2,2,3, 3));
         JLabel nomL = new JLabel("Saisir nom : ");
         nom = new JTextField();
         JPanel nomJPanel = new JPanel(new BorderLayout());
@@ -54,7 +54,7 @@ public class VueAjoutClient extends JPanel{
         Vector<JLabel> listJLabels = new Vector<JLabel>(0);
         listJLabels.add(nomEltManquant);
         listJLabels.add(prenomEltManquant);
-        ControllerAccepter accepter = new ControllerAccepter(this.main, titre.getText(), listJTextFields, listJLabels, null, null);
+        ControllerAccepter accepter = new ControllerAccepter(this.main, titre.getText(), listJTextFields, listJLabels);
         confirmer.addActionListener(accepter);
     }
 }

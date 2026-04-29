@@ -78,10 +78,16 @@ public class Hotel {
         return rClients;
     }
 
-    public Vector<Client> getClientByPrenom(String prenom, Vector<Client> rClients){
-        if(rClients == null){rClients = new Vector<Client>();}
-        for (int idx = 0; idx < this.listeClient.size(); idx++) {
-            if(this.listeClient.get(idx).getNom().toLowerCase().equals(prenom.toLowerCase())){rClients.add(this.listeClient.get(idx));}
+    public Vector<Client> getClientByPrenom(String prenom, Vector<Client> rClientsByNames){
+        Vector <Client> rClients = new Vector<Client>();
+        if(rClientsByNames == null){
+            for (int idx = 0; idx < this.listeClient.size(); idx++) {
+                if(this.listeClient.get(idx).getNom().toLowerCase().equals(prenom.toLowerCase())){rClients.add(this.listeClient.get(idx));}
+            }
+        } else {
+            for (int idx = 0; idx < rClientsByNames.size(); idx++) {
+                if(this.listeClient.get(idx).getNom().toLowerCase().equals(prenom.toLowerCase())){rClients.add(rClientsByNames.get(idx));}
+            }
         }
         return rClients;
     }
@@ -90,5 +96,17 @@ public class Hotel {
         if(nom.equals("")){return this.getClientByPrenom(prenom, null);}
         else if(prenom.equals("")){return this.getClientByNom(nom);}
         return this.getClientByPrenom(prenom, this.getClientByNom(nom));
+    }
+
+    public String afficheAllClient(){
+        String result = "";
+        for (Client elem : this.listeClient) {
+            result += "Nom : " +  elem.getNom() + " prénom :" + elem.getPrenom() + "\n";
+        }
+        return result;
+    }
+
+      public Vector<Produit> getProducts() {
+        return listeProduit;
     }
 }
