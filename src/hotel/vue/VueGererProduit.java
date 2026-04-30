@@ -15,7 +15,11 @@ public class VueGererProduit extends JPanel {
         super(new BorderLayout());
         this.main = main;
 
-        String[] columns = {"Name", "Price", "Quantity"};
+        JLabel title = new JLabel("Gestion des produits");
+        title.setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(title, BorderLayout.NORTH);
+
+        String[] columns = {"Name", "Price"};
         model = new DefaultTableModel(columns, 0);
 
         table = new JTable(model);
@@ -27,11 +31,11 @@ public class VueGererProduit extends JPanel {
     public void refresh() {
         model.setRowCount(0);
 
-        for (Produit p : main.getHotel().getProducts()) {
+        for (int i = this.main.getHotel().getProducts().size() - 1 ; i>=0; i--) {
+            Produit p = this.main.getHotel().getProducts().get(i);
             model.addRow(new Object[]{
                     p.getName(),
-                    p.getPrice(),
-                    p.getQuantity()
+                    p.getPrice()
             });
         }
     }

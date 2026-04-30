@@ -73,7 +73,7 @@ public class VueAjoutChambre extends JPanel{
         radioButtons.add(hasNoMinibar, BorderLayout.EAST);
         formulaire.add(radioButtons);
         this.add(formulaire, BorderLayout.CENTER);
-        confirmer = new JButton("Confirmer");
+        confirmer = new JButton("Ajouter chambre");
         confirmer.setBackground(Color.green);
         Vector<JTextField> listFields = new Vector<JTextField>(0);
         listFields.add(etage);
@@ -81,7 +81,7 @@ public class VueAjoutChambre extends JPanel{
         Vector<JLabel> listLabels = new Vector<JLabel>(0);
         listLabels.add(etageEltManquant);
         listLabels.add(prixEltManquant);
-        ControllerAccepter accepter = new ControllerAccepter(main, titre.getText(), listFields, listLabels, hasNoMinibar, listeTypeChambre);
+        ControllerAccepter accepter = new ControllerAccepter(main, listFields, listLabels, hasNoMinibar, listeTypeChambre);
         confirmer.addActionListener(accepter);
         this.add(confirmer, BorderLayout.SOUTH);
     }

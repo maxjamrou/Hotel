@@ -6,6 +6,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Vector;
 import javax.swing.*;
+import vue.VueGererChambre;
+import vue.VueGererClient;
+import vue.VueGererProduit;
 import vue.VueHotel;
 public class ControllerMenu implements ActionListener{
     /**
@@ -29,12 +32,14 @@ public class ControllerMenu implements ActionListener{
                 this.vueHotel.getContentPane().add(this.listeActions.get(0));
                 break;
             case "Gérer la liste des clients":
+                ((VueGererClient)this.listeActions.get(1)).refresh();
                 this.vueHotel.getContentPane().add(this.listeActions.get(1));
                 break;
             case "Nouvelle chambre":
                 this.vueHotel.getContentPane().add(this.listeActions.get(2));
                 break;
             case "Gérer la liste des chambres":
+                ((VueGererChambre)this.listeActions.get(3)).refresh();
                 this.vueHotel.getContentPane().add(this.listeActions.get(3));
                 break;
             case "Nouvelle réservation":
@@ -50,7 +55,9 @@ public class ControllerMenu implements ActionListener{
                 this.vueHotel.getContentPane().add(this.listeActions.get(7));
                 break;
             case "Gérer la liste des produits":
+                ((VueGererProduit)this.listeActions.get(8)).refresh();
                 this.vueHotel.getContentPane().add(this.listeActions.get(8));
+                System.out.println(this.vueHotel.getHotel().afficheAllProduit());
                 break;
             case "Ouvrir l'UML":
                 System.out.println("test");

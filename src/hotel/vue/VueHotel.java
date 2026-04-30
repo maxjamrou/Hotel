@@ -97,9 +97,9 @@ public class VueHotel extends JFrame {
         produit.add(consulterProduit);
         aide.add(UML);
         listeActions.add(new VueAjoutClient(this));
-        listeActions.add(new VueGererClient());
+        listeActions.add(new VueGererClient(this));
         listeActions.add(new VueAjoutChambre(this));
-        listeActions.add(new VueGererChambre());
+        listeActions.add(new VueGererChambre(this));
         listeActions.add(new VueAjoutReservation(this));
         listeActions.add(new VueGererReservation());
         listeActions.add(new VueGererSejour());
@@ -123,5 +123,9 @@ public class VueHotel extends JFrame {
 
     public Hotel getHotel(){
         return this.hotel;
+    }
+
+    public Vector<JPanel> getListeActions(){
+        return this.listeActions;
     }
 }

@@ -44,7 +44,7 @@ public class VueAjoutClient extends JPanel{
         formulaire.add(prenomL);
         formulaire.add(prenomJPanel);
         this.add(formulaire, BorderLayout.CENTER);
-        confirmer = new JButton("Confirmer");
+        confirmer = new JButton("Ajouter client");
         confirmer.setAlignmentX(Component.CENTER_ALIGNMENT);
         confirmer.setBackground(Color.green);
         this.add(confirmer, BorderLayout.SOUTH);
@@ -54,7 +54,7 @@ public class VueAjoutClient extends JPanel{
         Vector<JLabel> listJLabels = new Vector<JLabel>(0);
         listJLabels.add(nomEltManquant);
         listJLabels.add(prenomEltManquant);
-        ControllerAccepter accepter = new ControllerAccepter(this.main, titre.getText(), listJTextFields, listJLabels);
+        ControllerAccepter accepter = new ControllerAccepter(this.main, listJTextFields, listJLabels);
         confirmer.addActionListener(accepter);
     }
 }

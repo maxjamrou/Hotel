@@ -10,7 +10,7 @@ public class VueAjoutProduit extends JPanel {
     private JTextField textName = new JTextField();
     private JTextField textPrice = new JTextField();
     private JTextField textQuantity = new JTextField();
-    private JButton btnAdd = new JButton("Add");
+    private JButton btnAdd = new JButton("Ajouter produit");
 
     public VueAjoutProduit(VueHotel main) {
         super(new BorderLayout());
@@ -27,7 +27,7 @@ public class VueAjoutProduit extends JPanel {
         add(title, BorderLayout.NORTH);
 
         // FORM
-        JPanel form = new JPanel(new GridLayout(3,2,3,3));
+        JPanel form = new JPanel(new GridLayout(2,2,3,3));
 
         form.add(new JLabel("Name:"));
 
@@ -49,15 +49,6 @@ public class VueAjoutProduit extends JPanel {
         pricePanel.add(prixEltManquant, BorderLayout.SOUTH);
         form.add(pricePanel);
 
-        form.add(new JLabel("Quantity:"));
-        JPanel quantityPanel = new JPanel(new BorderLayout());
-        JLabel quantiteEltManquant = new JLabel();
-        lFields.add(textQuantity);
-        lJLabels.add(quantiteEltManquant);
-        quantityPanel.add(textQuantity, BorderLayout.CENTER);
-        quantityPanel.add(quantiteEltManquant, BorderLayout.SOUTH);
-        form.add(quantityPanel);
-
         add(form, BorderLayout.CENTER);
 
         // BUTTON
@@ -65,7 +56,7 @@ public class VueAjoutProduit extends JPanel {
         btnAdd.setFocusPainted(false);
 
         // CONTROLLER
-        ControllerAccepter accepter = new ControllerAccepter(main, title.getText(), lFields, lJLabels);
+        ControllerAccepter accepter = new ControllerAccepter(main, lFields, lJLabels);
         btnAdd.addActionListener(accepter);
 
         add(btnAdd, BorderLayout.SOUTH);

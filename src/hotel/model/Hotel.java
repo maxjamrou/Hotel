@@ -106,7 +106,23 @@ public class Hotel {
         return result;
     }
 
-      public Vector<Produit> getProducts() {
+    public String afficheAllProduit(){
+        String result = "";
+        for (Produit elem : this.listeProduit) {
+            result += "Nom : " +  elem.getName() + " prix : " + elem.getPrice() + " quantité : " + elem.getQuantity() +"\n";
+        }
+        return result;
+    }
+
+    public Vector<Produit> getProducts() {
         return listeProduit;
+    }
+
+    public Vector<Client> getClients(){
+        return this.listeClient;
+    }
+
+    public Vector<Chambre> getChambres(){
+        return this.listeChambre;
     }
 }
