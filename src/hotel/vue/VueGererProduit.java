@@ -35,7 +35,7 @@ public class VueGererProduit extends JPanel {
             Produit p = this.main.getHotel().getProducts().get(i);
             model.addRow(new Object[]{
                     p.getName(),
-                    p.getPrice()
+                    p.getPrice() + "€"
             });
         }
     }

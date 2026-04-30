@@ -51,7 +51,7 @@ public class ControllerAccepter implements ActionListener{
         }
         int intValue = 0;
         double prix = 0.0;
-        if(jRadioButton != null && jComboBox != null){
+        if(((JButton)e.getSource()).getText().equals("Ajouter chambre")){
             try{
                 intValue = Integer.parseInt(listeStrFields.get(0));
             } catch(NumberFormatException ex){
@@ -72,8 +72,7 @@ public class ControllerAccepter implements ActionListener{
                     canBePerformed = false;
                 }
             }
-        }
-        if(((JButton)e.getSource()).getText().equals("Ajouter produit")){
+        } else if(((JButton)e.getSource()).getText().equals("Ajouter produit")){
             try{
                 prix = Double.parseDouble(listeStrFields.get(1));
             } catch(NumberFormatException ex) {
@@ -86,6 +85,8 @@ public class ControllerAccepter implements ActionListener{
             }
         }
         if(canBePerformed){
+            if(prix<0){prix=-prix;}
+            if(intValue<0){intValue=-intValue;}
             System.out.println(((JButton)e.getSource()).getText());
             this.main.getContentPane().removeAll();
             switch (((JButton)e.getSource()).getText()) {
@@ -117,6 +118,7 @@ public class ControllerAccepter implements ActionListener{
                 this.listeJTextFields.get(i).setText("");
             }
             this.main.repaint(); 
+            this.main.pack();
         }
     }
 }

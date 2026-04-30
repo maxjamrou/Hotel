@@ -125,4 +125,12 @@ public class Hotel {
     public Vector<Chambre> getChambres(){
         return this.listeChambre;
     }
+
+    public Vector<Reservation> getReservations(){
+        return this.listeReservation;
+    }
+
+    public Vector<Sejour> getSejours(){
+        return this.listeSejour;
+    }
 }

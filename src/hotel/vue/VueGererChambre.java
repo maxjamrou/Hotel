@@ -37,7 +37,7 @@ public class VueGererChambre extends JPanel{
             Chambre c = this.main.getHotel().getChambres().get(i);
             model.addRow(new Object[]{
                     c.getFloor(),
-                    c.getPrice(),
+                    c.getPrice() + "€",
                     c.getType(),
                     c.getMinibar()
             });

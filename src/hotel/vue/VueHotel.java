@@ -105,6 +105,7 @@ public class VueHotel extends JFrame {
         listeActions.add(new VueGererSejour());
         listeActions.add(new VueAjoutProduit(this));
         listeActions.add(new VueGererProduit(this));
+        listeActions.add(new VueAjoutReservation2(this));
         ControllerMenu actionsJMenu = new ControllerMenu(this, listeActions);
         ajouterClient.addActionListener(actionsJMenu);
         consulterClient.addActionListener(actionsJMenu);
@@ -127,5 +128,10 @@ public class VueHotel extends JFrame {
 
     public Vector<JPanel> getListeActions(){
         return this.listeActions;
+    }
+
+    public void homeScreen(){
+        JLabel welcome = new JLabel("Bienvenu sur l'application de " + this.hotel.getNom());
+        JLabel adresse = new JLabel(this.hotel.getAdresse());
     }
 }

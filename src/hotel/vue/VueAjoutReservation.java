@@ -1,6 +1,7 @@
 package vue;
 
 import controller.ControllerRecherche;
+import controller.ControllerSuivPrec;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
@@ -105,6 +106,7 @@ public class VueAjoutReservation extends JPanel{
         rechercheClient.addActionListener(recherche);
         this.add(formulaire, BorderLayout.CENTER);
         JButton suivant = new JButton("Suivant");
+        suivant.addActionListener(new ControllerSuivPrec(this.main, null));
         this.add(suivant, BorderLayout.SOUTH);
     }
 }
