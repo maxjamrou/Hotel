@@ -1,6 +1,7 @@
 package vue;
 
 import java.awt.BorderLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -28,6 +29,14 @@ public class VueGererChambre extends JPanel{
         table = new JTable(model);
 
         this.add(new JScrollPane(table), BorderLayout.CENTER);
+
+        JPanel boutonsPanel = new JPanel();
+        JButton modifier = new JButton("Modifier chambre");
+        JButton rechercher = new JButton("Rechercher chambre");
+
+        boutonsPanel.add(modifier);
+        boutonsPanel.add(rechercher);
+        this.add(boutonsPanel, BorderLayout.SOUTH);
     }
 
     public void refresh() {

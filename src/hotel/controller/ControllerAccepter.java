@@ -91,7 +91,7 @@ public class ControllerAccepter implements ActionListener{
             this.main.getContentPane().removeAll();
             switch (((JButton)e.getSource()).getText()) {
                 case "Ajouter client":
-                    this.main.getHotel().addClient(new Client(listeStrFields.get(0).toUpperCase(), listeStrFields.get(1), this.main.getHotel()));
+                    this.main.getHotel().addClient(new Client(listeStrFields.get(0), listeStrFields.get(1), this.main.getHotel()));
                     ((VueGererClient)this.main.listeActions.get(1)).refresh();
                     this.main.getContentPane().add(this.main.getListeActions().get(1));
                     this.main.repaint();

@@ -35,7 +35,9 @@ public class VueAjoutReservation extends JPanel{
         titre.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(titre, BorderLayout.NORTH);
         JPanel formulaire = new JPanel(new GridLayout(4, 2));
-        formulaire.add(new JLabel("Début du séjour :"));
+        formulaire.add(new JLabel("Début du séjour (jj/mm/aaaa) :"));
+        JPanel dateDebErreurPanel = new JPanel(new BorderLayout());
+        JLabel dateDebEltManquant = new JLabel("test");
         JPanel dateDebJPanel = new JPanel(new FlowLayout());
         this.jourDebField = new JTextField(5);
         this.jourDebField.setText("jj");
@@ -47,13 +49,18 @@ public class VueAjoutReservation extends JPanel{
         dateDebJPanel.add(new JLabel("/"));
         this.anneeDebField = new JTextField(5);
         this.anneeDebField.setText("aaaa");
+        dateDebEltManquant.setHorizontalAlignment(SwingConstants.CENTER);
         dateDebJPanel.add(anneeDebField);
-        formulaire.add(dateDebJPanel);
+        dateDebErreurPanel.add(dateDebJPanel, BorderLayout.CENTER);
+        dateDebErreurPanel.add(dateDebEltManquant, BorderLayout.NORTH);
+        formulaire.add(dateDebErreurPanel);
 
-        formulaire.add(new JLabel("Fin du séjour"));
+        formulaire.add(new JLabel("Fin du séjour (jj/mm/aaaa) :"));
+        JPanel dateFinErreurPanel = new JPanel(new BorderLayout());
+        JLabel dateFinEltManquant = new JLabel("test");
         JPanel dateFinJPanel = new JPanel(new GridLayout(1,5));
-        this.jourFinField = new JTextField("jj");
-        // this.jourFinField.setText("jj");
+        this.jourFinField = new JTextField(5);
+        this.jourFinField.setText("jj");
         dateFinJPanel.add(this.jourFinField);
         dateFinJPanel.add(new JLabel("/"));
         this.moisFinField = new JTextField(5);
@@ -61,9 +68,12 @@ public class VueAjoutReservation extends JPanel{
         dateFinJPanel.add(moisFinField);
         dateFinJPanel.add(new JLabel("/"));
         this.anneeFinField = new JTextField(5);
-        this.anneeFinField.setText("annee");
+        this.anneeFinField.setText("aaaa");
+        dateFinEltManquant.setHorizontalAlignment(SwingConstants.CENTER);
         dateFinJPanel.add(anneeFinField);
-        formulaire.add(dateFinJPanel);
+        dateFinErreurPanel.add(dateFinJPanel, BorderLayout.CENTER);
+        dateFinErreurPanel.add(dateFinEltManquant, BorderLayout.SOUTH);
+        formulaire.add(dateFinErreurPanel);
         
         formulaire.add(new JLabel("A quel nom : "));
         JPanel clientPanel = new JPanel(new BorderLayout());
@@ -81,14 +91,6 @@ public class VueAjoutReservation extends JPanel{
         JTable clientsTable = new JTable(model);
         model.addColumn("Nom");
         model.addColumn("Prénom");
-        model.addRow(new String[] {"", ""});
-        model.addRow(new String[] {"", ""});
-        model.addRow(new String[] {"", ""});
-        model.addRow(new String[] {"", ""});
-        model.addRow(new String[] {"", ""});
-        model.addRow(new String[] {"", ""});
-        model.addRow(new String[] {"", ""});
-        model.addRow(new String[] {"", ""});
         JScrollPane scrollPane = new JScrollPane(clientsTable);
         // scrollPane.setVisible(false);
         formulaire.add(scrollPane, BorderLayout.SOUTH);

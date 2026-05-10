@@ -25,6 +25,14 @@ public class VueGererProduit extends JPanel {
         table = new JTable(model);
 
         this.add(new JScrollPane(table), BorderLayout.CENTER);
+
+        JPanel boutonsPanel = new JPanel();
+        JButton modifier = new JButton("Modifier produit");
+        JButton rechercher = new JButton("Rechercher produit");
+
+        boutonsPanel.add(modifier);
+        boutonsPanel.add(rechercher);
+        this.add(boutonsPanel, BorderLayout.SOUTH);
     }
 
     // 🔥 refresh à la manière simple du prof

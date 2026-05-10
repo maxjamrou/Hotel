@@ -1,6 +1,7 @@
 package model;
 
 import java.io.*;
+import java.time.LocalDate;
 import java.util.*;
 
 /**
@@ -73,20 +74,20 @@ public class Hotel {
     public Vector<Client> getClientByNom(String nom){
         Vector<Client> rClients = new Vector<Client>();
         for (int idx = 0; idx < this.listeClient.size(); idx++) {
-            if(this.listeClient.get(idx).getNom().equals(nom)){rClients.add(this.listeClient.get(idx));}
+            if(this.listeClient.get(idx).getNom().toLowerCase().equals(nom.toLowerCase())){rClients.add(this.listeClient.get(idx));}
         }
         return rClients;
     }
 
     public Vector<Client> getClientByPrenom(String prenom, Vector<Client> rClientsByNames){
-        Vector <Client> rClients = new Vector<Client>();
+        Vector <Client> rClients = new Vector<>();
         if(rClientsByNames == null){
             for (int idx = 0; idx < this.listeClient.size(); idx++) {
-                if(this.listeClient.get(idx).getNom().toLowerCase().equals(prenom.toLowerCase())){rClients.add(this.listeClient.get(idx));}
+                if(this.listeClient.get(idx).getPrenom().toLowerCase().equals(prenom.toLowerCase())){rClients.add(this.listeClient.get(idx));}
             }
         } else {
             for (int idx = 0; idx < rClientsByNames.size(); idx++) {
-                if(this.listeClient.get(idx).getNom().toLowerCase().equals(prenom.toLowerCase())){rClients.add(rClientsByNames.get(idx));}
+                if(rClientsByNames.get(idx).getPrenom().toLowerCase().equals(prenom.toLowerCase())){rClients.add(rClientsByNames.get(idx));}
             }
         }
         return rClients;
@@ -112,6 +113,16 @@ public class Hotel {
             result += "Nom : " +  elem.getName() + " prix : " + elem.getPrice() + " quantité : " + elem.getQuantity() +"\n";
         }
         return result;
+    }
+    
+    public Vector<Chambre> listChambresDisponibles(LocalDate start, LocalDate end){
+        Vector<Chambre> rChambres = new Vector<>();
+        for (Chambre c : this.listeChambre) {
+            if(c.estDisponible(start, end)){
+                rChambres.add(c);          
+            }
+        }
+        return rChambres;
     }
 
     public Vector<Produit> getProducts() {

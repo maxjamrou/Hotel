@@ -1,12 +1,10 @@
 package vue;
 
 import controller.ControllerMenu;
-import model.Hotel;
-
 import java.awt.Dimension;
 import java.util.Vector;
-
 import javax.swing.*;
+import model.Hotel;
 
 public class VueHotel extends JFrame {
     public JMenuBar menu;
@@ -39,7 +37,7 @@ public class VueHotel extends JFrame {
     public JMenuItem test2;
 
 
-    public Vector<JPanel> listeActions = new Vector<JPanel>();
+    public Vector<JPanel> listeActions = new Vector<>();
     private Hotel hotel;
 
     public VueHotel(Hotel hotel){

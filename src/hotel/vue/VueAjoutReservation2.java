@@ -12,11 +12,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import model.Chambre;
+import model.Client;
 
 public class VueAjoutReservation2 extends JPanel{
     VueHotel main;
     DefaultTableModel model;
     JTable table;
+    
+    Client client;
 
     public VueAjoutReservation2(VueHotel main){
         super(new BorderLayout(3,3));

@@ -25,6 +25,7 @@ public class ControllerRecherche implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         if(((JButton)e.getSource()).getText().equals("Rechercher client")){
+            this.tableModel.setRowCount(0);
             String nom = lFields.get(0).getText();
             String prenom = lFields.get(1).getText();
             System.out.println(nom + " et " +prenom);
