@@ -15,7 +15,7 @@ public class VueGererClient extends JPanel {
         super(new BorderLayout());
         this.main = main;
 
-        JLabel title = new JLabel("Gestion des cliens");
+        JLabel title = new JLabel("Gestion des clients");
         title.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(title, BorderLayout.NORTH);
 

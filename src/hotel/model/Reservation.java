@@ -46,8 +46,6 @@ public class Reservation {
         this.hotel = hotel;
         this.client = client;
         this.chambre = chambre;
-        client.addReservation(this);
-        chambre.addReservation(this);
     }
 
     /**
@@ -75,4 +73,5 @@ public class Reservation {
 
     public Client getClient(){return client;}
 
+    public Hotel getHotel(){return hotel;}
 }

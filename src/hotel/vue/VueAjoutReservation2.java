@@ -80,7 +80,8 @@ public class VueAjoutReservation2 extends JPanel{
                     c.getFloor(),
                     c.getPrice() + "€",
                     c.getType(),
-                    c.getMinibar()
+                    c.getMinibar(),
+                    c
             });
         }
     }

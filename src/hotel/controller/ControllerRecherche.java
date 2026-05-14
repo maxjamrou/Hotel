@@ -32,7 +32,7 @@ public class ControllerRecherche implements ActionListener{
             // System.out.println(nom + " et " +prenom);
             if(nom.equals("") && prenom.equals("")){lJLabels.get(0).setText("*Aucune information renseignée");} 
             else {
-                Vector<Client> lClient= this.hotel.getClientByNomAndPrenom(nom, prenom);
+                Vector<Client> lClient = this.hotel.getClientByNomAndPrenom(nom, prenom);
                 if(lClient.isEmpty()){lJLabels.get(0).setText("*Client inexistant");}
                 else{
                     lJLabels.get(0).setText("");

@@ -55,7 +55,7 @@ public class ControllerSuivPrec implements ActionListener{
         }
         if(((JButton)e.getSource()).getText().equals("Suivant")){
             try {
-                date = this.lFields.get(0).getText() + "-" + this.lFields.get(1).getText() + "-" + this.lFields.get(2).getText();
+                date = this.lFields.get(0).getText().replace(" ", "") + "-" + this.lFields.get(1).getText().replace(" ", "") + "-" + this.lFields.get(2).getText().replace(" ", "");
                 debReservation = LocalDate.parse(date);
                 System.out.println(debReservation.toString());
             } catch (DateTimeException ex) {
@@ -64,7 +64,7 @@ public class ControllerSuivPrec implements ActionListener{
                 canBePerformed = false;
             }
             try {
-                date = this.lFields.get(3).getText() + "-" + this.lFields.get(4).getText() + "-" + this.lFields.get(5).getText();
+                date = this.lFields.get(3).getText().replace(" ", "") + "-" + this.lFields.get(4).getText().replace(" ", "") + "-" + this.lFields.get(5).getText().replace(" ", "");
                 finReservation = LocalDate.parse(date);
                 System.out.println(finReservation.toString());
             } catch (DateTimeException ex) {
