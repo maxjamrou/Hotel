@@ -21,10 +21,11 @@ public class VueGererReservation extends JPanel {
         title.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(title, BorderLayout.NORTH);
 
-        String[] columns = {"Client", "Date", "Type chambre", "Etage", "Prix/nuit", "hasMinibar"};
+        String[] columns = {"Client", "Date", "Type chambre", "Etage", "Prix/nuit", "hasMinibar", "Reservation"};
         model = new DefaultTableModel(columns, 0);
 
         table = new JTable(model);
+        table.removeColumn(table.getColumn("Reservation"));
 
         this.add(new JScrollPane(table), BorderLayout.CENTER);
 
@@ -48,7 +49,8 @@ public class VueGererReservation extends JPanel {
                     r.getRoom().getType(),
                     r.getRoom().getFloor(),
                     r.getRoom().getPrice(),
-                    r.getRoom().hasMinibar()
+                    r.getRoom().hasMinibar(),
+                    r
             });
         }
     }

@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Vector;
 import javax.swing.*;
-import model.*;
 import vue.VueGererChambre;
 import vue.VueGererClient;
 import vue.VueGererProduit;
@@ -51,10 +50,6 @@ public class ControllerMenu implements ActionListener{
             case "Gérer la liste des réservations":
                 ((VueGererReservation)this.listeActions.get(5)).refresh();
                 this.vueHotel.getContentPane().add(this.listeActions.get(5));
-                for(int i = 0; i<this.vueHotel.getHotel().getReservations().size(); i++){
-                    Reservation r = this.vueHotel.getHotel().getReservations().get(i);
-                    System.out.println(r.getClient().getPrenom() +  r.getClient().aDejaReserve(r)+ " " + r.getRoom().getFloor() + r.getRoom().estDisponible(r.getStartReservation(), r.getEndReservation()) + " " + r.getEndReservation().toString());
-                }
                 break;
             case "Gérer la liste des séjours":
                 ((VueGererSejour)this.listeActions.get(6)).refresh();
@@ -76,7 +71,8 @@ public class ControllerMenu implements ActionListener{
                     } catch (IOException ex) {
                         // no application registered for PDFs
                     }
-                }   break;
+                }   
+                break;
             default:
                 break;
         }

@@ -19,10 +19,11 @@ public class VueGererProduit extends JPanel {
         title.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(title, BorderLayout.NORTH);
 
-        String[] columns = {"Name", "Price"};
+        String[] columns = {"Name", "Price", "Produit"};
         model = new DefaultTableModel(columns, 0);
 
         table = new JTable(model);
+        table.removeColumn(table.getColumn("Produit"));
 
         this.add(new JScrollPane(table), BorderLayout.CENTER);
 
@@ -43,7 +44,8 @@ public class VueGererProduit extends JPanel {
             Produit p = this.main.getHotel().getProducts().get(i);
             model.addRow(new Object[]{
                     p.getName(),
-                    p.getPrice() + "€"
+                    p.getPrice() + "€",
+                    p
             });
         }
     }

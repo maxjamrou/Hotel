@@ -26,7 +26,7 @@ public class VueGererSejour extends JPanel{
         title.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(title, BorderLayout.NORTH);
 
-        String[] columns = {"Client", "Type de chambre", "etage", "hasMinibar", "Date", "prix conso"};
+        String[] columns = {"Client", "Type de chambre", "Etage", "hasMinibar", "Date", "prix conso"};
         model = new DefaultTableModel(columns, 0);
 
         table = new JTable(model);
@@ -51,8 +51,10 @@ public class VueGererSejour extends JPanel{
                     s.getReservation().getClient().getNom() + " " + s.getReservation().getClient().getPrenom(),
                     s.getReservation().getRoom().getType(),
                     s.getReservation().getRoom().getFloor(),
+                    s.getReservation().getRoom().hasMinibar(),
                     s.getReservation().getStartReservation() + " - " + s.getReservation().getEndReservation(),
-                    s.getConsommationMinibar() + "€"
+                    s.getConsommationMinibar().TotalPrice() + "€",
+                    s
             });
         }
     }

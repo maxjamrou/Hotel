@@ -22,4 +22,11 @@ public class Consommation {
 
     public void addProduit(Produit p){this.listeProduit.add(p);}
 
+    public double TotalPrice() {
+        double total = 0;
+        for (Produit p : this.listeProduit) {
+            total += p.getPrice()*p.getQuantity();
+        }
+        return total;
+    }
 }

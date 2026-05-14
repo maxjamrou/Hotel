@@ -19,10 +19,11 @@ public class VueGererClient extends JPanel {
         title.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(title, BorderLayout.NORTH);
 
-        String[] columns = {"Nom", "Prénom"};
+        String[] columns = {"Nom", "Prénom", "Client"};
         model = new DefaultTableModel(columns, 0);
 
         table = new JTable(model);
+        table.removeColumn(table.getColumn("Client"));
 
         this.add(new JScrollPane(table), BorderLayout.CENTER);
 
@@ -42,7 +43,8 @@ public class VueGererClient extends JPanel {
             Client c = this.main.getHotel().getClients().get(i);
             model.addRow(new Object[]{
                     c.getNom(),
-                    c.getPrenom()
+                    c.getPrenom(),
+                    c
             });
         }
     }
