@@ -25,7 +25,7 @@ public class VueHotel extends JFrame {
     public JMenuItem consulterReservation;
     //public JMenuItem annulerReservation;
     public JMenuItem consulterSejour;
-    //public JMenuItem ajouterConsommation;
+    public JMenuItem rechercheSejour;
     //public JMenuItem nouveauSejour;
     //public JMenuItem facturation;
     public JMenuItem UML;
@@ -69,6 +69,7 @@ public class VueHotel extends JFrame {
         ajouterReservation = new JMenuItem("Nouvelle réservation");
         consulterReservation = new JMenuItem("Gérer la liste des réservations");
         consulterSejour = new JMenuItem("Gérer la liste des séjours");
+        rechercheSejour = new JMenuItem("Rechercher un certain séjour");
         consulterProduit = new JMenuItem("Gérer la liste des produits");
         //annulerReservation = new JMenuItem("Annuler réservation");
         UML = new JMenuItem("Ouvrir l'UML");
@@ -91,6 +92,7 @@ public class VueHotel extends JFrame {
         reservation.add(consulterReservation);
         //reservation.add(annulerReservation);
         sejour.add(consulterSejour);
+        sejour.add(rechercheSejour);
         produit.add(ajouterProduit);
         produit.add(consulterProduit);
         aide.add(UML);
@@ -101,10 +103,10 @@ public class VueHotel extends JFrame {
         listeActions.add(new VueAjoutReservation(this));
         listeActions.add(new VueGererReservation(this));
         listeActions.add(new VueGererSejour(this));
+        listeActions.add(new VueRechercheSejour(this));
         listeActions.add(new VueAjoutProduit(this));
         listeActions.add(new VueGererProduit(this));
         listeActions.add(new VueAjoutReservation2(this));
-        listeActions.add(new VueInfoChambre(this)); 
         ControllerMenu actionsJMenu = new ControllerMenu(this, listeActions);
         ajouterClient.addActionListener(actionsJMenu);
         consulterClient.addActionListener(actionsJMenu);
@@ -113,6 +115,7 @@ public class VueHotel extends JFrame {
         ajouterReservation.addActionListener(actionsJMenu);
         consulterReservation.addActionListener(actionsJMenu);
         consulterSejour.addActionListener(actionsJMenu);
+        rechercheSejour.addActionListener(actionsJMenu);
         ajouterProduit.addActionListener(actionsJMenu);
         consulterProduit.addActionListener(actionsJMenu);
         UML.addActionListener(actionsJMenu);
