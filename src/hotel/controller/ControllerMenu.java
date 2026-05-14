@@ -6,12 +6,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Vector;
 import javax.swing.*;
-import vue.VueGererChambre;
-import vue.VueGererClient;
-import vue.VueGererProduit;
-import vue.VueGererReservation;
-import vue.VueGererSejour;
-import vue.VueHotel;
+
+import vue.*;
+
 public class ControllerMenu implements ActionListener{
     /**
      * Attributs de ce qui peut changer
@@ -55,12 +52,17 @@ public class ControllerMenu implements ActionListener{
                 ((VueGererSejour)this.listeActions.get(6)).refresh();
                 this.vueHotel.getContentPane().add(this.listeActions.get(6));
                 break;
-            case "Nouveau produit":
+            case "Rechercher un certain séjour":
+                ((VueRechercheSejour)this.listeActions.get(7)).refresh();
+                ((VueRechercheSejour)this.listeActions.get(7)).refresh2();
                 this.vueHotel.getContentPane().add(this.listeActions.get(7));
                 break;
-            case "Gérer la liste des produits":
-                ((VueGererProduit)this.listeActions.get(8)).refresh();
+            case "Nouveau produit":
                 this.vueHotel.getContentPane().add(this.listeActions.get(8));
+                break;
+            case "Gérer la liste des produits":
+                ((VueGererProduit)this.listeActions.get(9)).refresh();
+                this.vueHotel.getContentPane().add(this.listeActions.get(9));
                 System.out.println(this.vueHotel.getHotel().afficheAllProduit());
                 break;
             case "Ouvrir l'UML":
@@ -71,8 +73,7 @@ public class ControllerMenu implements ActionListener{
                     } catch (IOException ex) {
                         // no application registered for PDFs
                     }
-                }   
-                break;
+                }   break;
             default:
                 break;
         }

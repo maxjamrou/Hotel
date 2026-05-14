@@ -28,6 +28,7 @@ public class Sejour {
         this.reservation = reservation;
         this.hotel = hotel;
         this.consommationMinibar = new Consommation();
+        hotel.addSejour(this);
     }
 
     public Consommation getConsommationMinibar(){

@@ -93,13 +93,12 @@ public class ControllerSuivPrec implements ActionListener{
             if(selectedRow == -1){
                 canBePerformed = false;
                 this.lJLabels.get(2).setText("*Aucun client sélectionné");
-            } else {
-                client = (Client)((DefaultTableModel)this.table.getModel()).getValueAt(selectedRow, 2);
-                if(canBePerformed && client.aDejaReserve(new Reservation(debReservation, finReservation, null, chambreTemp, client))){
-                    canBePerformed = false;
-                    this.lJLabels.get(2).setText("*Ce client a déjà réservé sur cette période de temps");
-                    // System.out.println(client.getReservations().get(0).getStartReservation() + " " + client.getReservations().get(0).getEndReservation());
-                }
+            }
+            client = (Client)((DefaultTableModel)this.table.getModel()).getValueAt(selectedRow, 2);
+            if(canBePerformed && client.aDejaReserve(new Reservation(debReservation, finReservation, null, chambreTemp, client))){
+                canBePerformed = false;
+                this.lJLabels.get(2).setText("*Ce client a déjà réservé sur cette période de temps");
+                // System.out.println(client.getReservations().get(0).getStartReservation() + " " + client.getReservations().get(0).getEndReservation());
             }
         }
         if(canBePerformed){

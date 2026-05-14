@@ -9,7 +9,7 @@ public class Main {
         for(int i = 0; i<4; i++){
             hotel.addClient(new Client("Personne", (i + ""), hotel));
             if(i == 2 || i == 3){
-                hotel.addChambre(new Chambre(i, i, true, "Double", hotel));
+                hotel.addChambre(new Chambre(i, i, true, "Suite Presidentielle", hotel));
                 
             }
             hotel.addChambre(new Chambre(i, i, false, "Simple", hotel));

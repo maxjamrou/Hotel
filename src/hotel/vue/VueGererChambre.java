@@ -24,11 +24,10 @@ public class VueGererChambre extends JPanel{
         title.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(title, BorderLayout.NORTH);
 
-        String[] columns = {"Étage", "Prix", "Type de Chambre", "Possède un minibar", "Chambre"};
+        String[] columns = {"Étage", "Prix", "Type de Chambre", "Possède un minibar"};
         model = new DefaultTableModel(columns, 0);
 
         table = new JTable(model);
-        table.removeColumn(table.getColumn("Chambre"));
 
         this.add(new JScrollPane(table), BorderLayout.CENTER);
 
@@ -39,7 +38,7 @@ public class VueGererChambre extends JPanel{
         boutonsPanel.add(modifier);
         boutonsPanel.add(rechercher);
 
-        modifier.addActionListener(new ControllerModifier(main, table));
+        modifier.addActionListener(new ControllerModifier());
         this.add(boutonsPanel, BorderLayout.SOUTH);
     }
 
@@ -52,8 +51,7 @@ public class VueGererChambre extends JPanel{
                     c.getFloor(),
                     c.getPrice() + "€",
                     c.getType(),
-                    c.hasMinibar(),
-                    c
+                    c.hasMinibar()
             });
         }
     }

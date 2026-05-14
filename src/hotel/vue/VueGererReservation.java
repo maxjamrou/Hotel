@@ -12,20 +12,16 @@ public class VueGererReservation extends JPanel {
 
     public VueGererReservation(VueHotel main) {
         super(new BorderLayout());
-        JLabel titre = new JLabel("Gérer réservation");
-        titre.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(titre, BorderLayout.NORTH);
         this.main = main;
 
         JLabel title = new JLabel("Gérer réservation");
         title.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(title, BorderLayout.NORTH);
 
-        String[] columns = {"Client", "Date", "Type chambre", "Etage", "Prix/nuit", "hasMinibar", "Reservation"};
+        String[] columns = {"Client", "Type chambre", "Etage", "Prix/nuit", "hasMinibar", "Date"};
         model = new DefaultTableModel(columns, 0);
 
         table = new JTable(model);
-        table.removeColumn(table.getColumn("Reservation"));
 
         this.add(new JScrollPane(table), BorderLayout.CENTER);
 
@@ -36,6 +32,13 @@ public class VueGererReservation extends JPanel {
         boutonsPanel.add(modifier);
         boutonsPanel.add(rechercher);
         this.add(boutonsPanel, BorderLayout.SOUTH);
+
+        table.getColumnModel().getColumn(0).setPreferredWidth(200);
+        table.getColumnModel().getColumn(1).setPreferredWidth(50);
+        table.getColumnModel().getColumn(2).setPreferredWidth(10);
+        table.getColumnModel().getColumn(3).setPreferredWidth(20);
+        table.getColumnModel().getColumn(4).setPreferredWidth(30);
+        table.getColumnModel().getColumn(5).setPreferredWidth(90);
     }
 
     public void refresh() {
@@ -45,12 +48,11 @@ public class VueGererReservation extends JPanel {
             Reservation r = this.main.getHotel().getReservations().get(i);
             model.addRow(new Object[]{
                     r.getClient().getNom() + " " + r.getClient().getPrenom(),
-                    r.getStartReservation() + " - " + r.getEndReservation(),
                     r.getRoom().getType(),
                     r.getRoom().getFloor(),
                     r.getRoom().getPrice(),
                     r.getRoom().hasMinibar(),
-                    r
+                    r.getStartReservation() + " - " + r.getEndReservation(),
             });
         }
     }
