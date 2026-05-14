@@ -13,10 +13,7 @@ public class Main {
                 
             }
             hotel.addChambre(new Chambre(i, i, false, "Simple", hotel));
-            Reservation r = new Reservation(LocalDate.parse("2026-04-21"), LocalDate.parse("2026-05-21"), hotel, hotel.getChambres().get(i), hotel.getClients().get(i));
-            hotel.addReservation(r);
-            hotel.getClients().get(i).addReservation(r);
-            hotel.getChambres().get(i).addReservation(r);
+            hotel.addReservation(new Reservation(LocalDate.parse("2026-04-21"), LocalDate.parse("2026-05-21"), hotel, hotel.getChambres().get(i), hotel.getClients().get(i)));
             hotel.addProduit(new Produit(("Produit " + i), (2 + i), (5.2 + i), hotel));
         }
         hotel.addSejour(new Sejour(hotel.getReservations().get(1), hotel));

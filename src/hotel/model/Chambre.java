@@ -60,7 +60,7 @@ public class Chambre {
 
     public double getPrice(){return this.prixChambre;}
 
-    public boolean getMinibar(){return this.hasMinibar;}
+    public boolean hasMinibar(){return this.hasMinibar;}
 
     public String getType(){return this.type;}
 

@@ -1,9 +1,10 @@
 package vue;
 
+import model.Client;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import model.Client;
 
 public class VueGererClient extends JPanel {
 

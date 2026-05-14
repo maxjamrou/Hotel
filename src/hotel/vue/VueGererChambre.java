@@ -51,7 +51,7 @@ public class VueGererChambre extends JPanel{
                     c.getFloor(),
                     c.getPrice() + "€",
                     c.getType(),
-                    c.getMinibar()
+                    c.hasMinibar()
             });
         }
     }
