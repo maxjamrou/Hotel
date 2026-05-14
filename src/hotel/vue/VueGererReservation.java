@@ -40,7 +40,7 @@ public class VueGererReservation extends JPanel {
     public void refresh() {
         model.setRowCount(0);
 
-        for (int i = this.main.getHotel().getClients().size() - 1 ; i>=0; i--) {
+        for (int i = this.main.getHotel().getReservations().size() - 1 ; i>=0; i--) {
             Reservation r = this.main.getHotel().getReservations().get(i);
             model.addRow(new Object[]{
                     r.getClient().getNom() + " " + r.getClient().getPrenom(),

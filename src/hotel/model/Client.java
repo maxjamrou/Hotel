@@ -51,6 +51,8 @@ public class Client {
         for(int i = 0; i < this.listeReservation.size(); i++){
             if (r.getStartReservation().isAfter(listeReservation.get(i).getStartReservation()) && r.getStartReservation().isBefore(listeReservation.get(i).getEndReservation())){
                 return true;
+            } else if (r.getStartReservation().isEqual(listeReservation.get(i).getStartReservation()) && r.getStartReservation().isEqual(listeReservation.get(i).getEndReservation())){
+                return true;
             } else if (r.getEndReservation().isAfter(listeReservation.get(i).getStartReservation()) && r.getEndReservation().isBefore(listeReservation.get(i).getEndReservation())){
                 return true;
             }

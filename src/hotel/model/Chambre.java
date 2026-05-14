@@ -70,6 +70,8 @@ public class Chambre {
         for (int i = 0; i < listeReservation.size() ; i++){
             if (start.isAfter(listeReservation.get(i).getStartReservation()) && start.isBefore(listeReservation.get(i).getEndReservation())){
                 return false;
+            } else if(start.isEqual(listeReservation.get(i).getStartReservation()) && start.isEqual(listeReservation.get(i).getEndReservation())){
+                return false;
             } else if (end.isAfter(listeReservation.get(i).getStartReservation()) && end.isBefore(listeReservation.get(i).getEndReservation())){
                 return false;
             }

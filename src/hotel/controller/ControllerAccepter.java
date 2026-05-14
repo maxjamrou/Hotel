@@ -130,17 +130,18 @@ public class ControllerAccepter implements ActionListener{
                     System.out.println("worksout");
                     VueAjoutReservation2 vue = ((VueAjoutReservation2)this.main.getListeActions().get(9));
                     vue.reservation.setChambre((Chambre)(vue.table.getModel()).getValueAt(intValue, 4));
-                    this.main.getHotel().addReservation(vue.reservation);
+                    vue.reservation.getHotel().addReservation(vue.reservation);
                     vue.reservation.getClient().addReservation(vue.reservation);
                     vue.reservation.getRoom().addReservation(vue.reservation);
                     System.out.println(vue.reservation.getClient().getPrenom());
                     System.out.println(vue.reservation.getClient().getReservations().get(vue.reservation.getClient().getReservations().size() - 1).getClient().getPrenom());
                     System.out.println(vue.reservation.getClient().getReservations().get(vue.reservation.getClient().getReservations().size() - 1).getStartReservation().toString());
                     System.out.println(vue.reservation.getClient().getReservations().get(vue.reservation.getClient().getReservations().size() - 1).getEndReservation().toString());
-                    System.out.println(vue.reservation.getHotel().getAdresse());
+                    System.out.println(vue.reservation.getHotel().getReservations().get(vue.reservation.getHotel().getReservations().size() - 1).getStartReservation().toString());
+                    System.out.println(vue.reservation.getHotel().getReservations().get(vue.reservation.getHotel().getReservations().size() - 1).getEndReservation().toString());
                     System.out.println(vue.reservation.getRoom().getFloor());
-                    //((VueGererReservation)this.main.listeActions.get(9)).refresh();
                     ((DefaultTableModel)((VueAjoutReservation)this.main.getListeActions().get(4)).getTable().getModel()).setRowCount(0);
+                    ((VueGererReservation)this.main.listeActions.get(5)).refresh();
                     this.main.getContentPane().add(this.main.getListeActions().get(5));
                     break;
                 case "Ajouter produit":
