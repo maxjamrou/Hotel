@@ -14,7 +14,7 @@ public class ControllerModifier implements ActionListener{
     public void actionPerformed(ActionEvent e){
         if(isOpen == 0){
             isOpen = 1;
-            VueChambreInfo chambre = new VueChambreInfo(null);
+            VueChambreInfo chambre = new VueChambreInfo();
         }
     }
 }
