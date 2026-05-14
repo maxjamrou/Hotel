@@ -9,6 +9,8 @@ import javax.swing.*;
 import vue.VueGererChambre;
 import vue.VueGererClient;
 import vue.VueGererProduit;
+import vue.VueGererReservation;
+import vue.VueGererSejour;
 import vue.VueHotel;
 public class ControllerMenu implements ActionListener{
     /**
@@ -46,9 +48,11 @@ public class ControllerMenu implements ActionListener{
                 this.vueHotel.getContentPane().add(this.listeActions.get(4));
                 break;
             case "Gérer la liste des réservations":
+                ((VueGererReservation)this.listeActions.get(5)).refresh();
                 this.vueHotel.getContentPane().add(this.listeActions.get(5));
                 break;
             case "Gérer la liste des séjours":
+                ((VueGererSejour)this.listeActions.get(6)).refresh();
                 this.vueHotel.getContentPane().add(this.listeActions.get(6));
                 break;
             case "Nouveau produit":
