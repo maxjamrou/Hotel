@@ -40,13 +40,12 @@ public class Reservation {
     /**
      * Default constructor
      */
-    public Reservation(String debut, String fin, Hotel hotel, Chambre chambre, Client client) {
-        this.debut = LocalDate.parse(debut);
-        this.fin = LocalDate.parse(fin);
+    public Reservation(LocalDate debut, LocalDate fin, Hotel hotel, Chambre chambre, Client client) {
+        this.debut = debut;
+        this.fin = fin;
         this.hotel = hotel;
         this.client = client;
         this.chambre = chambre;
-        hotel.addReservation(this);
         client.addReservation(this);
         chambre.addReservation(this);
     }
@@ -66,6 +65,8 @@ public class Reservation {
         this.sejour = new Sejour(this, this.hotel);
     }
 
+    public void setChambre(Chambre chambre){this.chambre = chambre;}
+
     public LocalDate getStartReservation(){return debut;}
 
     public LocalDate getEndReservation(){return fin;}
@@ -73,4 +74,5 @@ public class Reservation {
     public Chambre getRoom(){return chambre;}
 
     public Client getClient(){return client;}
+
 }

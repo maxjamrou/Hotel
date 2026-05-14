@@ -9,6 +9,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 import model.Chambre;
 import model.Client;
 import model.Produit;
@@ -27,6 +28,13 @@ public class ControllerAccepter implements ActionListener{
         this.listJLabels = listJLabels;
     }
 
+    public ControllerAccepter(VueHotel main, Vector<JTextField> listTextFields, Vector<JLabel> listJLabels, JRadioButton jrb){
+        this.main = main;
+        this.listeJTextFields = listTextFields;
+        this.listJLabels = listJLabels;
+        this.jRadioButton = jrb;
+    }
+
     public ControllerAccepter(VueHotel main, Vector<JTextField> listTextFields, Vector<JLabel> listJLabels, JRadioButton jrb, JComboBox<String> jcb){
         this.main = main;
         this.listeJTextFields = listTextFields;
@@ -40,6 +48,11 @@ public class ControllerAccepter implements ActionListener{
         boolean canBePerformed = true;
         Vector<String> listeStrFields = new Vector<String>();
         for (int i = 0; i < this.listeJTextFields.size(); i++) {
+            if(((JButton)e.getSource()).getText().equals("Ajouter réservation")){
+                if(this.jRadioButton.isSelected() == true){
+                    break;
+                }
+            }
             listeStrFields.add(listeJTextFields.get(i).getText());
             if(listeStrFields.get(i).length() == 0){
                 this.listJLabels.get(i).setText("*Elément manquant");
@@ -83,6 +96,13 @@ public class ControllerAccepter implements ActionListener{
                     canBePerformed = false;
                 }
             }
+        } else if(((JButton)e.getSource()).getText().equals("Ajouter réservation")){
+            intValue = ((VueAjoutReservation2)this.main.getListeActions().get(9)).table.getSelectedRow();
+            if(intValue == -1){
+                canBePerformed = false;
+                //JLabel cas erreur
+            }
+            System.out.println("works" + intValue + canBePerformed);
         }
         if(canBePerformed){
             if(prix<0){prix=-prix;}
@@ -105,6 +125,15 @@ public class ControllerAccepter implements ActionListener{
                     this.jComboBox.setSelectedItem("Simple");
                     ((VueGererChambre)this.main.listeActions.get(3)).refresh();
                     this.main.getContentPane().add(this.main.getListeActions().get(3));
+                    break;
+                case "Ajouter réservation":
+                    System.out.println("worksout");
+                    VueAjoutReservation2 vue = ((VueAjoutReservation2)this.main.getListeActions().get(9));
+                    vue.reservation.setChambre((Chambre)(vue.table.getModel()).getValueAt(intValue, 4));
+                    this.main.getHotel().addReservation(vue.reservation);
+                    //((VueGererReservation)this.main.listeActions.get(9)).refresh();
+                    ((DefaultTableModel)((VueAjoutReservation)this.main.getListeActions().get(4)).getTable().getModel()).setRowCount(0);
+                    this.main.getContentPane().add(this.main.getListeActions().get(5));
                     break;
                 case "Ajouter produit":
                     this.main.getHotel().addProduit(new Produit(listeStrFields.get(0), 0, prix, this.main.getHotel()));

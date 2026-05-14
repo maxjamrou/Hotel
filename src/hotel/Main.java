@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import model.*;
 import vue.*;
 
@@ -12,7 +13,7 @@ public class Main {
                 
             }
             hotel.addChambre(new Chambre(i, i, false, "Simple", hotel));
-            hotel.addReservation(new Reservation("2026-04-21", "2026-05-21", hotel, hotel.getChambres().get(i), hotel.getClients().get(i)));
+            hotel.addReservation(new Reservation(LocalDate.parse("2026-04-21"), LocalDate.parse("2026-05-21"), hotel, hotel.getChambres().get(i), hotel.getClients().get(i)));
             hotel.addProduit(new Produit(("Produit " + i), (2 + i), (5.2 + i), hotel));
         }
         hotel.addSejour(new Sejour(hotel.getReservations().get(1), hotel));

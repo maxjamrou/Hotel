@@ -57,4 +57,6 @@ public class Client {
         }
         return false;
     }
+
+    public Vector<Reservation> getReservations(){return this.listeReservation;}
 }

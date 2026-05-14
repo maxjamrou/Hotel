@@ -1,5 +1,6 @@
 package vue;
 
+import controller.ControllerModifier;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -36,6 +37,8 @@ public class VueGererChambre extends JPanel{
 
         boutonsPanel.add(modifier);
         boutonsPanel.add(rechercher);
+
+        modifier.addActionListener(new ControllerModifier());
         this.add(boutonsPanel, BorderLayout.SOUTH);
     }
 
