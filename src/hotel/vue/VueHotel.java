@@ -23,6 +23,7 @@ public class VueHotel extends JFrame {
     public JMenuItem consulterChambre;
     public JMenuItem ajouterReservation;
     public JMenuItem consulterReservation;
+    public JMenuItem rechercherSejour;
     //public JMenuItem annulerReservation;
     public JMenuItem consulterSejour;
     //public JMenuItem ajouterConsommation;
@@ -69,6 +70,7 @@ public class VueHotel extends JFrame {
         ajouterReservation = new JMenuItem("Nouvelle réservation");
         consulterReservation = new JMenuItem("Gérer la liste des réservations");
         consulterSejour = new JMenuItem("Gérer la liste des séjours");
+        rechercherSejour = new JMenuItem("Rechercher un séjour");
         consulterProduit = new JMenuItem("Gérer la liste des produits");
         //annulerReservation = new JMenuItem("Annuler réservation");
         UML = new JMenuItem("Ouvrir l'UML");
@@ -91,6 +93,7 @@ public class VueHotel extends JFrame {
         reservation.add(consulterReservation);
         //reservation.add(annulerReservation);
         sejour.add(consulterSejour);
+        sejour.add(rechercherSejour);
         produit.add(ajouterProduit);
         produit.add(consulterProduit);
         aide.add(UML);
@@ -99,11 +102,12 @@ public class VueHotel extends JFrame {
         listeActions.add(new VueAjoutChambre(this));
         listeActions.add(new VueGererChambre(this));
         listeActions.add(new VueAjoutReservation(this));
+        listeActions.add(new VueAjoutReservation2(this));
         listeActions.add(new VueGererReservation(this));
         listeActions.add(new VueGererSejour(this));
+        listeActions.add(new VueRechercherSejour(this));
         listeActions.add(new VueAjoutProduit(this));
         listeActions.add(new VueGererProduit(this));
-        listeActions.add(new VueAjoutReservation2(this));
         listeActions.add(new VueInfoChambre(this)); 
         ControllerMenu actionsJMenu = new ControllerMenu(this, listeActions);
         ajouterClient.addActionListener(actionsJMenu);
@@ -113,6 +117,7 @@ public class VueHotel extends JFrame {
         ajouterReservation.addActionListener(actionsJMenu);
         consulterReservation.addActionListener(actionsJMenu);
         consulterSejour.addActionListener(actionsJMenu);
+        rechercherSejour.addActionListener(actionsJMenu);
         ajouterProduit.addActionListener(actionsJMenu);
         consulterProduit.addActionListener(actionsJMenu);
         UML.addActionListener(actionsJMenu);

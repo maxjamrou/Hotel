@@ -21,7 +21,7 @@ public class VueGererReservation extends JPanel {
         title.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(title, BorderLayout.NORTH);
 
-        String[] columns = {"Client", "Date", "Type chambre", "Etage", "Prix/nuit", "hasMinibar", "Reservation"};
+        String[] columns = {"Client", "Type chambre", "Etage", "Prix/nuit", "hasMinibar", "Date", "Reservation"};
         model = new DefaultTableModel(columns, 0);
 
         table = new JTable(model);
@@ -30,12 +30,19 @@ public class VueGererReservation extends JPanel {
         this.add(new JScrollPane(table), BorderLayout.CENTER);
 
         JPanel boutonsPanel = new JPanel();
-        JButton modifier = new JButton("Modifier client");
-        JButton rechercher = new JButton("Rechercher client");
+        JButton modifier = new JButton("Modifier réservation");
+        JButton rechercher = new JButton("Rechercher réservation");
 
         boutonsPanel.add(modifier);
         boutonsPanel.add(rechercher);
         this.add(boutonsPanel, BorderLayout.SOUTH);
+
+        table.getColumnModel().getColumn(0).setPreferredWidth(200);
+        table.getColumnModel().getColumn(1).setPreferredWidth(50);
+        table.getColumnModel().getColumn(2).setPreferredWidth(10);
+        table.getColumnModel().getColumn(3).setPreferredWidth(20);
+        table.getColumnModel().getColumn(4).setPreferredWidth(30);
+        table.getColumnModel().getColumn(5).setPreferredWidth(90);
     }
 
     public void refresh() {
@@ -45,11 +52,11 @@ public class VueGererReservation extends JPanel {
             Reservation r = this.main.getHotel().getReservations().get(i);
             model.addRow(new Object[]{
                     r.getClient().getNom() + " " + r.getClient().getPrenom(),
-                    r.getStartReservation() + " - " + r.getEndReservation(),
                     r.getRoom().getType(),
                     r.getRoom().getFloor(),
                     r.getRoom().getPrice(),
                     r.getRoom().hasMinibar(),
+                    r.getStartReservation() + " - " + r.getEndReservation(),
                     r
             });
         }

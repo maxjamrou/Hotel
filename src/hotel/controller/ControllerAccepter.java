@@ -97,7 +97,7 @@ public class ControllerAccepter implements ActionListener{
                 }
             }
         } else if(((JButton)e.getSource()).getText().equals("Ajouter réservation")){
-            intValue = ((VueAjoutReservation2)this.main.getListeActions().get(9)).table.getSelectedRow();
+            intValue = ((VueAjoutReservation2)this.main.getListeActions().get(5)).table.getSelectedRow();
             if(intValue == -1){
                 canBePerformed = false;
                 //JLabel cas erreur
@@ -128,7 +128,7 @@ public class ControllerAccepter implements ActionListener{
                     break;
                 case "Ajouter réservation":
                     System.out.println("worksout");
-                    VueAjoutReservation2 vue = ((VueAjoutReservation2)this.main.getListeActions().get(9));
+                    VueAjoutReservation2 vue = ((VueAjoutReservation2)this.main.getListeActions().get(5));
                     vue.reservation.setChambre((Chambre)(vue.table.getModel()).getValueAt(intValue, 4));
                     vue.reservation.getHotel().addReservation(vue.reservation);
                     vue.reservation.getClient().addReservation(vue.reservation);
@@ -141,13 +141,13 @@ public class ControllerAccepter implements ActionListener{
                     System.out.println(vue.reservation.getHotel().getReservations().get(vue.reservation.getHotel().getReservations().size() - 1).getEndReservation().toString());
                     System.out.println(vue.reservation.getRoom().getFloor());
                     ((DefaultTableModel)((VueAjoutReservation)this.main.getListeActions().get(4)).getTable().getModel()).setRowCount(0);
-                    ((VueGererReservation)this.main.listeActions.get(5)).refresh();
-                    this.main.getContentPane().add(this.main.getListeActions().get(5));
+                    ((VueGererReservation)this.main.listeActions.get(6)).refresh();
+                    this.main.getContentPane().add(this.main.getListeActions().get(6));
                     break;
                 case "Ajouter produit":
                     this.main.getHotel().addProduit(new Produit(listeStrFields.get(0), 0, prix, this.main.getHotel()));
-                    ((VueGererProduit)this.main.listeActions.get(8)).refresh();
-                    this.main.getContentPane().add(this.main.getListeActions().get(8));
+                    ((VueGererProduit)this.main.listeActions.get(10)).refresh();
+                    this.main.getContentPane().add(this.main.getListeActions().get(10));
                     break;
                 default:
                     break;

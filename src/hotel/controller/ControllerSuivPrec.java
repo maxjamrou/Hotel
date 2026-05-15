@@ -106,12 +106,12 @@ public class ControllerSuivPrec implements ActionListener{
             this.vueHotel.getContentPane().removeAll();
             if(((JButton)e.getSource()).getText().equals("Suivant")){
                 System.out.println(debReservation.toString() + " " + finReservation.toString());
-                this.scroller = ((VueAjoutReservation2)this.vueHotel.getListeActions().get(9)).scroller;
-                this.vueHotel.getListeActions().get(9).remove(this.scroller);
+                this.scroller = ((VueAjoutReservation2)this.vueHotel.getListeActions().get(5)).scroller;
+                this.vueHotel.getListeActions().get(5).remove(this.scroller);
                 client = (Client)((DefaultTableModel)this.table.getModel()).getValueAt(selectedRow, 2);
-                ((VueAjoutReservation2)this.vueHotel.getListeActions().get(9)).reservation = (new Reservation(debReservation, finReservation, this.vueHotel.getHotel(), chambreTemp, client));
-                this.vueHotel.getContentPane().add(this.vueHotel.getListeActions().get(9));
-                ((VueAjoutReservation2)this.vueHotel.getListeActions().get(9)).choixGroup.clearSelection();
+                ((VueAjoutReservation2)this.vueHotel.getListeActions().get(5)).reservation = (new Reservation(debReservation, finReservation, this.vueHotel.getHotel(), chambreTemp, client));
+                this.vueHotel.getContentPane().add(this.vueHotel.getListeActions().get(5));
+                ((VueAjoutReservation2)this.vueHotel.getListeActions().get(5)).choixGroup.clearSelection();
             } else if(((JButton)e.getSource()).getText().equals("Précédent")){
                 this.buttons.clearSelection();
                 this.vueHotel.getContentPane().add(this.vueHotel.getListeActions().get(4));
