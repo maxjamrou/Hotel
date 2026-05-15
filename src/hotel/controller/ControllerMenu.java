@@ -30,8 +30,8 @@ public class ControllerMenu implements ActionListener{
     // listeActions.add(new VueAjoutReservation2(this));        9
     // listeActions.add(new VueRechercherReservation(this));    10 
     // listeActions.add(new VueGererReservation(this));         11
-    // listeActions.add(new VueGererSejour(this));              12
-    // listeActions.add(new VueRechercherSejour(this));         13 
+    // listeActions.add(new VueRechercherSejour(this));         12
+    // listeActions.add(new VueGererSejour(this));              13
     // listeActions.add(new VueAjoutProduit(this));             14
     // listeActions.add(new VueRechercherProduit(this));        15      
     // listeActions.add(new VueGererProduit(this));             16
@@ -78,8 +78,8 @@ public class ControllerMenu implements ActionListener{
                 this.vueHotel.getContentPane().add(this.listeActions.get(11));
                 break;
             case "Rechercher un séjour":
-                ((VueRechercherSejour)this.listeActions.get(12)).refresh();
-                ((VueRechercherSejour)this.listeActions.get(12)).refresh2();
+                ((VueRechercherSejour)this.listeActions.get(12)).refreshTable();
+                ((VueRechercherSejour)this.listeActions.get(12)).refreshButtons();
                 this.vueHotel.getContentPane().add(this.listeActions.get(12));
                 break;
             case "Gérer la liste des séjours":

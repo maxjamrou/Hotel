@@ -1,6 +1,5 @@
 package model;
 
-import java.io.*;
 import java.util.*;
 
 /**
@@ -22,7 +21,9 @@ public class Consommation {
 
     public void addProduit(Produit p){this.listeProduit.add(p);}
 
-    public double TotalPrice() {
+    public Vector<Produit> getProductList(){return this.listeProduit;}
+
+    public double getTotalPrice() {
         double total = 0;
         for (Produit p : this.listeProduit) {
             total += p.getPrice()*p.getQuantity();

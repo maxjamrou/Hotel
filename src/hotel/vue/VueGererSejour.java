@@ -62,7 +62,7 @@ public class VueGererSejour extends JPanel{
                     s.getReservation().getRoom().getPrice(),
                     s.getReservation().getRoom().hasMinibar(),
                     s.getReservation().getStartReservation() + " - " + s.getReservation().getEndReservation(),
-                    s.getConsommationMinibar().TotalPrice() + "€",
+                    s.getConsommationMinibar().getTotalPrice() + "€",
                     s
             });
         }

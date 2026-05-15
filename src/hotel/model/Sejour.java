@@ -1,5 +1,8 @@
 package model;
 
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+
 /**
  * 
  */
@@ -36,5 +39,18 @@ public class Sejour {
     
     public Reservation getReservation(){
         return this.reservation;
+    }
+
+    public boolean isSejourDone() {
+        if (LocalDate.now().isAfter(this.reservation.getEndReservation())) {
+            return true;
+        }
+        return false;
+    }
+
+    public double getPrixReservation(LocalDate startDate, LocalDate endDate) {
+        long nDays = startDate.until(endDate, ChronoUnit.DAYS);
+        double RoomPrice = getReservation().getRoom().getPrice();
+        return nDays*RoomPrice;
     }
 }
