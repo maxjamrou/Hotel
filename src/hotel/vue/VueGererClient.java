@@ -39,8 +39,10 @@ public class VueGererClient extends JPanel {
         JButton modifier = new JButton("Modifier client");
         JButton rechercher = new JButton("Rechercher client");
 
-        ajouter.addActionListener(new ControllerMenu(main, main.listeActions));
+        ControllerMenu menu = new ControllerMenu(main, main.listeActions);
+        ajouter.addActionListener(menu);
         modifier.addActionListener(new ControllerModifier(main, table, clientEltManquant));
+        rechercher.addActionListener(menu);
 
         boutonsPanel.add(ajouter);
         boutonsPanel.add(modifier);

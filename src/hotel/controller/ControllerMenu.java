@@ -30,7 +30,7 @@ public class ControllerMenu implements ActionListener{
     // listeActions.add(new VueAjoutReservation2(this));        9
     // listeActions.add(new VueRechercherReservation(this));    10 
     // listeActions.add(new VueGererReservation(this));         11
-    // listeActions.add(new VueRechercherSejour(this));         12
+    // listeActions.add(new VueRechercherSejour(this));         12 
     // listeActions.add(new VueGererSejour(this));              13
     // listeActions.add(new VueAjoutProduit(this));             14
     // listeActions.add(new VueRechercherProduit(this));        15      

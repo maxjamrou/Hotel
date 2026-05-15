@@ -27,7 +27,7 @@ public class VueGererChambre extends JPanel{
         this.add(title, BorderLayout.NORTH);
 
         JPanel tableau = new JPanel(new BorderLayout());
-        String[] columns = {"Étage", "Prix", "Type de Chambre", "Possède un minibar", "Chambre"};
+        String[] columns = {"Étage", "€/Nuit", "Type de Chambre", "Possède un minibar", "Chambre"};
         model = new DefaultTableModel(columns, 0);
 
         table = new JTable(model);
@@ -41,8 +41,10 @@ public class VueGererChambre extends JPanel{
         JButton modifier = new JButton("Modifier chambre");
         JButton rechercher = new JButton("Rechercher chambre");
 
-        ajouter.addActionListener(new ControllerMenu(main, main.listeActions));
+        ControllerMenu menu = new ControllerMenu(main, main.listeActions);
+        ajouter.addActionListener(menu);
         modifier.addActionListener(new ControllerModifier(main, table, this.chambreEltManquant));
+        rechercher.addActionListener(menu);
 
         boutonsPanel.add(ajouter);
         boutonsPanel.add(modifier);

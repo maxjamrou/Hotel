@@ -1,6 +1,7 @@
 package vue;
 
 import controller.ControllerAnnuler;
+import controller.ControllerEnregistrer;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.util.Vector;
@@ -30,7 +31,7 @@ public class VueInfoChambre extends JPanel{
     // To Do : finir les information concernant une chambre (pour les modifier)
     //
     public VueInfoChambre(VueHotel main){
-        super(new BorderLayout());
+        super(new BorderLayout(3,3));
         this.main = main;
 
         this.imgChambre = new ImageIcon();
@@ -57,7 +58,19 @@ public class VueInfoChambre extends JPanel{
         this.formulaire.removeAll();
         this.textfieldJPanel.removeAll();
         JLabel prixL = new JLabel("Prix :");
+
+        JPanel prixPanel = new JPanel(new BorderLayout());
+
+        Vector<JTextField> textFields = new Vector<>();
         prix = new JTextField(this.chambre.getPrice() + "");
+        textFields.add(prix);
+
+        Vector<JLabel> labels = new Vector<>();
+        JLabel prixEltManquant = new JLabel();
+        labels.add(prixEltManquant);
+
+        prixPanel.add(prix, BorderLayout.CENTER);
+        prixPanel.add(prixEltManquant, BorderLayout.SOUTH);
 
         JLabel typeChambreL = new JLabel("Type de chambre :");
 
@@ -78,7 +91,7 @@ public class VueInfoChambre extends JPanel{
         radioButtons.add(hasNoMinibar, BorderLayout.EAST);
 
         textfieldJPanel.add(prixL);
-        textfieldJPanel.add(prix);
+        textfieldJPanel.add(prixPanel);
         textfieldJPanel.add(typeChambreL);
         textfieldJPanel.add(listeTypeChambre);
         textfieldJPanel.add(hasMinibarL);
@@ -89,7 +102,9 @@ public class VueInfoChambre extends JPanel{
         JButton enregistrer = new JButton("Enregistrer modifications chambre");
         JButton annuler = new JButton("Annuler modifications chambre");
 
+        enregistrer.addActionListener(new ControllerEnregistrer(main, textFields, labels, hasNoMinibar, listeTypeChambre, this.chambre));
         annuler.addActionListener(new ControllerAnnuler(main));
+
         buttonPanel.add(enregistrer);
         buttonPanel.add(annuler);
         formulaire.add(buttonPanel, BorderLayout.SOUTH);
