@@ -29,7 +29,7 @@ public class Produit {
      * Default constructor
      */
     public Produit(String name, int quantite, double prix, Hotel hotel) {
-        this.name = name;
+        this.name = name.toUpperCase();
         this.quantite = quantite;
         this.prix = prix;
         this.hotel = hotel;

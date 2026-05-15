@@ -125,6 +125,16 @@ public class Hotel {
         return rChambres;
     }
 
+    public boolean estDansCatalogueProduit(String nomProduit){
+        for(Produit p : this.listeProduit){
+            System.out.println(p.getName() + " " + nomProduit);
+            if (p.getName().replace(" ", "").equals(nomProduit.toUpperCase().replace(" ", ""))){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public Vector<Produit> getProducts() {
         return listeProduit;
     }

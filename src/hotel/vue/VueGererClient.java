@@ -1,6 +1,7 @@
 package vue;
 
 import controller.ControllerMenu;
+import controller.ControllerModifier;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -34,7 +35,8 @@ public class VueGererClient extends JPanel {
         JButton rechercher = new JButton("Rechercher client");
 
         ajouter.addActionListener(new ControllerMenu(main, main.listeActions));
-
+        modifier.addActionListener(new ControllerModifier(main, table));
+        
         boutonsPanel.add(ajouter);
         boutonsPanel.add(modifier);
         boutonsPanel.add(rechercher);

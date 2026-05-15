@@ -86,6 +86,11 @@ public class ControllerAccepter implements ActionListener{
                 }
             }
         } else if(((JButton)e.getSource()).getText().equals("Ajouter produit")){
+            if(this.main.getHotel().estDansCatalogueProduit(listeStrFields.get(0))){
+                canBePerformed = false;
+                this.listJLabels.get(0).setForeground(Color.red);
+                listJLabels.get(0).setText("*Le produit est déjà dans le catalogue de l'hôtel");
+            }
             try{
                 prix = Double.parseDouble(listeStrFields.get(1));
             } catch(NumberFormatException ex) {
