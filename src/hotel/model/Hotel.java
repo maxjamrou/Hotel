@@ -1,6 +1,5 @@
 package model;
 
-import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
 
@@ -153,5 +152,25 @@ public class Hotel {
 
     public Vector<Sejour> getSejours(){
         return this.listeSejour;
+    }
+
+    public Vector<Sejour> getSejoursDone(){
+        Vector<Sejour> Sejours = new Vector<>();
+        for (Sejour elem : this.listeSejour) {
+            if (elem.isSejourDone()){
+                Sejours.add(elem);
+            }
+        }
+        return Sejours;
+    }
+
+    public Vector<Sejour> getSejoursNotDone(){
+        Vector<Sejour> Sejours = new Vector<>();
+        for (Sejour elem : this.listeSejour) {
+            if (!elem.isSejourDone()){
+                Sejours.add(elem);
+            }
+        }
+        return Sejours;
     }
 }
