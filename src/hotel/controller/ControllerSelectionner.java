@@ -19,13 +19,13 @@ public class ControllerSelectionner implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e){
-        this.main.getListeActions().get(5).remove(scroller);
+        this.main.getListeActions().get(9).remove(scroller);
         if(((JRadioButton)e.getSource()).getText().equals("Oui")){
             System.out.println("ça marche pour oui");
         } else if(((JRadioButton)e.getSource()).getText().equals("Non")){
             System.out.println("ça marche pour non");
-            ((VueAjoutReservation2)this.main.getListeActions().get(5)).refresh();
-            this.main.getListeActions().get(5).add(scroller, BorderLayout.CENTER);
+            ((VueAjoutReservation2)this.main.getListeActions().get(9)).refresh();
+            this.main.getListeActions().get(9).add(scroller, BorderLayout.CENTER);
         }
         this.main.repaint();
         this.main.pack();

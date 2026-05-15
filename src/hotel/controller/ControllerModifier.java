@@ -28,9 +28,9 @@ public class ControllerModifier implements ActionListener{
                 System.out.println("Aucune chambre sélectionnée");
             } else {
                 this.main.getContentPane().removeAll();
-                this.main.getListeActions().set(10, new VueInfoChambre(this.main));
-                ((VueInfoChambre)this.main.getListeActions().get(10)).refresh((Chambre)((DefaultTableModel)this.table.getModel()).getValueAt(selectedRow, 4));
-                this.main.getContentPane().add(this.main.listeActions.get(10));
+                this.main.getListeActions().set(3, new VueInfoChambre(this.main));
+                ((VueInfoChambre)this.main.getListeActions().get(3)).refresh((Chambre)((DefaultTableModel)this.table.getModel()).getValueAt(selectedRow, 4));
+                this.main.getContentPane().add(this.main.listeActions.get(3));
             }
             this.main.repaint();
             this.main.pack();

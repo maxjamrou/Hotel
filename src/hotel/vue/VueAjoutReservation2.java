@@ -28,7 +28,7 @@ public class VueAjoutReservation2 extends JPanel{
     public VueAjoutReservation2(VueHotel main){
         super(new BorderLayout(3,3));
         this.main = main;
-        this.lFields = ((VueAjoutReservation)this.main.getListeActions().get(4)).lFields;
+        this.lFields = ((VueAjoutReservation)this.main.getListeActions().get(8)).lFields;
         JPanel choixP = new JPanel();
         JLabel choixL = new JLabel("Choix particulier sur la chambre : ");
         this.choixGroup = new ButtonGroup();

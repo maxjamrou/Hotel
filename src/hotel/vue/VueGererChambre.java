@@ -1,5 +1,6 @@
 package vue;
 
+import controller.ControllerMenu;
 import controller.ControllerModifier;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
@@ -33,13 +34,17 @@ public class VueGererChambre extends JPanel{
         this.add(new JScrollPane(table), BorderLayout.CENTER);
 
         JPanel boutonsPanel = new JPanel();
+        JButton ajouter = new JButton("Nouvelle chambre");
         JButton modifier = new JButton("Modifier chambre");
         JButton rechercher = new JButton("Rechercher chambre");
 
+        ajouter.addActionListener(new ControllerMenu(main, main.listeActions));
+        modifier.addActionListener(new ControllerModifier(main, table));
+
+        boutonsPanel.add(ajouter);
         boutonsPanel.add(modifier);
         boutonsPanel.add(rechercher);
 
-        modifier.addActionListener(new ControllerModifier(main, table));
         this.add(boutonsPanel, BorderLayout.SOUTH);
     }
 

@@ -97,7 +97,7 @@ public class ControllerAccepter implements ActionListener{
                 }
             }
         } else if(((JButton)e.getSource()).getText().equals("Ajouter réservation")){
-            intValue = ((VueAjoutReservation2)this.main.getListeActions().get(5)).table.getSelectedRow();
+            intValue = ((VueAjoutReservation2)this.main.getListeActions().get(9)).table.getSelectedRow();
             if(intValue == -1){
                 canBePerformed = false;
                 //JLabel cas erreur
@@ -112,8 +112,8 @@ public class ControllerAccepter implements ActionListener{
             switch (((JButton)e.getSource()).getText()) {
                 case "Ajouter client":
                     this.main.getHotel().addClient(new Client(listeStrFields.get(0), listeStrFields.get(1), this.main.getHotel()));
-                    ((VueGererClient)this.main.listeActions.get(1)).refresh();
-                    this.main.getContentPane().add(this.main.getListeActions().get(1));
+                    ((VueGererClient)this.main.listeActions.get(2)).refresh();
+                    this.main.getContentPane().add(this.main.getListeActions().get(2));
                     this.main.repaint();
                     break;
                 case "Ajouter chambre":
@@ -123,12 +123,12 @@ public class ControllerAccepter implements ActionListener{
                     System.out.println(Integer.parseInt(listeStrFields.get(0)) + Double.parseDouble(listeStrFields.get(1)));
                     this.jRadioButton.setSelected(true);
                     this.jComboBox.setSelectedItem("Simple");
-                    ((VueGererChambre)this.main.listeActions.get(3)).refresh();
-                    this.main.getContentPane().add(this.main.getListeActions().get(3));
+                    ((VueGererChambre)this.main.listeActions.get(6)).refresh();
+                    this.main.getContentPane().add(this.main.getListeActions().get(6));
                     break;
                 case "Ajouter réservation":
                     System.out.println("worksout");
-                    VueAjoutReservation2 vue = ((VueAjoutReservation2)this.main.getListeActions().get(5));
+                    VueAjoutReservation2 vue = ((VueAjoutReservation2)this.main.getListeActions().get(9));
                     vue.reservation.setChambre((Chambre)(vue.table.getModel()).getValueAt(intValue, 4));
                     vue.reservation.getHotel().addReservation(vue.reservation);
                     vue.reservation.getClient().addReservation(vue.reservation);
@@ -140,14 +140,14 @@ public class ControllerAccepter implements ActionListener{
                     System.out.println(vue.reservation.getHotel().getReservations().get(vue.reservation.getHotel().getReservations().size() - 1).getStartReservation().toString());
                     System.out.println(vue.reservation.getHotel().getReservations().get(vue.reservation.getHotel().getReservations().size() - 1).getEndReservation().toString());
                     System.out.println(vue.reservation.getRoom().getFloor());
-                    ((DefaultTableModel)((VueAjoutReservation)this.main.getListeActions().get(4)).getTable().getModel()).setRowCount(0);
-                    ((VueGererReservation)this.main.listeActions.get(6)).refresh();
-                    this.main.getContentPane().add(this.main.getListeActions().get(6));
+                    ((DefaultTableModel)((VueAjoutReservation)this.main.getListeActions().get(8)).getTable().getModel()).setRowCount(0);
+                    ((VueGererReservation)this.main.listeActions.get(11)).refresh();
+                    this.main.getContentPane().add(this.main.getListeActions().get(11));
                     break;
                 case "Ajouter produit":
                     this.main.getHotel().addProduit(new Produit(listeStrFields.get(0), 0, prix, this.main.getHotel()));
-                    ((VueGererProduit)this.main.listeActions.get(10)).refresh();
-                    this.main.getContentPane().add(this.main.getListeActions().get(10));
+                    ((VueGererProduit)this.main.listeActions.get(16)).refresh();
+                    this.main.getContentPane().add(this.main.getListeActions().get(16));
                     break;
                 default:
                     break;

@@ -15,8 +15,15 @@ public class ControllerAnnuler implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         this.main.getContentPane().removeAll();
-        if(((JButton)e.getSource()).getText().equals("Annuler modifications chambre")){
-            this.main.getContentPane().add(this.main.getListeActions().get(3));
+        switch(((JButton)e.getSource()).getText()){
+            case "Annuler modifications client":
+                this.main.getContentPane().add(this.main.getListeActions().get(2));
+                break;
+            case "Annuler modifications chambre" :
+                this.main.getContentPane().add(this.main.getListeActions().get(6));
+                break;
+            default:
+                break;
         }
         this.main.repaint();
         this.main.pack();
