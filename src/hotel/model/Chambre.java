@@ -54,7 +54,9 @@ public class Chambre {
 
     public void setPrice(double p) {prixChambre = p;}
 
-    public void setFloor(int f) {etage = f;}
+    public void setHasMinibar(boolean hasMinibar){this.hasMinibar = hasMinibar;}
+
+    public void setTypeChambre(String typeChambre){this.type = typeChambre;}
 
     public int getFloor(){return this.etage;}
 

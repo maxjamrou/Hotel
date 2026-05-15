@@ -40,8 +40,10 @@ public class VueGererProduit extends JPanel {
         JButton modifier = new JButton("Modifier produit");
         JButton rechercher = new JButton("Rechercher produit");
 
-        ajouter.addActionListener(new ControllerMenu(main, main.listeActions));
+        ControllerMenu menu = new ControllerMenu(main, main.listeActions);
+        ajouter.addActionListener(menu);
         modifier.addActionListener(new ControllerModifier(main, table, produitEltManquant));
+        rechercher.addActionListener(menu);
 
         boutonsPanel.add(ajouter);
         boutonsPanel.add(modifier);
