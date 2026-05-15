@@ -16,30 +16,33 @@ public class VueGererChambre extends JPanel{
     JTable table;
     DefaultTableModel model;
     VueHotel main;
+    JLabel chambreEltManquant;
 
     public VueGererChambre(VueHotel main) {
-        super(new BorderLayout());
+        super(new BorderLayout(3, 3));
         this.main = main;
 
         JLabel title = new JLabel("Gestion des chambres");
         title.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(title, BorderLayout.NORTH);
 
+        JPanel tableau = new JPanel(new BorderLayout());
         String[] columns = {"Étage", "Prix", "Type de Chambre", "Possède un minibar", "Chambre"};
         model = new DefaultTableModel(columns, 0);
 
         table = new JTable(model);
         table.removeColumn(table.getColumn("Chambre"));
-
-        this.add(new JScrollPane(table), BorderLayout.CENTER);
-
+        this.chambreEltManquant = new JLabel();
+        tableau.add(new JScrollPane(table), BorderLayout.CENTER);
+        tableau.add(this.chambreEltManquant, BorderLayout.SOUTH);
+        this.add(tableau, BorderLayout.CENTER);
         JPanel boutonsPanel = new JPanel();
         JButton ajouter = new JButton("Nouvelle chambre");
         JButton modifier = new JButton("Modifier chambre");
         JButton rechercher = new JButton("Rechercher chambre");
 
         ajouter.addActionListener(new ControllerMenu(main, main.listeActions));
-        modifier.addActionListener(new ControllerModifier(main, table));
+        modifier.addActionListener(new ControllerModifier(main, table, this.chambreEltManquant));
 
         boutonsPanel.add(ajouter);
         boutonsPanel.add(modifier);
@@ -62,4 +65,6 @@ public class VueGererChambre extends JPanel{
             });
         }
     }
+
+    public JLabel getLabelErreur(){return this.chambreEltManquant;}
 }

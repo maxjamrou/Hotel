@@ -55,6 +55,7 @@ public class ControllerMenu implements ActionListener{
                 this.vueHotel.getContentPane().add(this.listeActions.get(1));
                 break;
             case "Gérer la liste des clients":
+                ((VueGererClient)this.listeActions.get(2)).getLabelErreur().setText("");;
                 ((VueGererClient)this.listeActions.get(2)).refresh();
                 this.vueHotel.getContentPane().add(this.listeActions.get(2));
                 break;
@@ -65,6 +66,7 @@ public class ControllerMenu implements ActionListener{
                 this.vueHotel.getContentPane().add(this.listeActions.get(5));
                 break;
             case "Gérer la liste des chambres":
+                ((VueGererChambre)this.listeActions.get(6)).getLabelErreur().setText("");
                 ((VueGererChambre)this.listeActions.get(6)).refresh();
                 this.vueHotel.getContentPane().add(this.listeActions.get(6));
                 break;
@@ -94,6 +96,7 @@ public class ControllerMenu implements ActionListener{
                 this.vueHotel.getContentPane().add(this.listeActions.get(15));
                 break;
             case "Gérer la liste des produits":
+                ((VueGererProduit)this.listeActions.get(16)).getLabelErreur().setText("");
                 ((VueGererProduit)this.listeActions.get(16)).refresh();
                 this.vueHotel.getContentPane().add(this.listeActions.get(16));
                 System.out.println(this.vueHotel.getHotel().afficheAllProduit());

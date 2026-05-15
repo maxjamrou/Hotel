@@ -12,9 +12,10 @@ public class VueGererProduit extends JPanel {
     JTable table;
     DefaultTableModel model;
     VueHotel main;
+    JLabel produitEltManquant;
 
     public VueGererProduit(VueHotel main) {
-        super(new BorderLayout());
+        super(new BorderLayout(3, 3));
         this.main = main;
 
         JLabel title = new JLabel("Gestion des produits");
@@ -24,10 +25,15 @@ public class VueGererProduit extends JPanel {
         String[] columns = {"Name", "Price", "Produit"};
         model = new DefaultTableModel(columns, 0);
 
+        JPanel tableau = new JPanel(new BorderLayout());
         table = new JTable(model);
         table.removeColumn(table.getColumn("Produit"));
+        this.produitEltManquant = new JLabel();
 
-        this.add(new JScrollPane(table), BorderLayout.CENTER);
+        tableau.add(new JScrollPane(table), BorderLayout.CENTER);
+        tableau.add(produitEltManquant, BorderLayout.SOUTH);
+
+        this.add(tableau, BorderLayout.CENTER);
 
         JPanel boutonsPanel = new JPanel();
         JButton ajouter = new JButton("Nouveau produit");
@@ -35,7 +41,7 @@ public class VueGererProduit extends JPanel {
         JButton rechercher = new JButton("Rechercher produit");
 
         ajouter.addActionListener(new ControllerMenu(main, main.listeActions));
-        modifier.addActionListener(new ControllerModifier(main, table));
+        modifier.addActionListener(new ControllerModifier(main, table, produitEltManquant));
 
         boutonsPanel.add(ajouter);
         boutonsPanel.add(modifier);
@@ -55,4 +61,6 @@ public class VueGererProduit extends JPanel {
             });
         }
     }
+
+    public JLabel getLabelErreur(){return this.produitEltManquant;}
 }

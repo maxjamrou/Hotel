@@ -1,9 +1,12 @@
 package controller;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import model.Chambre;
 import model.Client;
@@ -17,19 +20,24 @@ import vue.VueInfoProduit;
 public class ControllerModifier implements ActionListener{
     VueHotel main;
     JTable table;
+    JLabel erreur;
 
-    public ControllerModifier(VueHotel main, JTable table){
+    public ControllerModifier(VueHotel main, JTable table, JLabel err){
         this.main = main;
         this.table = table;
+        this.erreur = err;
     }
 
     @Override
     public void actionPerformed(ActionEvent e){
         int selectedRow = 0;
+        this.erreur.setText("");
+        this.erreur.setHorizontalAlignment(SwingConstants.CENTER);
+        this.erreur.setForeground(Color.red);
         if(((JButton)e.getSource()).getText().equals("Modifier client")){
             selectedRow = this.table.getSelectedRow();
             if(selectedRow == -1){
-                System.out.println("Aucune chambre sélectionnée");
+                this.erreur.setText(("*Aucun client sélectionné"));
             } else {
                 this.main.getContentPane().removeAll();
                 this.main.getListeActions().set(3, new VueInfoClient(this.main));
@@ -39,7 +47,7 @@ public class ControllerModifier implements ActionListener{
         } else if(((JButton)e.getSource()).getText().equals("Modifier chambre")){
             selectedRow = this.table.getSelectedRow();
             if(selectedRow == -1){
-                System.out.println("Aucune chambre sélectionnée");
+                this.erreur.setText(("*Aucune chambre sélectionnée"));
             } else {
                 this.main.getContentPane().removeAll();
                 this.main.getListeActions().set(7, new VueInfoChambre(this.main));
@@ -49,7 +57,7 @@ public class ControllerModifier implements ActionListener{
         } else if(((JButton)e.getSource()).getText().equals("Modifier produit")){
             selectedRow = this.table.getSelectedRow();
             if(selectedRow == -1){
-                System.out.println("Aucun produit sélectionné");
+                this.erreur.setText(("*Aucun produit sélectionné"));
             } else {
                 this.main.getContentPane().removeAll();
                 this.main.getListeActions().set(17, new VueInfoProduit(this.main));
