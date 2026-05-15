@@ -1,9 +1,6 @@
 package controller;
 
-import java.awt.Desktop;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
 import java.util.Vector;
 import javax.swing.*;
 import vue.*;
@@ -100,16 +97,6 @@ public class ControllerMenu implements ActionListener{
                 ((VueGererProduit)this.listeActions.get(16)).refresh();
                 this.vueHotel.getContentPane().add(this.listeActions.get(16));
                 System.out.println(this.vueHotel.getHotel().afficheAllProduit());
-                break;
-            case "Ouvrir l'UML":
-                System.out.println("test");
-                if (Desktop.isDesktopSupported()) {
-                    try {
-                        Desktop.getDesktop().open(new File("../../Hotelpdf.pdf"));
-                    } catch (IOException ex) {
-                        // no application registered for PDFs
-                    }
-                }   
                 break;
             default:
                 break;

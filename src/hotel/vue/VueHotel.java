@@ -33,14 +33,6 @@ public class VueHotel extends JFrame {
     //public JMenuItem ajouterConsommation;
     //public JMenuItem nouveauSejour;
     //public JMenuItem facturation;
-    public JMenuItem UML;
-
-
-    public JMenu test;
-    public JMenu soustest;
-    public JMenuItem test1;
-    public JMenuItem test2;
-
 
     public Vector<JPanel> listeActions = new Vector<>();
     private Hotel hotel;
@@ -64,8 +56,6 @@ public class VueHotel extends JFrame {
         menu.add(sejour);
         produit = new JMenu("Produit");
         menu.add(produit);
-        aide = new JMenu("Aide");
-        menu.add(aide);
         ajouterClient = new JMenuItem("Nouveau client");
         rechercherClient = new JMenuItem("Rechercher client");
         consulterClient = new JMenuItem("Gérer la liste des clients");
@@ -81,17 +71,6 @@ public class VueHotel extends JFrame {
         rechercherProduit = new JMenuItem("Rechercher produit");
         consulterProduit = new JMenuItem("Gérer la liste des produits");
         //annulerReservation = new JMenuItem("Annuler réservation");
-        UML = new JMenuItem("Ouvrir l'UML");
-
-
-        test = new JMenu("Test");
-        menu.add(test);
-        soustest = new JMenu("Soustest");
-        test.add(soustest);
-        test1 = new JMenuItem("test1");
-        soustest.add(test1);
-        test2 = new JMenuItem("test2");
-        soustest.add(test2);
 
         client.add(ajouterClient);
         client.add(rechercherClient);
@@ -108,7 +87,6 @@ public class VueHotel extends JFrame {
         produit.add(ajouterProduit);
         produit.add(rechercherProduit);
         produit.add(consulterProduit);
-        aide.add(UML);
         listeActions.add(new VueAjoutClient(this));
         listeActions.add(new VueRechercherClient(this));
         listeActions.add(new VueGererClient(this));
@@ -142,7 +120,6 @@ public class VueHotel extends JFrame {
         ajouterProduit.addActionListener(actionsJMenu);
         rechercherProduit.addActionListener(actionsJMenu);
         consulterProduit.addActionListener(actionsJMenu);
-        UML.addActionListener(actionsJMenu);
         setPreferredSize(new Dimension(800, 500));
         pack();
         show();
