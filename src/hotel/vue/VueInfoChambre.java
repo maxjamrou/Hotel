@@ -28,8 +28,6 @@ public class VueInfoChambre extends JPanel{
     JComboBox<String> listeTypeChambre;
     ButtonGroup minibar;
 
-    // To Do : finir les information concernant une chambre (pour les modifier)
-    //
     public VueInfoChambre(VueHotel main){
         super(new BorderLayout(3,3));
         this.main = main;

@@ -91,6 +91,5 @@ public class VueRechercherClient extends JPanel{
 
         this.add(titre, BorderLayout.NORTH);
         this.add(grille, BorderLayout.CENTER);
-        // this.add(boutons, BorderLayout.SOUTH);
     }
 }

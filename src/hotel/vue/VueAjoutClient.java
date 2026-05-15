@@ -21,7 +21,7 @@ public class VueAjoutClient extends JPanel{
     public VueAjoutClient(VueHotel main){
         super(new BorderLayout(3,3));
         this.main = main;
-        JLabel titre = new JLabel("Ajouter Client");
+        JLabel titre = new JLabel("Ajouter client");
         titre.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(titre, BorderLayout.NORTH);
         JPanel formulaire = new JPanel(new GridLayout(2,2,3, 3));
