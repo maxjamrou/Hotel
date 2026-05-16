@@ -6,6 +6,7 @@ import vue.VueHotel;
 import vue.VueRechercherSejour;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
@@ -34,14 +35,28 @@ public class ControllerActionSejour implements ActionListener {
         Object source = e.getSource();
         if(((JButton)source).getText().equals("Facturer un sejour")){
             ((VueRechercherSejour)this.main.getListeActions().get(12)).refreshTableSejoursDone();
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.fill = GridBagConstraints.BOTH;
+            gbc.weightx = 1;
+            gbc.weighty = 0.3;
+            gbc.gridx = 0;
+            gbc.gridy = 2;
+            gbc.insets = new Insets(5, 5, 5, 5);
             this.main.getListeActions().get(12).remove(bottomPanes.get(0));
-            this.main.getListeActions().get(12).add(bottomPanes.get(1));
+            this.main.getListeActions().get(12).add(bottomPanes.get(1), gbc);
             controllerRecherche.setMode("Done");
         } else if(((JButton)source).getText().equals("Ajouter une consommation")){
             ((VueRechercherSejour)this.main.getListeActions().get(12)).refreshTableSejoursNotDone();
             ((VueRechercherSejour)this.main.getListeActions().get(12)).refreshSelectProducts();
+            GridBagConstraints gbc = new GridBagConstraints();
+            gbc.fill = GridBagConstraints.BOTH;
+            gbc.weightx = 1;
+            gbc.weighty = 0.3;
+            gbc.gridx = 0;
+            gbc.gridy = 2;
+            gbc.insets = new Insets(5, 5, 5, 5);
             this.main.getListeActions().get(12).remove(bottomPanes.get(0));
-            this.main.getListeActions().get(12).add(bottomPanes.get(2));
+            this.main.getListeActions().get(12).add(bottomPanes.get(2), gbc);
             controllerRecherche.setMode("NotDone");
         } else if (((JButton)source).getText().equals("Rafraichir")){
             if (table.getSelectedRow() != -1){

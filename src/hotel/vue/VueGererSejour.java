@@ -26,7 +26,7 @@ public class VueGererSejour extends JPanel{
         title.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(title, BorderLayout.NORTH);
 
-        String[] columns = {"Client", "Type de chambre", "N° de chambre", "€/Nuit", "hasMinibar", "Date", "prix conso"};
+        String[] columns = {"Client", "Type de chambre", "Etage", "€/Nuit", "hasMinibar", "Date", "prix conso"};
         model = new DefaultTableModel(columns, 0);
 
         table = new JTable(model);
@@ -35,9 +35,7 @@ public class VueGererSejour extends JPanel{
 
         JPanel boutonsPanel = new JPanel();
         JButton ajtConso = new JButton("Ajouter Consommation");
-        JButton rechercher = new JButton("Rechercher un séjour");
-
-        // ajtConso.addActionListener(new ControllerActionSejour(main, table, table, bottomPanes, totalGroup, textFields, controllerRecherche));
+        JButton rechercher = new JButton("Rechercher");
 
         boutonsPanel.add(ajtConso);
         boutonsPanel.add(rechercher);
@@ -60,7 +58,7 @@ public class VueGererSejour extends JPanel{
             model.addRow(new Object[]{
                     s.getReservation().getClient().getNom() + " " + s.getReservation().getClient().getPrenom(),
                     s.getReservation().getRoom().getType(),
-                    s.getReservation().getRoom().getNumeroChambre(),
+                    s.getReservation().getRoom().getFloor(),
                     s.getReservation().getRoom().getPrice(),
                     s.getReservation().getRoom().hasMinibar(),
                     s.getReservation().getStartReservation() + " - " + s.getReservation().getEndReservation(),

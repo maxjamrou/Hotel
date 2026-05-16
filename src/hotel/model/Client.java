@@ -53,8 +53,6 @@ public class Client {
                 return true;
             } else if (r.getStartReservation().isEqual(listeReservation.get(i).getStartReservation()) && r.getStartReservation().isEqual(listeReservation.get(i).getEndReservation())){
                 return true;
-            } else if (r.getEndReservation().isEqual(listeReservation.get(i).getStartReservation()) && r.getEndReservation().isEqual(listeReservation.get(i).getEndReservation())){
-                return true;
             } else if (r.getEndReservation().isAfter(listeReservation.get(i).getStartReservation()) && r.getEndReservation().isBefore(listeReservation.get(i).getEndReservation())){
                 return true;
             }
