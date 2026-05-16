@@ -1,5 +1,6 @@
 package vue;
 
+import controller.ControllerAnnulerReservation;
 import controller.ControllerMenu;
 import java.awt.BorderLayout;
 import javax.swing.*;
@@ -28,17 +29,24 @@ public class VueGererReservation extends JPanel {
         table = new JTable(model);
         table.removeColumn(table.getColumn("Reservation"));
 
-        this.add(new JScrollPane(table), BorderLayout.CENTER);
+        JPanel tableau = new JPanel(new BorderLayout());
+        JLabel reservationEltManquant = new JLabel();
+
+        tableau.add(new JScrollPane(table), BorderLayout.CENTER);
+        tableau.add(reservationEltManquant, BorderLayout.SOUTH);
+
+        this.add(tableau, BorderLayout.CENTER);
 
         JPanel boutonsPanel = new JPanel();
         JButton ajouter = new JButton("Nouvelle réservation");
-        JButton modifier = new JButton("Annuler réservation");
+        JButton annuler = new JButton("Annuler réservation");
         JButton rechercher = new JButton("Rechercher réservation");
 
         ajouter.addActionListener(new ControllerMenu(main, main.listeActions));
+        annuler.addActionListener(new ControllerAnnulerReservation(main, table, reservationEltManquant));
 
         boutonsPanel.add(ajouter);
-        boutonsPanel.add(modifier);
+        boutonsPanel.add(annuler);
         boutonsPanel.add(rechercher);
         this.add(boutonsPanel, BorderLayout.SOUTH);
 

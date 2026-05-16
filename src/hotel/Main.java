@@ -26,7 +26,6 @@ public class Main {
         hotel.addSejour(new Sejour(hotel.getReservations().get(3), hotel));
         hotel.getSejours().get(2).getConsommationMinibar().addProduit(hotel.getProducts().get(2));
         hotel.getSejours().get(2).getConsommationMinibar().addProduit(hotel.getProducts().get(3));
-        System.out.println(hotel.getChambres().get(2).getFloor());
         hotel.addReservation(new Reservation(LocalDate.parse("2026-03-21"), LocalDate.parse("2026-04-21"), hotel, hotel.getChambres().get(2), hotel.getClients().get(2)));
         hotel.addSejour(new Sejour(hotel.getReservations().getLast(), hotel));
         hotel.getSejours().getLast().getConsommationMinibar().addProduit(hotel.getProducts().get(0));

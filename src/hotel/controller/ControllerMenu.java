@@ -83,7 +83,7 @@ public class ControllerMenu implements ActionListener{
                 ((VueRechercherSejour)this.listeActions.get(12)).resetMode();
                 this.vueHotel.getContentPane().add(this.listeActions.get(12));
                 break;
-            case "Gérer la liste des séjours":
+            case "Consulter la liste des séjours":
                 ((VueGererSejour)this.listeActions.get(13)).refresh();
                 this.vueHotel.getContentPane().add(this.listeActions.get(13));
                 break;
@@ -97,7 +97,6 @@ public class ControllerMenu implements ActionListener{
                 ((VueGererProduit)this.listeActions.get(16)).getLabelErreur().setText("");
                 ((VueGererProduit)this.listeActions.get(16)).refresh();
                 this.vueHotel.getContentPane().add(this.listeActions.get(16));
-                System.out.println(this.vueHotel.getHotel().afficheAllProduit());
                 break;
             default:
                 break;

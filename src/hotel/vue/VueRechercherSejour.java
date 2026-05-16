@@ -58,7 +58,7 @@ public class VueRechercherSejour extends JPanel {
         titre.setHorizontalAlignment(SwingConstants.CENTER);
         top.add(titre, BorderLayout.NORTH);
 
-        String[] columns = {"Client", "Type de chambre", "Etage", "Prix/Nuit", "hasMinibar", "Date", "prix conso", "Sejour fini", "Sejour"};
+        String[] columns = {"Client", "Type de chambre", "N° de chambre", "Prix/Nuit", "hasMinibar", "Date", "prix conso", "Sejour fini", "Sejour"};
         model = new DefaultTableModel(columns, 0);
 
         table = new JTable(model);
@@ -337,7 +337,7 @@ public class VueRechercherSejour extends JPanel {
             model.addRow(new Object[]{
                     s.getReservation().getClient().getNom() + " " + s.getReservation().getClient().getPrenom(),
                     s.getReservation().getRoom().getType(),
-                    s.getReservation().getRoom().getFloor(),
+                    s.getReservation().getRoom().getNumeroChambre(),
                     s.getReservation().getRoom().getPrice(),
                     s.getReservation().getRoom().hasMinibar(),
                     s.getReservation().getStartReservation() + " - " + s.getReservation().getEndReservation(),
@@ -378,7 +378,7 @@ public class VueRechercherSejour extends JPanel {
             model.addRow(new Object[]{
                     s.getReservation().getClient().getNom() + " " + s.getReservation().getClient().getPrenom(),
                     s.getReservation().getRoom().getType(),
-                    s.getReservation().getRoom().getFloor(),
+                    s.getReservation().getRoom().getNumeroChambre(),
                     s.getReservation().getRoom().getPrice(),
                     s.getReservation().getRoom().hasMinibar(),
                     s.getReservation().getStartReservation() + " - " + s.getReservation().getEndReservation(),

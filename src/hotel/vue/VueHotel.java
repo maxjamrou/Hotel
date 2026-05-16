@@ -42,10 +42,6 @@ public class VueHotel extends JFrame {
         this.hotel = hotel;
         menu = new JMenuBar();
         setJMenuBar(menu);
-        // ajouter = new JMenu("Ajouter");
-        // menu.add(ajouter);
-        // consulter = new JMenu("Consulter");
-        // menu.add(consulter);
         client = new JMenu("Client");
         menu.add(client);
         chambre = new JMenu("Chambre");
@@ -66,11 +62,10 @@ public class VueHotel extends JFrame {
         rechercherReservation = new JMenuItem("Rechercher réservation");
         consulterReservation = new JMenuItem("Gérer la liste des réservations");
         rechercherSejour = new JMenuItem("Rechercher un séjour");
-        consulterSejour = new JMenuItem("Gérer la liste des séjours");
+        consulterSejour = new JMenuItem("Consulter la liste des séjours");
         ajouterProduit = new JMenuItem("Nouveau produit");
         rechercherProduit = new JMenuItem("Rechercher produit");
         consulterProduit = new JMenuItem("Gérer la liste des produits");
-        //annulerReservation = new JMenuItem("Annuler réservation");
 
         client.add(ajouterClient);
         client.add(rechercherClient);
@@ -80,7 +75,6 @@ public class VueHotel extends JFrame {
         chambre.add(consulterChambre);
         reservation.add(ajouterReservation);
         reservation.add(rechercherReservation);
-        //reservation.add(annulerReservation);
         reservation.add(consulterReservation);
         sejour.add(rechercherSejour);
         sejour.add(consulterSejour);

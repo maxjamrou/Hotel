@@ -105,12 +105,10 @@ public class ControllerAccepter implements ActionListener{
                 canBePerformed = false;
                 listJLabels.get(0).setText("Aucune chambre sélectionnée");
             }
-            System.out.println("works" + intValue + canBePerformed);
         }
         if(canBePerformed){
             if(prix<0){prix=-prix;}
             if(intValue<0){intValue=-intValue;}
-            System.out.println(((JButton)e.getSource()).getText());
             this.main.getContentPane().removeAll();
             switch (((JButton)e.getSource()).getText()) {
                 case "Ajouter client":
@@ -123,26 +121,17 @@ public class ControllerAccepter implements ActionListener{
                     boolean hasMinibar = true;
                     if(this.jRadioButton.isSelected()){hasMinibar = false;}
                     this.main.getHotel().addChambre(new Chambre(intValue, prix, hasMinibar, (String)this.jComboBox.getSelectedItem(), this.main.getHotel()));
-                    System.out.println(Integer.parseInt(listeStrFields.get(0)) + Double.parseDouble(listeStrFields.get(1)));
                     this.jRadioButton.setSelected(true);
                     this.jComboBox.setSelectedItem("Simple");
                     ((VueGererChambre)this.main.listeActions.get(6)).refresh();
                     this.main.getContentPane().add(this.main.getListeActions().get(6));
                     break;
                 case "Ajouter réservation":
-                    System.out.println("worksout");
                     VueAjoutReservation2 vue = ((VueAjoutReservation2)this.main.getListeActions().get(9));
                     vue.reservation.setChambre((Chambre)(vue.table.getModel()).getValueAt(intValue, 4));
                     vue.reservation.getHotel().addReservation(vue.reservation);
                     vue.reservation.getClient().addReservation(vue.reservation);
                     vue.reservation.getRoom().addReservation(vue.reservation);
-                    System.out.println(vue.reservation.getClient().getPrenom());
-                    System.out.println(vue.reservation.getClient().getReservations().get(vue.reservation.getClient().getReservations().size() - 1).getClient().getPrenom());
-                    System.out.println(vue.reservation.getClient().getReservations().get(vue.reservation.getClient().getReservations().size() - 1).getStartReservation().toString());
-                    System.out.println(vue.reservation.getClient().getReservations().get(vue.reservation.getClient().getReservations().size() - 1).getEndReservation().toString());
-                    System.out.println(vue.reservation.getHotel().getReservations().get(vue.reservation.getHotel().getReservations().size() - 1).getStartReservation().toString());
-                    System.out.println(vue.reservation.getHotel().getReservations().get(vue.reservation.getHotel().getReservations().size() - 1).getEndReservation().toString());
-                    System.out.println(vue.reservation.getRoom().getFloor());
                     ((DefaultTableModel)((VueAjoutReservation)this.main.getListeActions().get(8)).getTable().getModel()).setRowCount(0);
                     ((VueGererReservation)this.main.listeActions.get(11)).refresh();
                     this.main.getListeActions().set(9, new VueAjoutReservation2(main));

@@ -68,7 +68,6 @@ public class ControllerRecherche implements ActionListener{
         if(((JButton)e.getSource()).getText().equals("Rechercher client")){
             String nom = lFields.get(0).getText();
             String prenom = lFields.get(1).getText();
-            // System.out.println(nom + " et " +prenom);
             if(nom.equals("") && prenom.equals("")){lJLabels.get(0).setText("*Aucune information renseignée");} 
             else {
                 Vector<Client> lClient = this.hotel.getClientByNomAndPrenom(nom, prenom);

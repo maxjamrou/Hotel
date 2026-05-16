@@ -193,9 +193,6 @@ public class Hotel {
         Vector<Produit> rProduits = null;
         if(!name.equals("")){rProduits = this.getProduitByName(name);}
         if(price>=0){rProduits = this.getProduitByPrice(price, sup, rProduits);}
-        for(Produit p : rProduits){
-            System.out.println(p.getName() + " " + p.getPrice());
-        }
         return rProduits;
     }
 
@@ -227,7 +224,6 @@ public class Hotel {
 
     public boolean estDansCatalogueProduit(String nomProduit){
         for(Produit p : this.listeProduit){
-            System.out.println(p.getName() + " " + nomProduit);
             if (p.getName().replace(" ", "").equals(nomProduit.toUpperCase().replace(" ", ""))){
                 return true;
             }
