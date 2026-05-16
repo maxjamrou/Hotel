@@ -27,7 +27,7 @@ public class VueGererChambre extends JPanel{
         this.add(title, BorderLayout.NORTH);
 
         JPanel tableau = new JPanel(new BorderLayout());
-        String[] columns = {"N° de chambre", "€/Nuit", "Type de Chambre", "Possède un minibar", "Chambre"};
+        String[] columns = {"Étage", "€/Nuit", "Type de Chambre", "Possède un minibar", "Chambre"};
         model = new DefaultTableModel(columns, 0);
 
         table = new JTable(model);
@@ -59,7 +59,7 @@ public class VueGererChambre extends JPanel{
         for (int i = this.main.getHotel().getChambres().size() - 1 ; i>=0; i--) {
             Chambre c = this.main.getHotel().getChambres().get(i);
             model.addRow(new Object[]{
-                    c.getNumeroChambre(),
+                    c.getFloor(),
                     c.getPrice() + "€",
                     c.getType(),
                     c.hasMinibar(),

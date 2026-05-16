@@ -49,7 +49,9 @@ public class ControllerAccepter implements ActionListener{
         Vector<String> listeStrFields = new Vector<String>();
         for (int i = 0; i < this.listeJTextFields.size(); i++) {
             if(((JButton)e.getSource()).getText().equals("Ajouter réservation")){
-                break;
+                if(this.jRadioButton.isSelected() == true){
+                    break;
+                }
             }
             listeStrFields.add(listeJTextFields.get(i).getText());
             if(listeStrFields.get(i).length() == 0){
@@ -103,7 +105,7 @@ public class ControllerAccepter implements ActionListener{
             intValue = ((VueAjoutReservation2)this.main.getListeActions().get(9)).table.getSelectedRow();
             if(intValue == -1){
                 canBePerformed = false;
-                listJLabels.get(0).setText("Aucune chambre sélectionnée");
+                //JLabel cas erreur
             }
             System.out.println("works" + intValue + canBePerformed);
         }
@@ -145,7 +147,6 @@ public class ControllerAccepter implements ActionListener{
                     System.out.println(vue.reservation.getRoom().getFloor());
                     ((DefaultTableModel)((VueAjoutReservation)this.main.getListeActions().get(8)).getTable().getModel()).setRowCount(0);
                     ((VueGererReservation)this.main.listeActions.get(11)).refresh();
-                    this.main.getListeActions().set(9, new VueAjoutReservation2(main));
                     this.main.getContentPane().add(this.main.getListeActions().get(11));
                     break;
                 case "Ajouter produit":

@@ -2,7 +2,7 @@ package vue;
 
 import controller.*;
 import java.awt.BorderLayout;
-import java.awt.Color;
+import java.awt.GridLayout;
 import java.util.Vector;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -12,7 +12,6 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import model.Chambre;
 import model.Reservation;
@@ -24,18 +23,13 @@ public class VueAjoutReservation2 extends JPanel{
     public JScrollPane scroller;
     public ButtonGroup choixGroup;
     public Vector<JTextField> lFields;
-    public Vector<JLabel> labels;
-    public JPanel choixP;
-    public JPanel buttonJPanel;
-    public JButton confirmer;
-
     public Reservation reservation;
 
     public VueAjoutReservation2(VueHotel main){
         super(new BorderLayout(3,3));
         this.main = main;
         this.lFields = ((VueAjoutReservation)this.main.getListeActions().get(8)).lFields;
-        this.choixP = new JPanel();
+        JPanel choixP = new JPanel();
         JLabel choixL = new JLabel("Choix particulier sur la chambre : ");
         this.choixGroup = new ButtonGroup();
         JRadioButton choixOui = new JRadioButton("Oui");
@@ -46,7 +40,7 @@ public class VueAjoutReservation2 extends JPanel{
         choixP.add(choixL);
         choixP.add(choixOui);
         choixP.add(choixNon);
-        String[] columns = {"N° de chambre", "Prix/Nuit", "Type de Chambre", "Possède un minibar", "Chambre"};
+        String[] columns = {"Étage", "Prix/Nuit", "Type de Chambre", "Possède un minibar", "Chambre"};
         model = new DefaultTableModel(columns, 0);
         table = new JTable(model);
         table.removeColumn(table.getColumn("Chambre"));
@@ -57,44 +51,33 @@ public class VueAjoutReservation2 extends JPanel{
         choixNon.addActionListener(selectionner);
         // this.add(scroller, BorderLayout.CENTER);
 
+        JPanel formulaire = new JPanel(new GridLayout());
         
         
         // this.add(formulaire, BorderLayout.CENTER);
 
-        labels = new Vector<>();
-        JLabel chambreEltManquant = new JLabel();
-        chambreEltManquant.setHorizontalAlignment(SwingConstants.CENTER);
-        chambreEltManquant.setForeground(Color.RED);
-        labels.add(chambreEltManquant);
+        Vector<JTextField> textFields = new Vector<>();
+        Vector<JLabel> labels = new Vector<>();
+        textFields.add(new JTextField("okokok"));
+        labels.add(new JLabel());
 
-        this.buttonJPanel = new JPanel();
+        JPanel buttonJPanel = new JPanel();
         JButton precendent = new JButton("Précédent");
-        confirmer = new JButton("Ajouter réservation");
-        confirmer.addActionListener(new ControllerAccepter(main, this.lFields, labels, choixNon));
+        JButton confirmer = new JButton("Ajouter réservation");
         precendent.addActionListener(new ControllerSuivPrec(this.main, this.choixGroup));
+        confirmer.addActionListener(new ControllerAccepter(main, this.lFields, labels, choixNon));
         buttonJPanel.add(precendent);
+        buttonJPanel.add(confirmer);
         this.add(buttonJPanel, BorderLayout.SOUTH);
     }
-    
-    public VueAjoutReservation2 refreshOui(){
-        this.removeAll();
-        buttonJPanel.add(confirmer);
-        this.add(this.choixP, BorderLayout.NORTH);
-        this.add(this.buttonJPanel, BorderLayout.SOUTH);
+
+    public void refresh() {
         model.setRowCount(0);
-        return this;
-    }
-    
-    public void refreshNon() {
-        this.removeAll();
-        this.add(this.choixP, BorderLayout.NORTH);
-        this.add(this.buttonJPanel, BorderLayout.SOUTH);
-        model.setRowCount(0);
-        buttonJPanel.add(confirmer);
-        for (int i = this.main.getHotel().listChambresDisponibles(this.reservation.getStartReservation(), this.reservation.getEndReservation(), this.main.getHotel().getChambres()).size() - 1 ; i>=0; i--) {
-            Chambre c = this.main.getHotel().listChambresDisponibles(this.reservation.getStartReservation(), this.reservation.getEndReservation(), this.main.getHotel().getChambres()).get(i);
+
+        for (int i = this.main.getHotel().listChambresDisponibles(this.reservation.getStartReservation(), this.reservation.getEndReservation()).size() - 1 ; i>=0; i--) {
+            Chambre c = this.main.getHotel().listChambresDisponibles(this.reservation.getStartReservation(), this.reservation.getEndReservation()).get(i);
             model.addRow(new Object[]{
-                    c.getNumeroChambre(),
+                    c.getFloor(),
                     c.getPrice() + "€",
                     c.getType(),
                     c.hasMinibar(),

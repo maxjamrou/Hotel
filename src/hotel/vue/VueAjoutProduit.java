@@ -16,16 +16,20 @@ public class VueAjoutProduit extends JPanel {
         super(new BorderLayout());
         this.main = main;
 
+        // VECTORS
         Vector<JTextField> lFields = new Vector<>();
         Vector<JLabel> lJLabels = new Vector<>();
 
-        JLabel title = new JLabel("Ajouter produit");
+
+        // TITLE
+        JLabel title = new JLabel("Ajouter Produit");
         title.setHorizontalAlignment(SwingConstants.CENTER);
         add(title, BorderLayout.NORTH);
 
+        // FORM
         JPanel form = new JPanel(new GridLayout(2,2,3,3));
 
-        form.add(new JLabel("Nom :"));
+        form.add(new JLabel("Name:"));
 
         JPanel namePanel = new JPanel(new BorderLayout());
         JLabel nomEltManquant = new JLabel();
@@ -35,7 +39,7 @@ public class VueAjoutProduit extends JPanel {
         namePanel.add(nomEltManquant, BorderLayout.SOUTH);
         form.add(namePanel);
 
-        form.add(new JLabel("Prix :"));
+        form.add(new JLabel("Price:"));
 
         JPanel pricePanel = new JPanel(new BorderLayout());
         JLabel prixEltManquant = new JLabel();
@@ -47,13 +51,42 @@ public class VueAjoutProduit extends JPanel {
 
         add(form, BorderLayout.CENTER);
 
+        // BUTTON
+        btnAdd.setBackground(Color.GREEN);
         btnAdd.setFocusPainted(false);
 
+        // CONTROLLER
         ControllerAccepter accepter = new ControllerAccepter(main, lFields, lJLabels);
         btnAdd.addActionListener(accepter);
 
         add(btnAdd, BorderLayout.SOUTH);
+
+        // ACTION
+//        Vector<JTextField> listJTextFields = new Vector<JTextField>(0);
+//        listJTextFields.add(textName);
+//        listJTextFields.add(textPrice);
+//        listJTextFields.add(textQuantity);
+//        ControllerAccepter accepter = new ControllerAccepter(this, title.getText(), listJTextFields, listJLabels, null, null);
+//        btnAdd.addActionListener(accepter);
+
+
+
+        // btnAdd.addActionListener(e -> {
+        //     try {
+        //         String name = getProductName();
+        //         double price = getProductPrice();
+        //         int quantity = getProductQuantity();
+
+        //         this.main.getHotel().addProduit(new Produit(name, quantity, price, this.main.getHotel()));
+
+        //         JOptionPane.showMessageDialog(this, "Product added !");
+        //     } catch (Exception ex) {
+        //         JOptionPane.showMessageDialog(this, "Input error");
+        //     }
+        // });
     }
+
+    // 🔥 GETTERS (IMPORTANT)
 
     public String getProductName() {
         return textName.getText();
