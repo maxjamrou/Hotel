@@ -10,7 +10,6 @@ public class Main {
             hotel.addClient(new Client("Personne", (i + ""), hotel));
             if(i == 2 || i == 3){
                 hotel.addChambre(new Chambre(i, i, true, "Double", hotel));
-                
             }
             hotel.addChambre(new Chambre(i, i, false, "Simple", hotel));
             Reservation r = new Reservation(LocalDate.parse("2026-04-21"), LocalDate.parse("2026-05-21"), hotel, hotel.getChambres().get(i), hotel.getClients().get(i));
@@ -26,6 +25,7 @@ public class Main {
         hotel.addSejour(new Sejour(hotel.getReservations().get(3), hotel));
         hotel.getSejours().get(2).getConsommationMinibar().addProduit(hotel.getProducts().get(2));
         hotel.getSejours().get(2).getConsommationMinibar().addProduit(hotel.getProducts().get(3));
+        System.out.println(hotel.getChambres().get(2).getFloor());
         hotel.addReservation(new Reservation(LocalDate.parse("2026-03-21"), LocalDate.parse("2026-04-21"), hotel, hotel.getChambres().get(2), hotel.getClients().get(2)));
         hotel.addSejour(new Sejour(hotel.getReservations().getLast(), hotel));
         hotel.getSejours().getLast().getConsommationMinibar().addProduit(hotel.getProducts().get(0));

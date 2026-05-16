@@ -48,7 +48,9 @@ public class VueInfoChambre extends JPanel{
 
     public void refresh(Chambre c){
         this.chambre = c;
-        JLabel titre = new JLabel("Information chambre " + chambre.getNumeroChambre());
+        imgChambre = new ImageIcon("vue\\blabla.jpg");
+        img = new JLabel(imgChambre);
+        JLabel titre = new JLabel("Information chambre " + chambre.getFloor());
         titre.setHorizontalAlignment(SwingConstants.CENTER);
 
         this.formulaire.removeAll();

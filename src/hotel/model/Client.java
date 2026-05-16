@@ -47,13 +47,15 @@ public class Client {
 
     public void addReservation(Reservation r){this.listeReservation.add(r);}
 
-    public Vector<Reservation> getListeReservations(){return this.listeReservation;}
-
     public boolean aDejaReserve(Reservation r){
-        for (int i = 0; i < listeReservation.size() ; i++){
-            if (!r.getStartReservation().isBefore(listeReservation.get(i).getStartReservation()) && !r.getStartReservation().isAfter(listeReservation.get(i).getEndReservation())){
+        for(int i = 0; i < this.listeReservation.size(); i++){
+            if (r.getStartReservation().isAfter(listeReservation.get(i).getStartReservation()) && r.getStartReservation().isBefore(listeReservation.get(i).getEndReservation())){
                 return true;
-            } else if (!r.getEndReservation().isBefore(listeReservation.get(i).getStartReservation()) && !r.getEndReservation().isAfter(listeReservation.get(i).getEndReservation())){
+            } else if (r.getStartReservation().isEqual(listeReservation.get(i).getStartReservation()) && r.getStartReservation().isEqual(listeReservation.get(i).getEndReservation())){
+                return true;
+            } else if (r.getEndReservation().isEqual(listeReservation.get(i).getStartReservation()) && r.getEndReservation().isEqual(listeReservation.get(i).getEndReservation())){
+                return true;
+            } else if (r.getEndReservation().isAfter(listeReservation.get(i).getStartReservation()) && r.getEndReservation().isBefore(listeReservation.get(i).getEndReservation())){
                 return true;
             }
         }
