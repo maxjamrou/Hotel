@@ -215,9 +215,9 @@ public class Hotel {
         return result;
     }
     
-    public Vector<Chambre> listChambresDisponibles(LocalDate start, LocalDate end){
+    public Vector<Chambre> listChambresDisponibles(LocalDate start, LocalDate end, Vector<Chambre> lChambres){
         Vector<Chambre> rChambres = new Vector<>();
-        for (Chambre c : this.listeChambre) {
+        for (Chambre c : lChambres) {
             if(c.estDisponible(start, end)){
                 rChambres.add(c);          
             }

@@ -113,7 +113,7 @@ public class ControllerSuivPrec implements ActionListener{
                 this.vueHotel.getContentPane().add(this.vueHotel.getListeActions().get(9));
                 ((VueAjoutReservation2)this.vueHotel.getListeActions().get(9)).choixGroup.clearSelection();
             } else if(((JButton)e.getSource()).getText().equals("Précédent")){
-                this.buttons.clearSelection();
+                this.vueHotel.getListeActions().set(9, new VueAjoutReservation2(vueHotel));
                 this.vueHotel.getContentPane().add(this.vueHotel.getListeActions().get(8));
             }
         }

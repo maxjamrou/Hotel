@@ -74,7 +74,6 @@ public class VueAjoutChambre extends JPanel{
         formulaire.add(radioButtons);
         this.add(formulaire, BorderLayout.CENTER);
         confirmer = new JButton("Ajouter chambre");
-        confirmer.setBackground(Color.green);
         Vector<JTextField> listFields = new Vector<JTextField>();
         listFields.add(etage);
         listFields.add(prixEuro);

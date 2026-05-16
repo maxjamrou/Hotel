@@ -46,7 +46,6 @@ public class VueAjoutClient extends JPanel{
         this.add(formulaire, BorderLayout.CENTER);
         confirmer = new JButton("Ajouter client");
         confirmer.setAlignmentX(Component.CENTER_ALIGNMENT);
-        confirmer.setBackground(Color.green);
         this.add(confirmer, BorderLayout.SOUTH);
         Vector<JTextField> listJTextFields = new Vector<JTextField>(0);
         listJTextFields.add(nom);

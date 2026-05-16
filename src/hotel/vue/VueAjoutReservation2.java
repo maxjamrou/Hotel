@@ -2,7 +2,7 @@ package vue;
 
 import controller.*;
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
+import java.awt.Color;
 import java.util.Vector;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -12,6 +12,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableModel;
 import model.Chambre;
 import model.Reservation;
@@ -23,13 +24,18 @@ public class VueAjoutReservation2 extends JPanel{
     public JScrollPane scroller;
     public ButtonGroup choixGroup;
     public Vector<JTextField> lFields;
+    public Vector<JLabel> labels;
+    public JPanel choixP;
+    public JPanel buttonJPanel;
+    public JButton confirmer;
+
     public Reservation reservation;
 
     public VueAjoutReservation2(VueHotel main){
         super(new BorderLayout(3,3));
         this.main = main;
         this.lFields = ((VueAjoutReservation)this.main.getListeActions().get(8)).lFields;
-        JPanel choixP = new JPanel();
+        this.choixP = new JPanel();
         JLabel choixL = new JLabel("Choix particulier sur la chambre : ");
         this.choixGroup = new ButtonGroup();
         JRadioButton choixOui = new JRadioButton("Oui");
@@ -51,31 +57,42 @@ public class VueAjoutReservation2 extends JPanel{
         choixNon.addActionListener(selectionner);
         // this.add(scroller, BorderLayout.CENTER);
 
-        JPanel formulaire = new JPanel(new GridLayout());
         
         
         // this.add(formulaire, BorderLayout.CENTER);
 
-        Vector<JTextField> textFields = new Vector<>();
-        Vector<JLabel> labels = new Vector<>();
-        textFields.add(new JTextField("okokok"));
-        labels.add(new JLabel());
+        labels = new Vector<>();
+        JLabel chambreEltManquant = new JLabel();
+        chambreEltManquant.setHorizontalAlignment(SwingConstants.CENTER);
+        chambreEltManquant.setForeground(Color.RED);
+        labels.add(chambreEltManquant);
 
-        JPanel buttonJPanel = new JPanel();
+        this.buttonJPanel = new JPanel();
         JButton precendent = new JButton("Précédent");
-        JButton confirmer = new JButton("Ajouter réservation");
-        precendent.addActionListener(new ControllerSuivPrec(this.main, this.choixGroup));
+        confirmer = new JButton("Ajouter réservation");
         confirmer.addActionListener(new ControllerAccepter(main, this.lFields, labels, choixNon));
+        precendent.addActionListener(new ControllerSuivPrec(this.main, this.choixGroup));
         buttonJPanel.add(precendent);
-        buttonJPanel.add(confirmer);
         this.add(buttonJPanel, BorderLayout.SOUTH);
     }
-
-    public void refresh() {
+    
+    public VueAjoutReservation2 refreshOui(){
+        this.removeAll();
+        buttonJPanel.add(confirmer);
+        this.add(this.choixP, BorderLayout.NORTH);
+        this.add(this.buttonJPanel, BorderLayout.SOUTH);
         model.setRowCount(0);
-
-        for (int i = this.main.getHotel().listChambresDisponibles(this.reservation.getStartReservation(), this.reservation.getEndReservation()).size() - 1 ; i>=0; i--) {
-            Chambre c = this.main.getHotel().listChambresDisponibles(this.reservation.getStartReservation(), this.reservation.getEndReservation()).get(i);
+        return this;
+    }
+    
+    public void refreshNon() {
+        this.removeAll();
+        this.add(this.choixP, BorderLayout.NORTH);
+        this.add(this.buttonJPanel, BorderLayout.SOUTH);
+        model.setRowCount(0);
+        buttonJPanel.add(confirmer);
+        for (int i = this.main.getHotel().listChambresDisponibles(this.reservation.getStartReservation(), this.reservation.getEndReservation(), this.main.getHotel().getChambres()).size() - 1 ; i>=0; i--) {
+            Chambre c = this.main.getHotel().listChambresDisponibles(this.reservation.getStartReservation(), this.reservation.getEndReservation(), this.main.getHotel().getChambres()).get(i);
             model.addRow(new Object[]{
                     c.getFloor(),
                     c.getPrice() + "€",
