@@ -280,4 +280,25 @@ public class Hotel {
         }
         return filtered;
     }
+
+    public void ResToSej() {
+        Vector<Reservation> toSejours = new Vector<>();
+        for (Reservation r : listeReservation) {
+            if (LocalDate.now().isAfter(r.getEndReservation())) {
+                addSejour(new Sejour(r, this));
+                toSejours.add(r);
+            }
+        }
+        listeReservation.removeAll(toSejours);
+    }
+
+    public Vector<Reservation> getReservationsByFields(String name, String type, LocalDate startDate, String surname, int floor, LocalDate endDate, double priceNight, Boolean hasMinibar, Vector<Reservation> reservations) {
+        Vector<Reservation> filtered = new Vector<>();
+        for (Reservation r : reservations) {
+            if (!((!name.isEmpty() && !r.getClient().getNom().equals(name)) || (!surname.isEmpty() && !r.getClient().getPrenom().equals(surname)) || (!type.isEmpty() && !r.getRoom().getType().equals(type)) || (floor != 0 && r.getRoom().getFloor() != floor) || (startDate != null && r.getStartReservation().equals(startDate)) || (endDate != null && !r.getEndReservation().equals(endDate)) || (priceNight != 0 && r.getRoom().getPrice() != priceNight) || (hasMinibar != null && r.getRoom().hasMinibar() != hasMinibar))) {
+                filtered.add(r);
+            }
+        }
+        return filtered;
+    }
 }

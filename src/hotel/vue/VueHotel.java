@@ -2,6 +2,7 @@ package vue;
 
 import controller.ControllerMenu;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.util.Vector;
 import javax.swing.*;
 import model.Hotel;
@@ -114,6 +115,12 @@ public class VueHotel extends JFrame {
         ajouterProduit.addActionListener(actionsJMenu);
         rechercherProduit.addActionListener(actionsJMenu);
         consulterProduit.addActionListener(actionsJMenu);
+
+        JLabel titre = new JLabel("Bienvenu(e) sur l'application de " + this.hotel.getNom() + ", " + this.hotel.getAdresse());
+
+        titre.setHorizontalAlignment(SwingConstants.CENTER);
+        titre.setFont(new Font("name", Font.PLAIN, 32));
+        this.add(titre);
         setPreferredSize(new Dimension(800, 500));
         pack();
         show();
