@@ -20,12 +20,21 @@ public class ControllerRecherche implements ActionListener{
     Vector<JLabel> lJLabels;
     Vector<JRadioButton> lRadioButtons;
     JComboBox<String> jcb;
+    JRadioButton sup;
 
     public ControllerRecherche(Hotel hotel, JTable tModel, Vector<JTextField> lFields, Vector<JLabel> lJLabels){
         this.hotel = hotel;
         this.tableModel = tModel;
         this.lFields = lFields;
         this.lJLabels = lJLabels;
+    }
+
+    public ControllerRecherche(Hotel hotel, JTable tModel, Vector<JTextField> lFields, Vector<JLabel> lJLabels, JRadioButton jrb){
+        this.hotel = hotel;
+        this.tableModel = tModel;
+        this.lFields = lFields;
+        this.lJLabels = lJLabels;
+        this.sup = jrb;
     }
 
     public ControllerRecherche(Hotel hotel, JTable tModel, Vector<JTextField> lFields, Vector<JLabel> lJLabels, Vector<JRadioButton> lrdb, JComboBox<String> jcb){
@@ -96,6 +105,33 @@ public class ControllerRecherche implements ActionListener{
                     lJLabels.get(0).setText("");
                     for (Chambre c : rChambres) {
                         ((DefaultTableModel)tableModel.getModel()).addRow(new Object[]{c.getFloor(), c.getPrice(), c.getType(), c.hasMinibar(), c});
+                    }
+                }
+            }
+        } else if(((JButton)e.getSource()).getText().equals("Rechercher produit")){
+            double prix = -1;
+            try{
+                prix = Double.parseDouble(lFields.get(1).getText());
+                this.lJLabels.get(1).setText("");
+            } catch(NumberFormatException ex) {
+                if(lFields.get(1).getText().length()!=0){
+                    lFields.get(1).setText("");
+                    this.lJLabels.get(1).setText("*Element doit être un nombre");
+                    this.lJLabels.get(1).setForeground(Color.red);
+                    prix = -1;
+                }
+            }
+            String nom = this.lFields.get(0).getText();
+            if(nom.equals("") && prix == -1){
+                this.lJLabels.get(0).setText("*Aucune information renseignée");
+            } else {
+                this.lJLabels.get(0).setText("");
+                Vector<Produit> rProduits = this.hotel.getProduitByCondition(nom, prix, !this.sup.isSelected());
+                if(rProduits.isEmpty()){lJLabels.get(0).setText("*Produit inexistant");}
+                else{
+                    lJLabels.get(0).setText("");
+                    for (Produit p : rProduits) {
+                        ((DefaultTableModel)tableModel.getModel()).addRow(new Object[]{p.getName(), p.getPrice(), p});
                     }
                 }
             }

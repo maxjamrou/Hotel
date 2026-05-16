@@ -143,7 +143,7 @@ public class VueRechercherChambre extends JPanel{
         model.addColumn("€/Nuit");
         model.addColumn("Type de chambre");
         model.addColumn("Possède un minibar");
-        model.addColumn("Chambre"); // utilisé pour ranger l'objet Client
+        model.addColumn("Chambre"); // utilisé pour ranger l'objet Chambre
         this.chambresTable.removeColumn(this.chambresTable.getColumn("Chambre")); // devient "invisible" dans le tableau, seulement accessible via le modèle du JTable
         JScrollPane scrollPane = new JScrollPane(this.chambresTable);
         // scrollPane.setVisible(false);

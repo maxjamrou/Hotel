@@ -64,13 +64,11 @@ public class VueRechercherClient extends JPanel{
         model.addColumn("Client"); // utilisé pour ranger l'objet Client
         this.clientsTable.removeColumn(this.clientsTable.getColumn("Client")); // devient "invisible" dans le tableau, seulement accessible via le modèle du JTable
         JScrollPane scrollPane = new JScrollPane(this.clientsTable);
-        // scrollPane.setVisible(false);
 
         JLabel clientEltManquant = new JLabel();
         clientEltManquant.setHorizontalAlignment(SwingConstants.CENTER);
         clientEltManquant.setForeground(Color.red);
 
-        // JPanel boutons = new JPanel();
         JButton rechercher = new JButton("Rechercher client");
         JButton modifier = new JButton("Modifier client");
 

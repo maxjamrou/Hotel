@@ -165,6 +165,40 @@ public class Hotel {
         return rChambres;
     }
 
+    public Vector<Produit> getProduitByName(String name){
+        Vector<Produit> rProduits = new Vector<>();
+        for (Produit p : this.listeProduit) {
+            if(p.getName().replace(" ", "").equals(name.toUpperCase().replace(" ", ""))){rProduits.add(p);}
+        }
+        return rProduits;
+    }
+
+    public Vector<Produit> getProduitByPrice(double price, boolean sup, Vector<Produit> lProduits){
+        Vector<Produit> rProduits = new Vector<>();
+        if(lProduits == null){
+            for (Produit p : this.listeProduit) {
+                if(sup && p.getPrice() >= price){rProduits.add(p);}
+                else if(!sup && p.getPrice() <= price){rProduits.add(p);}
+            }
+        } else {
+            for (Produit p : lProduits){
+                if(sup && p.getPrice() >= price){rProduits.add(p);}
+                else if(!sup && p.getPrice() <= price){rProduits.add(p);}
+            }
+        }
+        return rProduits;
+    }
+
+    public Vector<Produit> getProduitByCondition(String name, double price, boolean sup){
+        Vector<Produit> rProduits = null;
+        if(!name.equals("")){rProduits = this.getProduitByName(name);}
+        if(price>=0){rProduits = this.getProduitByPrice(price, sup, rProduits);}
+        for(Produit p : rProduits){
+            System.out.println(p.getName() + " " + p.getPrice());
+        }
+        return rProduits;
+    }
+
     public String afficheAllClient(){
         String result = "";
         for (Client elem : this.listeClient) {

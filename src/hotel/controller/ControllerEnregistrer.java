@@ -18,6 +18,7 @@ import vue.VueGererProduit;
 import vue.VueHotel;
 import vue.VueRechercherChambre;
 import vue.VueRechercherClient;
+import vue.VueRechercherProduit;
 
 public class ControllerEnregistrer implements ActionListener{
     VueHotel main;
@@ -98,7 +99,7 @@ public class ControllerEnregistrer implements ActionListener{
                 case "Enregistrer modifications produit":
                     Produit produit = (Produit)this.objet;
                     produit.setPrice(prix);
-                    this.main.listeActions.set(15, new VueRechercherChambre(main));
+                    this.main.listeActions.set(15, new VueRechercherProduit(main));
                     ((VueGererProduit)this.main.listeActions.get(16)).refresh();
                     this.main.getContentPane().add(this.main.getListeActions().get(16));
                 default:
