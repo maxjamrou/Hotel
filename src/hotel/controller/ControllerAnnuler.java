@@ -20,6 +20,7 @@ public class ControllerAnnuler implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e){
+        System.out.println("annuler");
         this.main.getContentPane().removeAll();
         switch(((JButton)e.getSource()).getText()){
             case "Annuler modifications client":

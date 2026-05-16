@@ -1,6 +1,7 @@
 package vue;
 
 import java.awt.BorderLayout;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -16,9 +17,9 @@ public class VueGererSejour extends JPanel{
 
     public VueGererSejour(VueHotel main){
         super(new BorderLayout());
-        JLabel titre = new JLabel("Liste séjour");
-        titre.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(titre, BorderLayout.NORTH);
+        JLabel title = new JLabel("Gérer séjour");
+        title.setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(title, BorderLayout.NORTH);
         this.main = main;
 
         String[] columns = {"Client", "Type de chambre", "N° de chambre", "€/Nuit", "hasMinibar", "Date", "prix conso"};
@@ -27,6 +28,14 @@ public class VueGererSejour extends JPanel{
         table = new JTable(model);
 
         this.add(new JScrollPane(table), BorderLayout.CENTER);
+
+        JPanel boutonsPanel = new JPanel();
+        JButton ajtConso = new JButton("Ajouter Consommation");
+        JButton rechercher = new JButton("Rechercher un séjour");
+
+        boutonsPanel.add(ajtConso);
+        boutonsPanel.add(rechercher);
+        this.add(boutonsPanel, BorderLayout.SOUTH);
 
         table.getColumnModel().getColumn(0).setPreferredWidth(200);
         table.getColumnModel().getColumn(1).setPreferredWidth(80);

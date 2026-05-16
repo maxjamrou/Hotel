@@ -193,6 +193,9 @@ public class Hotel {
         Vector<Produit> rProduits = null;
         if(!name.equals("")){rProduits = this.getProduitByName(name);}
         if(price>=0){rProduits = this.getProduitByPrice(price, sup, rProduits);}
+        for(Produit p : rProduits){
+            System.out.println(p.getName() + " " + p.getPrice());
+        }
         return rProduits;
     }
 
@@ -224,6 +227,7 @@ public class Hotel {
 
     public boolean estDansCatalogueProduit(String nomProduit){
         for(Produit p : this.listeProduit){
+            System.out.println(p.getName() + " " + nomProduit);
             if (p.getName().replace(" ", "").equals(nomProduit.toUpperCase().replace(" ", ""))){
                 return true;
             }
@@ -276,6 +280,27 @@ public class Hotel {
         for (Sejour s : sejours) {
             if (!((!name.isEmpty() && !s.getReservation().getClient().getNom().equals(name)) || (!surname.isEmpty() && !s.getReservation().getClient().getPrenom().equals(surname)) || (!type.isEmpty() && !s.getReservation().getRoom().getType().equals(type)) || (floor != 0 && s.getReservation().getRoom().getFloor() != floor) || (startDate != null && !s.getReservation().getStartReservation().equals(startDate)) || (endDate != null && !s.getReservation().getEndReservation().equals(endDate)) || (priceNight != 0 && s.getReservation().getRoom().getPrice() != priceNight) || (priceCon != 0 && s.getConsommationMinibar().getTotalPrice() != priceCon) || (hasMinibar != null && s.getReservation().getRoom().hasMinibar() != hasMinibar))) {
                 filtered.add(s);
+            }
+        }
+        return filtered;
+    }
+
+    public void ResToSej() {
+        Vector<Reservation> toSejours = new Vector<>();
+        for (Reservation r : listeReservation) {
+            if (LocalDate.now().isAfter(r.getEndReservation())) {
+                addSejour(new Sejour(r, this));
+                toSejours.add(r);
+            }
+        }
+        listeReservation.removeAll(toSejours);
+    }
+
+    public Vector<Reservation> getReservationsByFields(String name, String type, LocalDate startDate, String surname, int floor, LocalDate endDate, double priceNight, Boolean hasMinibar, Vector<Reservation> reservations) {
+        Vector<Reservation> filtered = new Vector<>();
+        for (Reservation r : reservations) {
+            if (!((!name.isEmpty() && !r.getClient().getNom().equals(name)) || (!surname.isEmpty() && !r.getClient().getPrenom().equals(surname)) || (!type.isEmpty() && !r.getRoom().getType().equals(type)) || (floor != 0 && r.getRoom().getFloor() != floor) || (startDate != null && r.getStartReservation().equals(startDate)) || (endDate != null && !r.getEndReservation().equals(endDate)) || (priceNight != 0 && r.getRoom().getPrice() != priceNight) || (hasMinibar != null && r.getRoom().hasMinibar() != hasMinibar))) {
+                filtered.add(r);
             }
         }
         return filtered;

@@ -62,12 +62,13 @@ public class ControllerRecherche implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         Object source = e.getSource();
-        if(!((JButton)source).getText().equals("Rechercher")){
+        if(!(((JButton)source).getText().equals("Rechercher sejour") || ((JButton)source).getText().equals("Rechercher reservation"))){
             ((DefaultTableModel)this.tableModel.getModel()).setRowCount(0);
         }
         if(((JButton)e.getSource()).getText().equals("Rechercher client")){
             String nom = lFields.get(0).getText();
             String prenom = lFields.get(1).getText();
+            // System.out.println(nom + " et " +prenom);
             if(nom.equals("") && prenom.equals("")){lJLabels.get(0).setText("*Aucune information renseignée");} 
             else {
                 Vector<Client> lClient = this.hotel.getClientByNomAndPrenom(nom, prenom);
@@ -150,7 +151,7 @@ public class ControllerRecherche implements ActionListener{
                     }
                 }
             }
-        } else if(((JButton)source).getText().equals("Rechercher")){
+        } else if(((JButton)source).getText().equals("Rechercher sejour")){
             String name = ((JTextField)textFields.get(1)).getText().toUpperCase();
             String type = ((JTextField)textFields.get(2)).getText();
             LocalDate startDate = ((JTextField)textFields.get(3)).getText().isEmpty() ? null : LocalDate.parse(((JTextField)textFields.get(3)).getText());
@@ -166,6 +167,26 @@ public class ControllerRecherche implements ActionListener{
                 hasMinibar = false;
             }
             ((VueRechercherSejour) this.main.getListeActions().get(12)).refreshSearch(name, type, startDate, surname, floor, endDate, priceNight, hasMinibar, priceCon, currentTableType);
+            for (JComponent component : textFields) {
+                if (component instanceof JTextField) {
+                    ((JTextField) component).setText("");
+                }
+            }
+        } else if(((JButton)source).getText().equals("Rechercher reservation")){
+            String name = ((JTextField)textFields.get(0)).getText().toUpperCase();
+            String type = ((JTextField)textFields.get(1)).getText();
+            LocalDate startDate = ((JTextField)textFields.get(2)).getText().isEmpty() ? null : LocalDate.parse(((JTextField)textFields.get(2)).getText());
+            String surname = ((JTextField)textFields.get(3)).getText();
+            int floor = ((JTextField)textFields.get(4)).getText().isEmpty() ? 0 : Integer.parseInt(((JTextField)textFields.get(4)).getText());
+            LocalDate endDate = ((JTextField)textFields.get(5)).getText().isEmpty() ? null : LocalDate.parse(((JTextField)textFields.get(5)).getText());
+            double priceNight = ((JTextField)textFields.get(6)).getText().isEmpty() ? 0 : Double.parseDouble(((JTextField)textFields.get(6)).getText());
+            Boolean hasMinibar = null;
+            if (((JRadioButton)textFields.get(7)).isSelected()) {
+                hasMinibar = true;
+            } else if (((JRadioButton)textFields.get(8)).isSelected()) {
+                hasMinibar = false;
+            }
+            ((VueRechercherReservation) this.main.getListeActions().get(10)).refreshSearch(name, type, startDate, surname, floor, endDate, priceNight, hasMinibar);
             for (JComponent component : textFields) {
                 if (component instanceof JTextField) {
                     ((JTextField) component).setText("");
