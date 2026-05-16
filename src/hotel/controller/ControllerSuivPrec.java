@@ -57,6 +57,7 @@ public class ControllerSuivPrec implements ActionListener{
             try {
                 date = this.lFields.get(0).getText().replace(" ", "") + "-" + this.lFields.get(1).getText().replace(" ", "") + "-" + this.lFields.get(2).getText().replace(" ", "");
                 debReservation = LocalDate.parse(date);
+                System.out.println(debReservation.toString());
             } catch (DateTimeException ex) {
                 this.lJLabels.get(0).setForeground(Color.RED);
                 this.lJLabels.get(0).setText(ex.getMessage());
@@ -65,6 +66,7 @@ public class ControllerSuivPrec implements ActionListener{
             try {
                 date = this.lFields.get(3).getText().replace(" ", "") + "-" + this.lFields.get(4).getText().replace(" ", "") + "-" + this.lFields.get(5).getText().replace(" ", "");
                 finReservation = LocalDate.parse(date);
+                System.out.println(finReservation.toString());
             } catch (DateTimeException ex) {
                 this.lJLabels.get(1).setForeground(Color.RED);
                 this.lJLabels.get(1).setText(ex.getMessage());
@@ -96,12 +98,14 @@ public class ControllerSuivPrec implements ActionListener{
                 if(canBePerformed && client.aDejaReserve(new Reservation(debReservation, finReservation, null, chambreTemp, client))){
                     canBePerformed = false;
                     this.lJLabels.get(2).setText("*Ce client a déjà réservé sur cette période de temps");
+                    // System.out.println(client.getReservations().get(0).getStartReservation() + " " + client.getReservations().get(0).getEndReservation());
                 }
             }
         }
         if(canBePerformed){
             this.vueHotel.getContentPane().removeAll();
             if(((JButton)e.getSource()).getText().equals("Suivant")){
+                System.out.println(debReservation.toString() + " " + finReservation.toString());
                 this.scroller = ((VueAjoutReservation2)this.vueHotel.getListeActions().get(9)).scroller;
                 this.vueHotel.getListeActions().get(9).remove(this.scroller);
                 client = (Client)((DefaultTableModel)this.table.getModel()).getValueAt(selectedRow, 2);

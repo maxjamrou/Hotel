@@ -58,7 +58,7 @@ public class VueRechercherSejour extends JPanel {
         titre.setHorizontalAlignment(SwingConstants.CENTER);
         top.add(titre, BorderLayout.NORTH);
 
-        String[] columns = {"Client", "Type de chambre", "N° de chambre", "Prix/Nuit", "hasMinibar", "Date", "prix conso", "Sejour fini", "Sejour"};
+        String[] columns = {"Client", "Type de chambre", "Etage", "Prix/Nuit", "hasMinibar", "Date", "prix conso", "Sejour fini", "Sejour"};
         model = new DefaultTableModel(columns, 0);
 
         table = new JTable(model);
@@ -102,7 +102,7 @@ public class VueRechercherSejour extends JPanel {
         JTextField dateEndField = new JTextField();
         JLabel priceConLabel = new JLabel("Prix conso :");
         JTextField priceConField = new JTextField();
-        JButton searchBtn = new JButton("Rechercher");
+        JButton searchBtn = new JButton("Rechercher sejour");
         searchBtn.setFocusPainted(false);
 
         GridBagConstraints r = new GridBagConstraints();
@@ -221,7 +221,6 @@ public class VueRechercherSejour extends JPanel {
 
         bip.gridx = 0;
         bip.weightx = 0.7;
-        bip.weighty = 1;
         invoicePanel.add(scrollPaneInvoice, bip);
         bip.gridx = 1;
         bip.weightx = 0.1;
@@ -337,7 +336,7 @@ public class VueRechercherSejour extends JPanel {
             model.addRow(new Object[]{
                     s.getReservation().getClient().getNom() + " " + s.getReservation().getClient().getPrenom(),
                     s.getReservation().getRoom().getType(),
-                    s.getReservation().getRoom().getNumeroChambre(),
+                    s.getReservation().getRoom().getFloor(),
                     s.getReservation().getRoom().getPrice(),
                     s.getReservation().getRoom().hasMinibar(),
                     s.getReservation().getStartReservation() + " - " + s.getReservation().getEndReservation(),
@@ -378,7 +377,7 @@ public class VueRechercherSejour extends JPanel {
             model.addRow(new Object[]{
                     s.getReservation().getClient().getNom() + " " + s.getReservation().getClient().getPrenom(),
                     s.getReservation().getRoom().getType(),
-                    s.getReservation().getRoom().getNumeroChambre(),
+                    s.getReservation().getRoom().getFloor(),
                     s.getReservation().getRoom().getPrice(),
                     s.getReservation().getRoom().hasMinibar(),
                     s.getReservation().getStartReservation() + " - " + s.getReservation().getEndReservation(),
@@ -428,12 +427,12 @@ public class VueRechercherSejour extends JPanel {
 
     public void refreshSearch(String name, String type, LocalDate startDate, String surname, int floor, LocalDate endDate, double priceNight, Boolean hasMinibar, double priceCon, String tableType) {
         model.setRowCount(0);
-        Vector<Sejour> source = tableType.equals("Done") ? this.main.getHotel().getSejoursDone()
+        Vector<Sejour> sejoursOfType = tableType.equals("Done") ? this.main.getHotel().getSejoursDone()
                 : tableType.equals("NotDone") ? this.main.getHotel().getSejoursNotDone()
                   : this.main.getHotel().getSejours();
-        Vector<Sejour> results = this.main.getHotel().getSejoursByFields(name, type, startDate, surname, floor, endDate, priceNight, hasMinibar, priceCon, source);
-        for (int i = results.size() - 1; i >= 0; i--) {
-            Sejour s = results.get(i);
+        Vector<Sejour> sejoursFiltered = this.main.getHotel().getSejoursByFields(name, type, startDate, surname, floor, endDate, priceNight, hasMinibar, priceCon, sejoursOfType);
+        for (int i = sejoursFiltered.size() - 1; i >= 0; i--) {
+            Sejour s = sejoursFiltered.get(i);
             model.addRow(new Object[]{
                     s.getReservation().getClient().getNom() + " " + s.getReservation().getClient().getPrenom(),
                     s.getReservation().getRoom().getType(),

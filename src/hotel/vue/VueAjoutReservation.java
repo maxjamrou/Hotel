@@ -2,10 +2,8 @@ package vue;
 
 import controller.ControllerRecherche;
 import controller.ControllerSuivPrec;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+
+import java.awt.*;
 import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -31,13 +29,29 @@ public class VueAjoutReservation extends JPanel{
 
 
     public VueAjoutReservation(VueHotel main){
-        super(new BorderLayout(3,3));
+        super(new GridBagLayout());
         this.main = main;
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.fill = GridBagConstraints.BOTH;
+        //gbc.anchor = GridBagConstraints.CENTER;
+        gbc.weightx = 1;
+
         JLabel titre = new JLabel("Ajouter réservation");
         titre.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(titre, BorderLayout.NORTH);
-        JPanel formulaire = new JPanel(new GridLayout(4, 2));
-        formulaire.add(new JLabel("Début du séjour (jj/mm/aaaa) :"));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        this.add(titre, gbc);
+        JPanel formulaire = new JPanel(new GridBagLayout());
+
+        GridBagConstraints f = new GridBagConstraints();
+        f.insets = new Insets(5, 5, 5, 5);
+        f.fill = GridBagConstraints.BOTH;
+        //f.anchor = GridBagConstraints.CENTER;
+        f.gridx = 0;
+        f.gridy = 0;
+        formulaire.add(new JLabel("Début du séjour (jj/mm/aaaa) :"), f);
         JPanel dateDebErreurPanel = new JPanel(new BorderLayout());
         JLabel dateDebEltManquant = new JLabel("test");
         JPanel dateDebJPanel = new JPanel(new FlowLayout());
@@ -55,9 +69,12 @@ public class VueAjoutReservation extends JPanel{
         dateDebJPanel.add(anneeDebField);
         dateDebErreurPanel.add(dateDebJPanel, BorderLayout.CENTER);
         dateDebErreurPanel.add(dateDebEltManquant, BorderLayout.NORTH);
-        formulaire.add(dateDebErreurPanel);
-
-        formulaire.add(new JLabel("Fin du séjour (jj/mm/aaaa) :"));
+        f.gridx = 1;
+        //f.gridy = 0;
+        formulaire.add(dateDebErreurPanel, f);
+        f.gridx = 0;
+        f.gridy = 1;
+        formulaire.add(new JLabel("Fin du séjour (jj/mm/aaaa) :"), f);
         JPanel dateFinErreurPanel = new JPanel(new BorderLayout());
         JLabel dateFinEltManquant = new JLabel("test");
         JPanel dateFinJPanel = new JPanel(new GridLayout(1,5));
@@ -75,7 +92,9 @@ public class VueAjoutReservation extends JPanel{
         dateFinJPanel.add(anneeFinField);
         dateFinErreurPanel.add(dateFinJPanel, BorderLayout.CENTER);
         dateFinErreurPanel.add(dateFinEltManquant, BorderLayout.SOUTH);
-        formulaire.add(dateFinErreurPanel);
+        f.gridx = 1;
+        //f.gridy = 1;
+        formulaire.add(dateFinErreurPanel, f);
         
         Vector<JTextField> lFieldsDate = new Vector<>();
         lFieldsDate.add(anneeDebField);
@@ -88,8 +107,10 @@ public class VueAjoutReservation extends JPanel{
         Vector<JLabel> lJLabelsDate = new Vector<>();
         lJLabelsDate.add(dateDebEltManquant);
         lJLabelsDate.add(dateFinEltManquant);
-        
-        formulaire.add(new JLabel("A quel nom : "));
+
+        f.gridx = 0;
+        f.gridy = 2;
+        formulaire.add(new JLabel("A quel nom : "), f);
         JPanel rechercheClientPanel = new JPanel(new BorderLayout());
         JPanel clientJPanel = new JPanel();
         rechercheClientPanel.add(clientJPanel, BorderLayout.CENTER);
@@ -99,7 +120,9 @@ public class VueAjoutReservation extends JPanel{
         clientJPanel.add(new JLabel("Prénom :"));
         this.prenomClient = new JTextField(10);
         clientJPanel.add(this.prenomClient);
-        formulaire.add(rechercheClientPanel);
+        f.gridx = 1;
+        //f.gridy = 2;
+        formulaire.add(rechercheClientPanel, f);
 
         DefaultTableModel model = new DefaultTableModel();
         clientsTable = new JTable(model);
@@ -109,12 +132,16 @@ public class VueAjoutReservation extends JPanel{
         clientsTable.removeColumn(clientsTable.getColumn("Client")); // devient "invisible" dans le tableau, seulement accessible via le modèle du JTable
         JScrollPane scrollPane = new JScrollPane(clientsTable);
         // scrollPane.setVisible(false);
-        formulaire.add(scrollPane, BorderLayout.SOUTH);
+        f.gridx = 0;
+        f.gridy = 3;
+        formulaire.add(scrollPane, f);
         
         JLabel errClientSelectionne = new JLabel();
         errClientSelectionne.setHorizontalAlignment(SwingConstants.CENTER);
         errClientSelectionne.setForeground(Color.red);
-        formulaire.add(errClientSelectionne);
+        f.gridx = 1;
+        //f.gridy = 3;
+        formulaire.add(errClientSelectionne, f);
         lJLabelsDate.add(errClientSelectionne);
 
         JButton rechercheClient = new JButton("Rechercher client");
@@ -142,10 +169,12 @@ public class VueAjoutReservation extends JPanel{
 
         ControllerRecherche recherche = new ControllerRecherche(main.getHotel(), this.clientsTable, lFieldsResearch, lJLabelsResearch);
         rechercheClient.addActionListener(recherche);
-        this.add(formulaire, BorderLayout.CENTER);
+        gbc.gridy = 2;
+        this.add(formulaire, gbc);
         JButton suivant = new JButton("Suivant");
         suivant.addActionListener(new ControllerSuivPrec(this.main, this.clientsTable, lJLabelsDate, lFieldsDate));
-        this.add(suivant, BorderLayout.SOUTH);
+        gbc.gridy = 3;
+        this.add(suivant, gbc);
 
         // JPanel boutonJPanel = new JPanel();
         // JButton suivant = new JButton("Suivant");
