@@ -53,4 +53,10 @@ public class Sejour {
         double RoomPrice = getReservation().getRoom().getPrice();
         return nDays*RoomPrice;
     }
+
+    public void deleteSejour(Sejour s) {
+        hotel.getSejours().remove(s);
+        hotel.getSejoursDone().remove(s);
+        hotel.getSejoursNotDone().remove(s);
+    }
 }

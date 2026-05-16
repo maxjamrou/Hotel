@@ -98,107 +98,6 @@ public class Hotel {
         return this.getClientByPrenom(prenom, this.getClientByNom(nom));
     }
 
-    public Vector<Chambre> getChambreByPrice(boolean sup, double prix){
-        Vector<Chambre> rChambres = new Vector<>();
-        for (Chambre c : this.listeChambre) {
-            if(sup && c.getPrice() >= prix){
-                rChambres.add(c);
-            } else if (!sup && c.getPrice() <= prix){
-                rChambres.add(c);
-            }
-        }
-        return rChambres;
-    }
-
-    public Vector<Chambre> getChambreByMinibar(boolean hasMinibar, Vector<Chambre> lChambres){
-        Vector<Chambre> rChambres = new Vector<>();
-        if(lChambres == null){
-            for (int idx = 0; idx < this.listeChambre.size(); idx++) {
-                if((this.listeChambre.get(idx).hasMinibar() == hasMinibar)){rChambres.add(this.listeChambre.get(idx));}
-            }
-        } else {
-            for (int idx = 0; idx < lChambres.size(); idx++) {
-                if(lChambres.get(idx).hasMinibar() == hasMinibar){rChambres.add(lChambres.get(idx));}
-            }
-        }
-        return rChambres;
-    }
-
-
-    public Vector<Chambre> getChambreByType(String type, Vector<Chambre> lChambres){
-        Vector<Chambre> rChambres = new Vector<>();
-        if(lChambres == null){
-            for (int idx = 0; idx < this.listeChambre.size(); idx++) {
-                if((this.listeChambre.get(idx).getType().equals(type))){rChambres.add(this.listeChambre.get(idx));}
-            }
-        } else {
-            for (int idx = 0; idx < lChambres.size(); idx++) {
-                if(lChambres.get(idx).getType().equals(type)){rChambres.add(lChambres.get(idx));}
-            }
-        }
-        return rChambres;
-    }
-
-    public Vector<Chambre> getChambreByFloor(int floor, Vector<Chambre> lChambres){
-        Vector<Chambre> rChambres = new Vector<>();
-        if(lChambres == null){
-            for (int idx = 0; idx < this.listeChambre.size(); idx++) {
-                if((this.listeChambre.get(idx).getFloor() == floor)){rChambres.add(this.listeChambre.get(idx));}
-            }
-        } else {
-            for (int idx = 0; idx < lChambres.size(); idx++) {
-                if(lChambres.get(idx).getFloor() == floor){rChambres.add(lChambres.get(idx));}
-            }
-        }
-        return rChambres;
-    }
-
-    public Vector<Chambre> getChambreByCondition(boolean sup, double prix, int minibar, String type, int floor){
-        Vector<Chambre> rChambres = null;
-        if(prix >= 0){rChambres = getChambreByPrice(sup, prix);}
-        if(minibar != -1){
-            if(minibar == 1){rChambres = getChambreByMinibar(true, rChambres);}
-            else{rChambres = getChambreByMinibar(false, rChambres);}
-        }
-        if(!type.equals("")){rChambres = getChambreByType(type, rChambres);}
-        if(floor>=0){rChambres = getChambreByFloor(floor, rChambres);}
-        return rChambres;
-    }
-
-    public Vector<Produit> getProduitByName(String name){
-        Vector<Produit> rProduits = new Vector<>();
-        for (Produit p : this.listeProduit) {
-            if(p.getName().replace(" ", "").equals(name.toUpperCase().replace(" ", ""))){rProduits.add(p);}
-        }
-        return rProduits;
-    }
-
-    public Vector<Produit> getProduitByPrice(double price, boolean sup, Vector<Produit> lProduits){
-        Vector<Produit> rProduits = new Vector<>();
-        if(lProduits == null){
-            for (Produit p : this.listeProduit) {
-                if(sup && p.getPrice() >= price){rProduits.add(p);}
-                else if(!sup && p.getPrice() <= price){rProduits.add(p);}
-            }
-        } else {
-            for (Produit p : lProduits){
-                if(sup && p.getPrice() >= price){rProduits.add(p);}
-                else if(!sup && p.getPrice() <= price){rProduits.add(p);}
-            }
-        }
-        return rProduits;
-    }
-
-    public Vector<Produit> getProduitByCondition(String name, double price, boolean sup){
-        Vector<Produit> rProduits = null;
-        if(!name.equals("")){rProduits = this.getProduitByName(name);}
-        if(price>=0){rProduits = this.getProduitByPrice(price, sup, rProduits);}
-        for(Produit p : rProduits){
-            System.out.println(p.getName() + " " + p.getPrice());
-        }
-        return rProduits;
-    }
-
     public String afficheAllClient(){
         String result = "";
         for (Client elem : this.listeClient) {
@@ -273,5 +172,15 @@ public class Hotel {
             }
         }
         return Sejours;
+    }
+
+    public Vector<Sejour> getSejoursByFields(String name, String type, LocalDate startDate, String surname, int floor, LocalDate endDate, double priceNight, Boolean hasMinibar, double priceCon, Vector<Sejour> sejours) {
+        Vector<Sejour> filtered = new Vector<>();
+        for (Sejour s : sejours) {
+            if (!((!name.isEmpty() && !s.getReservation().getClient().getNom().equals(name)) || (!surname.isEmpty() && !s.getReservation().getClient().getPrenom().equals(surname)) || (!type.isEmpty() && !s.getReservation().getRoom().getType().equals(type)) || (floor != 0 && s.getReservation().getRoom().getFloor() != floor) || (startDate != null && !s.getReservation().getStartReservation().equals(startDate)) || (endDate != null && !s.getReservation().getEndReservation().equals(endDate)) || (priceNight != 0 && s.getReservation().getRoom().getPrice() != priceNight) || (priceCon != 0 && s.getConsommationMinibar().getTotalPrice() != priceCon) || (hasMinibar != null && s.getReservation().getRoom().hasMinibar() != hasMinibar))) {
+                filtered.add(s);
+            }
+        }
+        return filtered;
     }
 }
