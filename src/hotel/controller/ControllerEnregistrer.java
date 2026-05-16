@@ -16,9 +16,6 @@ import vue.VueGererChambre;
 import vue.VueGererClient;
 import vue.VueGererProduit;
 import vue.VueHotel;
-import vue.VueRechercherChambre;
-import vue.VueRechercherClient;
-import vue.VueRechercherProduit;
 
 public class ControllerEnregistrer implements ActionListener{
     VueHotel main;
@@ -81,7 +78,6 @@ public class ControllerEnregistrer implements ActionListener{
                     client.setNom(listeStrFields.get(0));
                     client.setPrenom(listeStrFields.get(1));
                     ((VueGererClient)this.main.listeActions.get(2)).refresh();
-                    this.main.listeActions.set(1, new VueRechercherClient(main));
                     this.main.getContentPane().add(this.main.getListeActions().get(2));
                     this.main.repaint();
                     break;
@@ -93,13 +89,11 @@ public class ControllerEnregistrer implements ActionListener{
                     chambre.setTypeChambre((String)this.jComboBox.getSelectedItem());
                     chambre.setHasMinibar(hasMinibar);
                     ((VueGererChambre)this.main.listeActions.get(6)).refresh();
-                    this.main.listeActions.set(5, new VueRechercherChambre(main));
                     this.main.getContentPane().add(this.main.getListeActions().get(6));
                     break;
                 case "Enregistrer modifications produit":
                     Produit produit = (Produit)this.objet;
                     produit.setPrice(prix);
-                    this.main.listeActions.set(15, new VueRechercherProduit(main));
                     ((VueGererProduit)this.main.listeActions.get(16)).refresh();
                     this.main.getContentPane().add(this.main.getListeActions().get(16));
                 default:

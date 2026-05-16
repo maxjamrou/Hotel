@@ -22,14 +22,14 @@ public class VueAjoutProduit extends JPanel {
 
 
         // TITLE
-        JLabel title = new JLabel("Ajouter produit");
+        JLabel title = new JLabel("Ajouter Produit");
         title.setHorizontalAlignment(SwingConstants.CENTER);
         add(title, BorderLayout.NORTH);
 
         // FORM
         JPanel form = new JPanel(new GridLayout(2,2,3,3));
 
-        form.add(new JLabel("Nom :"));
+        form.add(new JLabel("Name:"));
 
         JPanel namePanel = new JPanel(new BorderLayout());
         JLabel nomEltManquant = new JLabel();
@@ -39,7 +39,7 @@ public class VueAjoutProduit extends JPanel {
         namePanel.add(nomEltManquant, BorderLayout.SOUTH);
         form.add(namePanel);
 
-        form.add(new JLabel("Prix :"));
+        form.add(new JLabel("Price:"));
 
         JPanel pricePanel = new JPanel(new BorderLayout());
         JLabel prixEltManquant = new JLabel();

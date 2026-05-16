@@ -27,7 +27,7 @@ public class VueAjoutChambre extends JPanel{
     public VueAjoutChambre(VueHotel main){
         super(new BorderLayout(3,3));
         this.main = main;
-        JLabel titre = new JLabel("Ajouter chambre");
+        JLabel titre = new JLabel("Ajouter Chambre");
         titre.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(titre, BorderLayout.NORTH);
         JPanel formulaire = new JPanel(new GridLayout(4,2, 3, 3));
