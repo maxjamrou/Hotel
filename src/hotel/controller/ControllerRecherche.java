@@ -3,15 +3,18 @@ package controller;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 import java.util.Vector;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 import model.*;
+import vue.*;
 
 public class ControllerRecherche implements ActionListener{
     Hotel hotel;
@@ -22,11 +25,21 @@ public class ControllerRecherche implements ActionListener{
     JComboBox<String> jcb;
     JRadioButton sup;
 
+    VueHotel main;
+    JTable table;
+    Vector<JComponent> textFields;
+
     public ControllerRecherche(Hotel hotel, JTable tModel, Vector<JTextField> lFields, Vector<JLabel> lJLabels){
         this.hotel = hotel;
         this.tableModel = tModel;
         this.lFields = lFields;
         this.lJLabels = lJLabels;
+    }
+
+    public ControllerRecherche(VueHotel main, JTable table, Vector<JComponent> textFields){
+        this.main = main;
+        this.table = table;
+        this.textFields = textFields;
     }
 
     public ControllerRecherche(Hotel hotel, JTable tModel, Vector<JTextField> lFields, Vector<JLabel> lJLabels, JRadioButton jrb){
@@ -48,7 +61,10 @@ public class ControllerRecherche implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e){
-        ((DefaultTableModel)this.tableModel.getModel()).setRowCount(0);
+        Object source = e.getSource();
+        if(!((JButton)source).getText().equals("Rechercher")){
+            ((DefaultTableModel)this.tableModel.getModel()).setRowCount(0);
+        }
         if(((JButton)e.getSource()).getText().equals("Rechercher client")){
             String nom = lFields.get(0).getText();
             String prenom = lFields.get(1).getText();
@@ -104,7 +120,7 @@ public class ControllerRecherche implements ActionListener{
                 else{
                     lJLabels.get(0).setText("");
                     for (Chambre c : rChambres) {
-                        ((DefaultTableModel)tableModel.getModel()).addRow(new Object[]{c.getFloor(), c.getPrice(), c.getType(), c.hasMinibar(), c});
+                        ((DefaultTableModel)tableModel.getModel()).addRow(new Object[]{c.getNumeroChambre(), c.getPrice(), c.getType(), c.hasMinibar(), c});
                     }
                 }
             }
@@ -135,6 +151,33 @@ public class ControllerRecherche implements ActionListener{
                     }
                 }
             }
+        } else if(((JButton)source).getText().equals("Rechercher")){
+            String name = ((JTextField)textFields.get(1)).getText().toUpperCase();
+            String type = ((JTextField)textFields.get(2)).getText();
+            LocalDate startDate = ((JTextField)textFields.get(3)).getText().isEmpty() ? null : LocalDate.parse(((JTextField)textFields.get(3)).getText());
+            String surname = ((JTextField)textFields.get(4)).getText();
+            int floor = ((JTextField)textFields.get(5)).getText().isEmpty() ? 0 : Integer.parseInt(((JTextField)textFields.get(5)).getText());
+            LocalDate endDate = ((JTextField)textFields.get(6)).getText().isEmpty() ? null : LocalDate.parse(((JTextField)textFields.get(6)).getText());
+            double priceNight = ((JTextField)textFields.get(7)).getText().isEmpty() ? 0 : Double.parseDouble(((JTextField)textFields.get(7)).getText());
+            double priceCon = ((JTextField)textFields.get(8)).getText().isEmpty() ? 0 : Double.parseDouble(((JTextField)textFields.get(8)).getText());
+            Boolean hasMinibar = null;
+            if (((JRadioButton)textFields.get(9)).isSelected()) {
+                hasMinibar = true;
+            } else if (((JRadioButton)textFields.get(10)).isSelected()) {
+                hasMinibar = false;
+            }
+            ((VueRechercherSejour) this.main.getListeActions().get(12)).refreshSearch(name, type, startDate, surname, floor, endDate, priceNight, hasMinibar, priceCon, currentTableType);
+            for (JComponent component : textFields) {
+                if (component instanceof JTextField) {
+                    ((JTextField) component).setText("");
+                }
+            }
         }
+    }
+
+    String currentTableType = "All";
+
+    public void setMode(String tableType) {
+        this.currentTableType = tableType;
     }
 }

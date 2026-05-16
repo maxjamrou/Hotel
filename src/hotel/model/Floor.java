@@ -13,4 +13,9 @@ public class Floor {
     public int getFloor(){return this.floor;}
 
     public int getIdRoom(){return this.idRoom;}
+
+    public String numeroChambre(){
+        String strIdRoom = this.idRoom + "";
+        if(idRoom<10){strIdRoom = "0" + strIdRoom;}
+        return this.floor + "-" + strIdRoom;}
 }

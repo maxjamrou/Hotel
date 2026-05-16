@@ -78,7 +78,7 @@ public class ControllerEnregistrer implements ActionListener{
             switch (((JButton)e.getSource()).getText()) {
                 case "Enregistrer modifications client":
                     Client client = (Client)this.objet;
-                    client.setNom(listeStrFields.get(0));
+                    client.setNom(listeStrFields.get(0).toUpperCase());
                     client.setPrenom(listeStrFields.get(1));
                     ((VueGererClient)this.main.listeActions.get(2)).refresh();
                     this.main.listeActions.set(1, new VueRechercherClient(main));

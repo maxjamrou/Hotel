@@ -80,6 +80,7 @@ public class ControllerMenu implements ActionListener{
             case "Rechercher un séjour":
                 ((VueRechercherSejour)this.listeActions.get(12)).refreshTable();
                 ((VueRechercherSejour)this.listeActions.get(12)).refreshButtons();
+                ((VueRechercherSejour)this.listeActions.get(12)).resetMode();
                 this.vueHotel.getContentPane().add(this.listeActions.get(12));
                 break;
             case "Gérer la liste des séjours":

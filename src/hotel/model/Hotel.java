@@ -274,4 +274,14 @@ public class Hotel {
         }
         return Sejours;
     }
+
+    public Vector<Sejour> getSejoursByFields(String name, String type, LocalDate startDate, String surname, int floor, LocalDate endDate, double priceNight, Boolean hasMinibar, double priceCon, Vector<Sejour> sejours) {
+        Vector<Sejour> filtered = new Vector<>();
+        for (Sejour s : sejours) {
+            if (!((!name.isEmpty() && !s.getReservation().getClient().getNom().equals(name)) || (!surname.isEmpty() && !s.getReservation().getClient().getPrenom().equals(surname)) || (!type.isEmpty() && !s.getReservation().getRoom().getType().equals(type)) || (floor != 0 && s.getReservation().getRoom().getFloor() != floor) || (startDate != null && !s.getReservation().getStartReservation().equals(startDate)) || (endDate != null && !s.getReservation().getEndReservation().equals(endDate)) || (priceNight != 0 && s.getReservation().getRoom().getPrice() != priceNight) || (priceCon != 0 && s.getConsommationMinibar().getTotalPrice() != priceCon) || (hasMinibar != null && s.getReservation().getRoom().hasMinibar() != hasMinibar))) {
+                filtered.add(s);
+            }
+        }
+        return filtered;
+    }
 }

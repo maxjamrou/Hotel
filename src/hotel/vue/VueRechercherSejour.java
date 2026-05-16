@@ -1,11 +1,12 @@
 package vue;
 
+import controller.ControllerActionSejour;
+import controller.ControllerRecherche;
 import java.awt.*;
+import java.time.LocalDate;
 import java.util.Vector;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
-import controller.ControllerActionSejour;
 import model.Produit;
 import model.Sejour;
 
@@ -20,6 +21,7 @@ public class VueRechercherSejour extends JPanel {
     JPanel bottomActions;
     JPanel bottomInvoice;
     JPanel bottomAddCon;
+    ControllerRecherche controllerRecherche;
 
     public VueRechercherSejour(VueHotel main) {
         super(new GridLayout(3, 1));
@@ -69,7 +71,7 @@ public class VueRechercherSejour extends JPanel {
         JTextField floorField = new JTextField();
         JLabel price = new JLabel("Prix/Nuit :");
         price.setHorizontalAlignment(SwingConstants.CENTER);
-        JTextField priceField = new JTextField();
+        JTextField priceNightField = new JTextField();
         JLabel hasminibar = new JLabel("A un minibar :");
         hasminibar.setHorizontalAlignment(SwingConstants.CENTER);
         ButtonGroup buttonGroup = new ButtonGroup();
@@ -88,12 +90,12 @@ public class VueRechercherSejour extends JPanel {
         JLabel dateEnd = new JLabel("Date de fin :");
         dateEnd.setHorizontalAlignment(SwingConstants.CENTER);
         JTextField dateEndField = new JTextField();
-        JLabel totalLabel = new JLabel("Prix conso :");
-        totalLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        JTextField totalField = new JTextField();
-        JButton rechercher = new JButton("Rechercher");
-        rechercher.setHorizontalAlignment(SwingConstants.CENTER);
-        rechercher.setFocusPainted(false);
+        JLabel priceConLabel = new JLabel("Prix conso :");
+        priceConLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        JTextField priceConField = new JTextField();
+        JButton searchBtn = new JButton("Rechercher");
+        searchBtn.setHorizontalAlignment(SwingConstants.CENTER);
+        searchBtn.setFocusPainted(false);
 
         research.add(name);
         research.add(nameField);
@@ -108,14 +110,14 @@ public class VueRechercherSejour extends JPanel {
         research.add(dateEnd);
         research.add(dateEndField);
         research.add(price);
-        research.add(priceField);
+        research.add(priceNightField);
         research.add(hasminibar);
         research.add(buttons);
-        research.add(totalLabel);
-        research.add(totalField);
+        research.add(priceConLabel);
+        research.add(priceConField);
 
         center.add(research, BorderLayout.CENTER);
-        center.add(rechercher, BorderLayout.EAST);
+        center.add(searchBtn, BorderLayout.EAST);
 
         JButton invoice1 = new JButton("Facturer un sejour");
         JButton addCon1 = new JButton("Ajouter une consommation");
@@ -136,6 +138,9 @@ public class VueRechercherSejour extends JPanel {
         JLabel total = new JLabel("Total a payer :");
         JLabel totalCon = new JLabel("Total consomme :");
         JLabel totalPrice = new JLabel("Total des nuits :");
+        total.setHorizontalAlignment(SwingConstants.CENTER);
+        totalCon.setHorizontalAlignment(SwingConstants.CENTER);
+        totalPrice.setHorizontalAlignment(SwingConstants.CENTER);
 
         JPanel totalCalcPane = new JPanel(new GridLayout(2,1));
         totalCalcPane.add(totalCon);
@@ -194,11 +199,29 @@ public class VueRechercherSejour extends JPanel {
         totalGroup.add(totalCon);
         totalGroup.add(totalPrice);
 
-        ControllerActionSejour controllerActionSejour = new ControllerActionSejour(main, tableInvoice, bottomPanes, totalGroup);
+        Vector<JComponent> textFields = new Vector<>();
+        textFields.add(quantityField);
+        textFields.add(nameField);
+        textFields.add(typeField);
+        textFields.add(dateStartField);
+        textFields.add(surnameField);
+        textFields.add(floorField);
+        textFields.add(dateEndField);
+        textFields.add(priceNightField);
+        textFields.add(priceConField);
+        textFields.add(hasminibarButton);
+        textFields.add(hasnotminibarButton);
+
+        controllerRecherche = new ControllerRecherche(main, table, textFields);
+        searchBtn.addActionListener(controllerRecherche);
+
+        ControllerActionSejour controllerActionSejour = new ControllerActionSejour(main, table, tableProduct, bottomPanes, totalGroup, textFields, controllerRecherche);
         addCon1.addActionListener(controllerActionSejour);
         invoice1.addActionListener(controllerActionSejour);
         refreshBtn.addActionListener(controllerActionSejour);
+        invoiceButton.addActionListener(controllerActionSejour);
         addCon2.addActionListener(controllerActionSejour);
+
     }
 
     public void refreshTable() {
@@ -221,17 +244,21 @@ public class VueRechercherSejour extends JPanel {
     }
 
     public void refreshInvoiceProducts(Sejour s) {
-        modelProduct.setRowCount(0);
+        modelInvoice.setRowCount(0);
 
         for (int i = s.getConsommationMinibar().getProductList().size() - 1; i >= 0; i--) {
             Produit p = s.getConsommationMinibar().getProductList().get(i);
-            modelProduct.addRow(new Object[]{
+            modelInvoice.addRow(new Object[]{
                     p.getName(),
                     p.getQuantity(),
                     p.getPrice()*p.getQuantity() + "€",
                     p
             });
         }
+    }
+
+    public void refreshInvoiceProducts() {
+        modelInvoice.setRowCount(0);
     }
 
     public void refreshSelectProducts() {
@@ -293,5 +320,60 @@ public class VueRechercherSejour extends JPanel {
             this.remove(bottomAddCon);
             this.add(bottomActions);
         }
+    }
+
+    public void refreshSearch(String name, String type, LocalDate startDate, String surname, int floor, LocalDate endDate, double priceNight, Boolean hasMinibar, double priceCon, String tableType) {
+        model.setRowCount(0);
+
+        if (tableType.equals("All")) {
+            for (int i = this.main.getHotel().getSejoursByFields(name, type, startDate, surname, floor, endDate, priceNight, hasMinibar, priceCon, this.main.getHotel().getSejours()).size() - 1; i >= 0; i--) {
+                Sejour s = this.main.getHotel().getSejoursByFields(name, type, startDate, surname, floor, endDate, priceNight, hasMinibar, priceCon, this.main.getHotel().getSejours()).get(i);
+                    model.addRow(new Object[]{
+                            s.getReservation().getClient().getNom() + " " + s.getReservation().getClient().getPrenom(),
+                            s.getReservation().getRoom().getType(),
+                            s.getReservation().getRoom().getFloor(),
+                            s.getReservation().getRoom().getPrice(),
+                            s.getReservation().getRoom().hasMinibar(),
+                            s.getReservation().getStartReservation() + " - " + s.getReservation().getEndReservation(),
+                            s.getConsommationMinibar().getTotalPrice() + "€",
+                            s.isSejourDone(),
+                            s
+                    });
+            }
+        } else if (tableType.equals("Done")) {
+            for (int i = this.main.getHotel().getSejoursByFields(name, type, startDate, surname, floor, endDate, priceNight, hasMinibar, priceCon, this.main.getHotel().getSejoursDone()).size() - 1; i >= 0; i--) {
+                Sejour s = this.main.getHotel().getSejoursByFields(name, type, startDate, surname, floor, endDate, priceNight, hasMinibar, priceCon, this.main.getHotel().getSejoursDone()).get(i);
+                    model.addRow(new Object[]{
+                            s.getReservation().getClient().getNom() + " " + s.getReservation().getClient().getPrenom(),
+                            s.getReservation().getRoom().getType(),
+                            s.getReservation().getRoom().getFloor(),
+                            s.getReservation().getRoom().getPrice(),
+                            s.getReservation().getRoom().hasMinibar(),
+                            s.getReservation().getStartReservation() + " - " + s.getReservation().getEndReservation(),
+                            s.getConsommationMinibar().getTotalPrice() + "€",
+                            s.isSejourDone(),
+                            s
+                    });
+            }
+        } else if (tableType.equals("NotDone")) {
+            for (int i = this.main.getHotel().getSejoursByFields(name, type, startDate, surname, floor, endDate, priceNight, hasMinibar, priceCon, this.main.getHotel().getSejoursNotDone()).size() - 1; i >= 0; i--) {
+                Sejour s = this.main.getHotel().getSejoursByFields(name, type, startDate, surname, floor, endDate, priceNight, hasMinibar, priceCon, this.main.getHotel().getSejoursNotDone()).get(i);
+                    model.addRow(new Object[]{
+                            s.getReservation().getClient().getNom() + " " + s.getReservation().getClient().getPrenom(),
+                            s.getReservation().getRoom().getType(),
+                            s.getReservation().getRoom().getFloor(),
+                            s.getReservation().getRoom().getPrice(),
+                            s.getReservation().getRoom().hasMinibar(),
+                            s.getReservation().getStartReservation() + " - " + s.getReservation().getEndReservation(),
+                            s.getConsommationMinibar().getTotalPrice() + "€",
+                            s.isSejourDone(),
+                            s
+                    });
+            }
+        }
+    }
+
+    public void resetMode() {
+        controllerRecherche.setMode("All");
     }
 }

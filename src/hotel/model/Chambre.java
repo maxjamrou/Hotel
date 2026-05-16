@@ -11,7 +11,7 @@ public class Chambre {
     /**
      * 
      */
-    private int etage;
+    private Floor etage;
 
     /**
      * 
@@ -42,7 +42,7 @@ public class Chambre {
      * Default constructor
      */
     public Chambre(int etage, double prixChambre, boolean hasMinibar, String type, Hotel hotel) {
-        this.etage = etage;
+        this.etage = new Floor(etage);
         this.prixChambre = prixChambre;
         this.hasMinibar = hasMinibar;
         this.type = type;
@@ -58,7 +58,9 @@ public class Chambre {
 
     public void setTypeChambre(String typeChambre){this.type = typeChambre;}
 
-    public int getFloor(){return this.etage;}
+    public int getFloor(){return this.etage.getFloor();}
+
+    public String getNumeroChambre(){return this.etage.numeroChambre();}
 
     public double getPrice(){return this.prixChambre;}
 

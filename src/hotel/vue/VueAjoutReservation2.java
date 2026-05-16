@@ -46,7 +46,7 @@ public class VueAjoutReservation2 extends JPanel{
         choixP.add(choixL);
         choixP.add(choixOui);
         choixP.add(choixNon);
-        String[] columns = {"Étage", "Prix/Nuit", "Type de Chambre", "Possède un minibar", "Chambre"};
+        String[] columns = {"N° de chambre", "Prix/Nuit", "Type de Chambre", "Possède un minibar", "Chambre"};
         model = new DefaultTableModel(columns, 0);
         table = new JTable(model);
         table.removeColumn(table.getColumn("Chambre"));
@@ -94,7 +94,7 @@ public class VueAjoutReservation2 extends JPanel{
         for (int i = this.main.getHotel().listChambresDisponibles(this.reservation.getStartReservation(), this.reservation.getEndReservation(), this.main.getHotel().getChambres()).size() - 1 ; i>=0; i--) {
             Chambre c = this.main.getHotel().listChambresDisponibles(this.reservation.getStartReservation(), this.reservation.getEndReservation(), this.main.getHotel().getChambres()).get(i);
             model.addRow(new Object[]{
-                    c.getFloor(),
+                    c.getNumeroChambre(),
                     c.getPrice() + "€",
                     c.getType(),
                     c.hasMinibar(),
