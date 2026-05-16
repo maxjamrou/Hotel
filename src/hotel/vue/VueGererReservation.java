@@ -57,8 +57,8 @@ public class VueGererReservation extends JPanel {
             Reservation r = this.main.getHotel().getReservations().get(i);
             model.addRow(new Object[]{
                     r.getClient().getNom() + " " + r.getClient().getPrenom(),
+                    r.getRoom().getType(),
                     r.getRoom().getNumeroChambre(),
-                    r.getRoom().getFloor(),
                     r.getRoom().getPrice(),
                     r.getRoom().hasMinibar(),
                     r.getStartReservation() + " - " + r.getEndReservation(),
