@@ -13,6 +13,7 @@ import model.Client;
 import model.Reservation;
 import vue.VueGererReservation;
 import vue.VueHotel;
+import vue.VueRechercherReservation;
 
 public class ControllerAnnulerReservation implements ActionListener{
     VueHotel main;
@@ -56,6 +57,7 @@ public class ControllerAnnulerReservation implements ActionListener{
                         if(c.getListeReservations().contains(r)){c.getListeReservations().remove(r);}
                     }
                     this.main.getHotel().getReservations().remove(r);
+                    ((VueRechercherReservation)this.main.getListeActions().get(10)).refresh();
                     ((VueGererReservation)this.main.getListeActions().get(11)).refresh();
                 }
             }

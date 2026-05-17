@@ -80,9 +80,10 @@ public class ControllerActionSejour implements ActionListener {
         } else if (((JButton)source).getText().equals("Ajouter conso")) {
             JTextField quantityTextField = (JTextField)textFields.get(0);
             if ((table.getSelectedRow() != -1) && (tableProduct.getSelectedRow() != -1) && (!quantityTextField.getText().trim().isEmpty())) {
-                Produit selectedProduct = (Produit) tableProduct.getModel().getValueAt(tableProduct.getSelectedRow(), 1);
+                Produit p = (Produit) tableProduct.getModel().getValueAt(tableProduct.getSelectedRow(), 1);
                 Sejour selectedSejour = (Sejour) table.getModel().getValueAt(table.getSelectedRow(), 8);
                 int quantity = Integer.parseInt(((JTextField) textFields.get(0)).getText());
+                Produit selectedProduct = new Produit(p.getName(), quantity, p.getPrice(), this.main.getHotel());
                 selectedSejour.getConsommationMinibar().addProduit(selectedProduct);
                 quantityTextField.setText("");
                 ((VueRechercherSejour) this.main.getListeActions().get(12)).refreshTableSejoursNotDone();

@@ -30,10 +30,6 @@ public class VueHotel extends JFrame {
     public JMenuItem ajouterProduit;
     public JMenuItem rechercherProduit;
     public JMenuItem consulterProduit;
-    //public JMenuItem annulerReservation;
-    //public JMenuItem ajouterConsommation;
-    //public JMenuItem nouveauSejour;
-    //public JMenuItem facturation;
 
     public Vector<JPanel> listeActions = new Vector<>();
     private Hotel hotel;

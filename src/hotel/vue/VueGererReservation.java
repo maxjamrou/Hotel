@@ -42,8 +42,10 @@ public class VueGererReservation extends JPanel {
         JButton annuler = new JButton("Annuler réservation");
         JButton rechercher = new JButton("Rechercher réservation");
 
-        ajouter.addActionListener(new ControllerMenu(main, main.listeActions));
+        ControllerMenu menu = new ControllerMenu(main, main.listeActions);
+        ajouter.addActionListener(menu);
         annuler.addActionListener(new ControllerAnnulerReservation(main, table, reservationEltManquant));
+        rechercher.addActionListener(menu);
 
         boutonsPanel.add(ajouter);
         boutonsPanel.add(annuler);

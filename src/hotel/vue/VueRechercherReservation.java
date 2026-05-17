@@ -1,6 +1,6 @@
 package vue;
 
-import controller.ControllerAnnuler;
+import controller.ControllerAnnulerReservation;
 import controller.ControllerRecherche;
 import java.awt.*;
 import java.time.LocalDate;
@@ -76,7 +76,7 @@ public class VueRechercherReservation extends JPanel{
         JTextField dateEndField = new JTextField();
         JButton searchBtn = new JButton("Rechercher reservation");
         searchBtn.setFocusPainted(false);
-        JButton cancelBtn = new JButton("Annuler");
+        JButton cancelBtn = new JButton("Annuler réservation");
         searchBtn.setFocusPainted(false);
 
         GridBagConstraints b = new GridBagConstraints();
@@ -165,9 +165,8 @@ public class VueRechercherReservation extends JPanel{
         controllerRecherche = new ControllerRecherche(main, table, textFields);
         searchBtn.addActionListener(controllerRecherche);
 
-        ControllerAnnuler controllerAnnuler = new ControllerAnnuler(main);
-        searchBtn.addActionListener(controllerRecherche);
-
+        ControllerAnnulerReservation controllerAnnuler = new ControllerAnnulerReservation(main, table, new JLabel());
+        cancelBtn.addActionListener(controllerAnnuler);
     }
 
     public void refresh() {
@@ -177,7 +176,7 @@ public class VueRechercherReservation extends JPanel{
             Reservation r = this.main.getHotel().getReservations().get(i);
             model.addRow(new Object[]{
                     r.getClient().getNom() + " " + r.getClient().getPrenom(),
-                    r.getRoom().getNumeroChambre(),
+                    r.getRoom().getType(),
                     r.getRoom().getNumeroChambre(),
                     r.getRoom().getPrice(),
                     r.getRoom().hasMinibar(),
@@ -196,7 +195,7 @@ public class VueRechercherReservation extends JPanel{
             model.addRow(new Object[]{
                     r.getClient().getNom() + " " + r.getClient().getPrenom(),
                     r.getRoom().getType(),
-                    r.getRoom().getFloor(),
+                    r.getRoom().getNumeroChambre(),
                     r.getRoom().getPrice(),
                     r.getRoom().hasMinibar(),
                     r.getStartReservation() + " - " + r.getEndReservation(),

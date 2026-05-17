@@ -71,19 +71,25 @@ public class ControllerMenu implements ActionListener{
                 this.vueHotel.getContentPane().add(this.listeActions.get(8));
                 break;
             case "Rechercher réservation":
+                this.vueHotel.getHotel().ResToSej();
+                ((VueRechercherReservation)this.listeActions.get(10)).refresh();
                 this.vueHotel.getContentPane().add(this.listeActions.get(10));
                 break;
             case "Gérer la liste des réservations":
+                this.listeActions.set(11, new VueGererReservation(vueHotel));
+                this.vueHotel.getHotel().ResToSej();
                 ((VueGererReservation)this.listeActions.get(11)).refresh();
                 this.vueHotel.getContentPane().add(this.listeActions.get(11));
                 break;
             case "Rechercher un séjour":
+                this.vueHotel.getHotel().ResToSej();
                 ((VueRechercherSejour)this.listeActions.get(12)).refreshTable();
                 ((VueRechercherSejour)this.listeActions.get(12)).refreshButtons();
                 ((VueRechercherSejour)this.listeActions.get(12)).resetMode();
                 this.vueHotel.getContentPane().add(this.listeActions.get(12));
                 break;
             case "Consulter la liste des séjours":
+                this.vueHotel.getHotel().ResToSej();
                 ((VueGererSejour)this.listeActions.get(13)).refresh();
                 this.vueHotel.getContentPane().add(this.listeActions.get(13));
                 break;
