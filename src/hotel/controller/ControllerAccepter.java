@@ -134,6 +134,7 @@ public class ControllerAccepter implements ActionListener{
                     vue.reservation.getRoom().addReservation(vue.reservation);
                     ((DefaultTableModel)((VueAjoutReservation)this.main.getListeActions().get(8)).getTable().getModel()).setRowCount(0);
                     ((VueGererReservation)this.main.listeActions.get(11)).refresh();
+                    this.main.getHotel().ResToSej();
                     this.main.getListeActions().set(9, new VueAjoutReservation2(main));
                     this.main.getContentPane().add(this.main.getListeActions().get(11));
                     break;

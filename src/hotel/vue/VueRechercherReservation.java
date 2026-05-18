@@ -4,6 +4,7 @@ import controller.ControllerAnnulerReservation;
 import controller.ControllerRecherche;
 import java.awt.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Vector;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -180,7 +181,7 @@ public class VueRechercherReservation extends JPanel{
                     r.getRoom().getNumeroChambre(),
                     r.getRoom().getPrice(),
                     r.getRoom().hasMinibar(),
-                    r.getStartReservation() + " - " + r.getEndReservation(),
+                    r.getStartReservation().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " - " + r.getEndReservation().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
                     r
             });
         }
@@ -198,7 +199,7 @@ public class VueRechercherReservation extends JPanel{
                     r.getRoom().getNumeroChambre(),
                     r.getRoom().getPrice(),
                     r.getRoom().hasMinibar(),
-                    r.getStartReservation() + " - " + r.getEndReservation(),
+                    r.getStartReservation().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " - " + r.getEndReservation().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
                     r
             });
         }

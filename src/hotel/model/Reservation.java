@@ -73,5 +73,7 @@ public class Reservation {
 
     public Client getClient(){return client;}
 
+    public Sejour getSejour(){return this.sejour;}
+
     public Hotel getHotel(){return hotel;}
 }

@@ -22,9 +22,10 @@ public class Main {
         }
         hotel.addClient(new Client("Personne", "4", hotel));
         r = new Reservation(LocalDate.parse("2026-03-21"), LocalDate.parse("2026-04-21"), hotel, hotel.getChambres().get(2), hotel.getClients().get(4));
-        hotel.addReservation(r);
-        hotel.getClients().get(2).addReservation(r);
-        hotel.getChambres().get(2).addReservation(r);
+        r.confirmationSejour();
+        r.getSejour().getConsommationMinibar().addProduit(hotel.getProducts().get(1));
+        r.getSejour().getConsommationMinibar().addProduit(hotel.getProducts().get(2));
+        hotel.addSejour(r.getSejour());
 
         r = new Reservation(LocalDate.parse("2026-05-21"), LocalDate.parse("2026-06-21"), hotel, hotel.getChambres().get(2), hotel.getClients().get(2));
         hotel.addReservation(r);

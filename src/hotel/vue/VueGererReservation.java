@@ -3,6 +3,7 @@ package vue;
 import controller.ControllerAnnulerReservation;
 import controller.ControllerMenu;
 import java.awt.BorderLayout;
+import java.time.format.DateTimeFormatter;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import model.Reservation;
@@ -71,7 +72,7 @@ public class VueGererReservation extends JPanel {
                     r.getRoom().getNumeroChambre(),
                     r.getRoom().getPrice(),
                     r.getRoom().hasMinibar(),
-                    r.getStartReservation() + " - " + r.getEndReservation(),
+                    r.getStartReservation().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " - " + r.getEndReservation().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
                     r
             });
         }

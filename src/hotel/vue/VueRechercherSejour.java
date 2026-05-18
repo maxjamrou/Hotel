@@ -4,6 +4,7 @@ import controller.ControllerActionSejour;
 import controller.ControllerRecherche;
 import java.awt.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Vector;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -339,8 +340,8 @@ public class VueRechercherSejour extends JPanel {
                     s.getReservation().getRoom().getFloor(),
                     s.getReservation().getRoom().getPrice(),
                     s.getReservation().getRoom().hasMinibar(),
-                    s.getReservation().getStartReservation() + " - " + s.getReservation().getEndReservation(),
-                    s.getConsommationMinibar().getTotalPrice() + "€",
+                    s.getReservation().getStartReservation().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " - " + s.getReservation().getEndReservation().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                    String.format("%.2f", s.getConsommationMinibar().getTotalPrice()) + "€",
                     s.isSejourDone(),
                     s
             });
@@ -354,7 +355,7 @@ public class VueRechercherSejour extends JPanel {
             modelInvoice.addRow(new Object[]{
                     p.getName(),
                     p.getQuantity(),
-                    p.getPrice() * p.getQuantity() + "€",
+                    String.format("%.2f", p.getPrice() * p.getQuantity()) + "€",
                     p
             });
         }
@@ -380,8 +381,8 @@ public class VueRechercherSejour extends JPanel {
                     s.getReservation().getRoom().getFloor(),
                     s.getReservation().getRoom().getPrice(),
                     s.getReservation().getRoom().hasMinibar(),
-                    s.getReservation().getStartReservation() + " - " + s.getReservation().getEndReservation(),
-                    s.getConsommationMinibar().getTotalPrice() + "€",
+                    s.getReservation().getStartReservation().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " - " + s.getReservation().getEndReservation().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                    String.format("%.2f", s.getConsommationMinibar().getTotalPrice()) + "€",
                     s.isSejourDone(),
                     s
             });
@@ -398,8 +399,8 @@ public class VueRechercherSejour extends JPanel {
                     s.getReservation().getRoom().getFloor(),
                     s.getReservation().getRoom().getPrice(),
                     s.getReservation().getRoom().hasMinibar(),
-                    s.getReservation().getStartReservation() + " - " + s.getReservation().getEndReservation(),
-                    s.getConsommationMinibar().getTotalPrice() + "€",
+                    s.getReservation().getStartReservation().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " - " + s.getReservation().getEndReservation().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                    String.format("%.2f", s.getConsommationMinibar().getTotalPrice()) + "€",
                     s.isSejourDone(),
                     s
             });
@@ -439,8 +440,8 @@ public class VueRechercherSejour extends JPanel {
                     s.getReservation().getRoom().getFloor(),
                     s.getReservation().getRoom().getPrice(),
                     s.getReservation().getRoom().hasMinibar(),
-                    s.getReservation().getStartReservation() + " - " + s.getReservation().getEndReservation(),
-                    s.getConsommationMinibar().getTotalPrice() + "€",
+                    s.getReservation().getStartReservation().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " - " + s.getReservation().getEndReservation().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                    String.format("%.2f", s.getConsommationMinibar().getTotalPrice()) + "€",
                     s.isSejourDone(),
                     s
             });

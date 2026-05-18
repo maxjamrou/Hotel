@@ -64,7 +64,7 @@ public class ControllerActionSejour implements ActionListener {
                 double totalCon = selectedSejour.getConsommationMinibar().getTotalPrice();
                 double totalNight = selectedSejour.getPrixReservation(selectedSejour.getReservation().getStartReservation(),  selectedSejour.getReservation().getEndReservation());
                 totalGroup.get(0).setText("Total a payer : " + (totalCon + totalNight) + "€");
-                totalGroup.get(1).setText("Total consomme : " + totalCon + "€");
+                totalGroup.get(1).setText("Total consomme : " + String.format("%.2f", totalCon) + "€");
                 totalGroup.get(2).setText("Total des nuits : " + totalNight + "€");
             }
         } else if (((JButton)source).getText().equals("Facturer")) {

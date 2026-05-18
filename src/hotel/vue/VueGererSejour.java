@@ -1,6 +1,8 @@
 package vue;
 
 import java.awt.BorderLayout;
+import java.time.format.DateTimeFormatter;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -48,8 +50,8 @@ public class VueGererSejour extends JPanel{
                     s.getReservation().getRoom().getNumeroChambre(),
                     s.getReservation().getRoom().getPrice(),
                     s.getReservation().getRoom().hasMinibar(),
-                    s.getReservation().getStartReservation() + " - " + s.getReservation().getEndReservation(),
-                    s.getConsommationMinibar().getTotalPrice() + "€",
+                    s.getReservation().getStartReservation().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " - " + s.getReservation().getEndReservation().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+                    String.format("%.2f", s.getConsommationMinibar().getTotalPrice()) + "€",
                     s
             });
         }

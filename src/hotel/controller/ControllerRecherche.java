@@ -25,6 +25,8 @@ public class ControllerRecherche implements ActionListener{
     JComboBox<String> jcb;
     JRadioButton sup;
 
+    static Reservation r;
+
     VueHotel main;
     JTable table;
     Vector<JComponent> textFields;
@@ -117,7 +119,10 @@ public class ControllerRecherche implements ActionListener{
                 Vector<Chambre> rChambres = this.hotel.getChambreByCondition(!this.lRadioButtons.get(0).isSelected(), prix, minibar, type, floor);
                 if(rChambres.isEmpty()){this.lJLabels.get(0).setText("*Chambre inexistante");}
                 else{
-                    lJLabels.get(0).setText("");
+                    if(r!=null){
+                        rChambres = hotel.listChambresDisponibles(r.getStartReservation(), r.getEndReservation(), rChambres);
+                        if(rChambres.isEmpty()){this.lJLabels.get(0).setText("*Aucune chambre disponible");}
+                    }
                     for (Chambre c : rChambres) {
                         ((DefaultTableModel)tableModel.getModel()).addRow(new Object[]{c.getNumeroChambre(), c.getPrice(), c.getType(), c.hasMinibar(), c});
                     }
@@ -201,4 +206,6 @@ public class ControllerRecherche implements ActionListener{
     public void setMode(String tableType) {
         this.currentTableType = tableType;
     }
+
+    public static void setReservation(Reservation r){ControllerRecherche.r = r;}
 }

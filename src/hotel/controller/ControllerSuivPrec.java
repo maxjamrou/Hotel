@@ -105,7 +105,9 @@ public class ControllerSuivPrec implements ActionListener{
                 this.scroller = ((VueAjoutReservation2)this.vueHotel.getListeActions().get(9)).scroller;
                 this.vueHotel.getListeActions().get(9).remove(this.scroller);
                 client = (Client)((DefaultTableModel)this.table.getModel()).getValueAt(selectedRow, 2);
-                ((VueAjoutReservation2)this.vueHotel.getListeActions().get(9)).reservation = (new Reservation(debReservation, finReservation, this.vueHotel.getHotel(), chambreTemp, client));
+                Reservation r = new Reservation(debReservation, finReservation, this.vueHotel.getHotel(), chambreTemp, client);
+                ((VueAjoutReservation2)this.vueHotel.getListeActions().get(9)).reservation = (r);
+                ControllerRecherche.setReservation(r);
                 this.vueHotel.getContentPane().add(this.vueHotel.getListeActions().get(9));
                 ((VueAjoutReservation2)this.vueHotel.getListeActions().get(9)).choixGroup.clearSelection();
             } else if(((JButton)e.getSource()).getText().equals("Précédent")){

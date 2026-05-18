@@ -2,21 +2,12 @@ package vue;
 
 import controller.ControllerRecherche;
 import controller.ControllerSuivPrec;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.util.Vector;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class VueAjoutReservation extends JPanel{
+public class VueAjoutReservation extends JPanel {
     VueHotel main;
     JTextField anneeDebField;
     JTextField moisDebField;
@@ -29,54 +20,134 @@ public class VueAjoutReservation extends JPanel{
     Vector<JTextField> lFields;
     JTable clientsTable;
 
-
-    public VueAjoutReservation(VueHotel main){
-        super(new BorderLayout(3,3));
+    public VueAjoutReservation(VueHotel main) {
+        super(new GridBagLayout());
         this.main = main;
+
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.insets = new Insets(5, 5, 5, 5);
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.gridx = 0;
+        gbc.weightx = 1;
+
         JLabel titre = new JLabel("Ajouter réservation");
         titre.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(titre, BorderLayout.NORTH);
-        JPanel formulaire = new JPanel(new GridLayout(4, 2));
-        formulaire.add(new JLabel("Début du séjour (jj/mm/aaaa) :"));
-        JPanel dateDebErreurPanel = new JPanel(new BorderLayout());
-        JLabel dateDebEltManquant = new JLabel("");
-        JPanel dateDebJPanel = new JPanel(new FlowLayout());
-        this.jourDebField = new JTextField(5);
-        this.jourDebField.setText("");
-        dateDebJPanel.add(this.jourDebField);
-        dateDebJPanel.add(new JLabel("/"));
-        this.moisDebField = new JTextField(5);
-        this.moisDebField.setText("");
-        dateDebJPanel.add(moisDebField);
-        dateDebJPanel.add(new JLabel("/"));
-        this.anneeDebField = new JTextField(5);
-        this.anneeDebField.setText("");
-        dateDebEltManquant.setHorizontalAlignment(SwingConstants.CENTER);
-        dateDebJPanel.add(anneeDebField);
-        dateDebErreurPanel.add(dateDebJPanel, BorderLayout.CENTER);
-        dateDebErreurPanel.add(dateDebEltManquant, BorderLayout.NORTH);
-        formulaire.add(dateDebErreurPanel);
+        gbc.gridy = 0;
+        gbc.weighty = 0;
+        this.add(titre, gbc);
 
-        formulaire.add(new JLabel("Fin du séjour (jj/mm/aaaa) :"));
-        JPanel dateFinErreurPanel = new JPanel(new BorderLayout());
-        JLabel dateFinEltManquant = new JLabel("");
-        JPanel dateFinJPanel = new JPanel(new GridLayout(1,5));
-        this.jourFinField = new JTextField(5);
-        this.jourFinField.setText("");
-        dateFinJPanel.add(this.jourFinField);
-        dateFinJPanel.add(new JLabel("/"));
-        this.moisFinField = new JTextField(5);
-        this.moisFinField.setText("");
-        dateFinJPanel.add(moisFinField);
-        dateFinJPanel.add(new JLabel("/"));
-        this.anneeFinField = new JTextField(5);
-        this.anneeFinField.setText("");
-        dateFinEltManquant.setHorizontalAlignment(SwingConstants.CENTER);
-        dateFinJPanel.add(anneeFinField);
-        dateFinErreurPanel.add(dateFinEltManquant, BorderLayout.NORTH);
-        dateFinErreurPanel.add(dateFinJPanel, BorderLayout.CENTER);
-        formulaire.add(dateFinErreurPanel);
-        
+        JPanel formulaire = new JPanel(new GridBagLayout());
+        GridBagConstraints f = new GridBagConstraints();
+        f.insets = new Insets(5, 5, 5, 5);
+        f.fill = GridBagConstraints.HORIZONTAL;
+
+        this.jourDebField   = new JTextField();
+        this.moisDebField   = new JTextField();
+        this.anneeDebField  = new JTextField();
+        this.jourFinField   = new JTextField();
+        this.moisFinField   = new JTextField();
+        this.anneeFinField  = new JTextField();
+        this.nomClient      = new JTextField();
+        this.prenomClient   = new JTextField();
+
+        JLabel dateDebEltManquant = new JLabel(" ");
+        JLabel dateFinEltManquant = new JLabel(" ");
+        JLabel errClientSelectionne = new JLabel(" ");
+        dateDebEltManquant.setForeground(Color.RED);
+        dateFinEltManquant.setForeground(Color.RED);
+        errClientSelectionne.setForeground(Color.RED);
+
+        JPanel dateDebPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 5));
+        dateDebPanel.add(jourDebField = new JTextField(3));
+        dateDebPanel.add(new JLabel("/"));
+        dateDebPanel.add(moisDebField = new JTextField(3));
+        dateDebPanel.add(new JLabel("/"));
+        dateDebPanel.add(anneeDebField = new JTextField(3));
+
+        JPanel dateFinPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 5, 5));
+        dateFinPanel.add(jourFinField = new JTextField(3));
+        dateFinPanel.add(new JLabel("/"));
+        dateFinPanel.add(moisFinField = new JTextField(3));
+        dateFinPanel.add(new JLabel("/"));
+        dateFinPanel.add(anneeFinField = new JTextField(3));
+        f.gridx = 0;
+        f.gridy = 0;
+        f.weightx = 0;
+        formulaire.add(new JLabel("Début (jj/mm/aaaa) :"), f);
+        f.gridx = 1;
+        f.weightx = 1;
+        formulaire.add(dateDebPanel, f);
+        f.gridx = 2;
+        f.weightx = 0;
+        formulaire.add(new JLabel(" "), f);
+        f.gridx = 3;
+        f.weightx = 1;
+        formulaire.add(dateDebEltManquant, f);
+        f.gridx = 0;
+        f.gridy = 1;
+        f.weightx = 0;
+        formulaire.add(new JLabel("Fin (jj/mm/aaaa) :"), f);
+        f.gridx = 1;
+        f.weightx = 1;
+        formulaire.add(dateFinPanel, f);
+        f.gridx = 2;
+        f.weightx = 0;
+        formulaire.add(new JLabel(" "), f);
+        f.gridx = 3;
+        f.weightx = 1;formulaire.add(dateFinEltManquant, f);
+
+        f.gridx = 0;
+        f.gridy = 2;
+        f.weightx = 0;
+        formulaire.add(new JLabel("Nom :"), f);
+        f.gridx = 1;
+        f.weightx = 1;
+        formulaire.add(nomClient, f);
+        f.gridx = 2;
+        f.weightx = 0;
+        formulaire.add(new JLabel("Prénom :"), f);
+        f.gridx = 3;
+        f.weightx = 1;
+        formulaire.add(prenomClient, f);
+
+        JButton rechercheClient = new JButton("Rechercher client");
+        f.gridx = 0;
+        f.gridy = 3;
+        f.weightx = 1;
+        f.fill = GridBagConstraints.HORIZONTAL;
+        f.gridwidth = 4;
+        formulaire.add(rechercheClient, f);
+        f.gridwidth = 1;
+
+        DefaultTableModel model = new DefaultTableModel();
+        clientsTable = new JTable(model);
+        model.addColumn("Nom");
+        model.addColumn("Prénom");
+        model.addColumn("Client");
+        clientsTable.removeColumn(clientsTable.getColumn("Client"));
+        JScrollPane scrollPane = new JScrollPane(clientsTable);
+
+        f.gridx = 0;
+        f.gridy = 4;
+        f.weightx = 1;
+        f.weighty = 1;
+        f.fill = GridBagConstraints.BOTH;
+        f.gridwidth = 3;
+        formulaire.add(scrollPane, f);
+        f.gridwidth = 1;
+        f.weighty = 0;
+        f.gridx = 3;
+        f.fill = GridBagConstraints.HORIZONTAL;
+        formulaire.add(errClientSelectionne, f);
+        gbc.gridy = 1;
+        gbc.weighty = 1;
+        this.add(formulaire, gbc);
+        JButton suivant = new JButton("Suivant");
+        gbc.gridy = 2;
+        gbc.weighty = 0;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        this.add(suivant, gbc);
+
         Vector<JTextField> lFieldsDate = new Vector<>();
         lFieldsDate.add(anneeDebField);
         lFieldsDate.add(moisDebField);
@@ -88,47 +159,16 @@ public class VueAjoutReservation extends JPanel{
         Vector<JLabel> lJLabelsDate = new Vector<>();
         lJLabelsDate.add(dateDebEltManquant);
         lJLabelsDate.add(dateFinEltManquant);
-        
-        formulaire.add(new JLabel("A quel nom : "));
-        JPanel rechercheClientPanel = new JPanel(new BorderLayout());
-        JPanel clientJPanel = new JPanel();
-        rechercheClientPanel.add(clientJPanel, BorderLayout.CENTER);
-        clientJPanel.add(new JLabel("Nom :"));
-        this.nomClient = new JTextField(10);
-        clientJPanel.add(this.nomClient);
-        clientJPanel.add(new JLabel("Prénom :"));
-        this.prenomClient = new JTextField(10);
-        clientJPanel.add(this.prenomClient);
-        formulaire.add(rechercheClientPanel);
-
-        DefaultTableModel model = new DefaultTableModel();
-        clientsTable = new JTable(model);
-        model.addColumn("Nom");
-        model.addColumn("Prénom");
-        model.addColumn("Client"); // utilisé pour ranger l'objet Client
-        clientsTable.removeColumn(clientsTable.getColumn("Client")); // devient "invisible" dans le tableau, seulement accessible via le modèle du JTable
-        JScrollPane scrollPane = new JScrollPane(clientsTable);
-        // scrollPane.setVisible(false);
-        formulaire.add(scrollPane, BorderLayout.SOUTH);
-        
-        JLabel errClientSelectionne = new JLabel();
-        errClientSelectionne.setHorizontalAlignment(SwingConstants.CENTER);
-        errClientSelectionne.setForeground(Color.red);
-        formulaire.add(errClientSelectionne);
         lJLabelsDate.add(errClientSelectionne);
 
-        JButton rechercheClient = new JButton("Rechercher client");
-        clientJPanel.add(rechercheClient);
         Vector<JTextField> lFieldsResearch = new Vector<>();
-
         lFieldsResearch.add(nomClient);
         lFieldsResearch.add(prenomClient);
+
         Vector<JLabel> lJLabelsResearch = new Vector<>();
-        JLabel clientEltManquant = new JLabel();
-        clientEltManquant.setHorizontalAlignment(SwingConstants.CENTER);
-        rechercheClientPanel.add(clientEltManquant, BorderLayout.SOUTH);
+        JLabel clientEltManquant = new JLabel(" ");
+        clientEltManquant.setForeground(Color.RED);
         lJLabelsResearch.add(clientEltManquant);
-        lJLabelsResearch.get(0).setForeground(Color.red);
 
         this.lFields = new Vector<>();
         this.lFields.add(anneeDebField);
@@ -142,17 +182,8 @@ public class VueAjoutReservation extends JPanel{
 
         ControllerRecherche recherche = new ControllerRecherche(main.getHotel(), this.clientsTable, lFieldsResearch, lJLabelsResearch);
         rechercheClient.addActionListener(recherche);
-        this.add(formulaire, BorderLayout.CENTER);
-        JButton suivant = new JButton("Suivant");
         suivant.addActionListener(new ControllerSuivPrec(this.main, this.clientsTable, lJLabelsDate, lFieldsDate));
-        this.add(suivant, BorderLayout.SOUTH);
-
-        // JPanel boutonJPanel = new JPanel();
-        // JButton suivant = new JButton("Suivant");
-        // suivant.addActionListener(new ControllerSuivPrec(this.main, null));
-        // boutonJPanel.add(suivant);
-        // this.add(boutonJPanel, BorderLayout.SOUTH);
     }
 
-    public JTable getTable(){return this.clientsTable;}
+    public JTable getTable() { return this.clientsTable; }
 }
